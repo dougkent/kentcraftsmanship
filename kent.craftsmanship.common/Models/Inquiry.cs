@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace kent.craftsmanship.common.Models
+namespace kent.craftsmanship.core.Models
 {
     public class Inquiry
     {

@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\kent.craftsmanship.common\kent.craftsmanship.common.csproj" />
+    <ProjectReference Include="..\kent.craftsmanship.common\kent.craftsmanship.core.csproj" />
     <ProjectReference Include="..\kent.craftsmanship.datalayer\kent.craftsmanship.datalayer.csproj" />
     <ProjectReference Include="..\kent.craftsmanship.services\kent.craftsmanship.services.csproj" />
   </ItemGroup>

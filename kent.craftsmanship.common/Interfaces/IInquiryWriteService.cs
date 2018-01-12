@@ -1,7 +1,7 @@
-﻿using kent.craftsmanship.common.Models;
+﻿using kent.craftsmanship.core.Models;
 using System;
 
-namespace kent.craftsmanship.common.Interfaces
+namespace kent.craftsmanship.core.Interfaces
 {
     public interface IInquiryWriteService
     {

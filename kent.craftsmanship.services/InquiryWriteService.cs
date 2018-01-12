@@ -1,5 +1,5 @@
-﻿using kent.craftsmanship.common.Interfaces;
-using kent.craftsmanship.common.Models;
+﻿using kent.craftsmanship.core.Interfaces;
+using kent.craftsmanship.core.Models;
 using System;
 
 namespace kent.craftsmanship.services

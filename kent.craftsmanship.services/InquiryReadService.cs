@@ -1,5 +1,5 @@
-﻿using kent.craftsmanship.common.Interfaces;
-using kent.craftsmanship.common.Models;
+﻿using kent.craftsmanship.core.Interfaces;
+using kent.craftsmanship.core.Models;
 using System;
 using System.Collections.Generic;
 
@@ -22,21 +22,6 @@ namespace kent.craftsmanship.services
         public ICollection<Inquiry> GetUnreadInquiries()
         {
             return _inquiryDataLayer.GetUnreadInquiries();
-        }
-
-        public void MarkInquiryAsRead(Guid inquiryId)
-        {
-            _inquiryDataLayer.MarkInquiryAsRead(inquiryId);
-        }
-
-        public void SubmitInquiry(Inquiry inquiry)
-        {
-            _inquiryDataLayer.SubmitInquiry(inquiry);
-        }
-
-        public void DeleteInquiry(Guid inquiryId)
-        {
-            _inquiryDataLayer.DeleteInquiry(inquiryId);
         }
     }
 }

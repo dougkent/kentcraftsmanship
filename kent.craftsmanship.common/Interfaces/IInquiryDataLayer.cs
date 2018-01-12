@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using kent.craftsmanship.common.Models;
+using kent.craftsmanship.core.Models;
 
-namespace kent.craftsmanship.common.Interfaces
+namespace kent.craftsmanship.core.Interfaces
 {
     public interface IInquiryDataLayer
     {

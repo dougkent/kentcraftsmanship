@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\kent.craftsmanship.common\kent.craftsmanship.core.csproj" />
+    <ProjectReference Include="..\kent.craftsmanship.core\kent.craftsmanship.core.csproj" />
   </ItemGroup>
 
 </Project>

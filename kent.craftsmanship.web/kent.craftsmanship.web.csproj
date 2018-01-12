@@ -2,9 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TypeScriptToolsVersion>latest</TypeScriptToolsVersion>
-    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="web-client\polyfill.ts" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
@@ -14,13 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\kent.craftsmanship.common\kent.craftsmanship.core.csproj" />
+    <ProjectReference Include="..\kent.craftsmanship.core\kent.craftsmanship.core.csproj" />
     <ProjectReference Include="..\kent.craftsmanship.datalayer\kent.craftsmanship.datalayer.csproj" />
     <ProjectReference Include="..\kent.craftsmanship.services\kent.craftsmanship.services.csproj" />
   </ItemGroup>
-  
+
   <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
-    <WCFMetadata Include="Connected Services" />
+    <TypeScriptCompile Include="web-client\polyfill.ts" />
   </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties _1angular-cli_1json__JSONSchema="node_modules\@angular\cli\lib\config\schema.json" /></VisualStudio></ProjectExtensions>
+
 </Project>

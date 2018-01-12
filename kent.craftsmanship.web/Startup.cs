@@ -1,7 +1,4 @@
-using kent.craftsmanship.core.Interfaces;
-using kent.craftsmanship.datalayer;
-using kent.craftsmanship.services;
-using kent.craftsmanship.web.Models;
+﻿using kent.craftsmanship.web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -14,18 +11,20 @@ namespace kent.craftsmanship.web
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
 
+            //load configuration data into ConfigSettings object
             services.Configure<ConfigSettings>(Configuration.GetSection("configsettings"));
 
             services.AddMvc()
@@ -37,8 +36,6 @@ namespace kent.craftsmanship.web
                 });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IInquiryWriteService, InquiryWriteService>();
-            services.AddScoped<IInquiryDataLayer, InquiryDataLayer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +46,6 @@ namespace kent.craftsmanship.web
                 app.UseDeveloperExceptionPage();
             }
 
-            //redirect non-api calls to index.html (angular router will handle the rest)
             app.Use(async (context, next) =>
             {
                 // Redirect index.html request to a controller that can have authorization in front of it
@@ -60,13 +56,14 @@ namespace kent.craftsmanship.web
 
                 await next();
                 if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) &&
-                        !context.Request.Path.Value.StartsWith("/api/"))
+                    !context.Request.Path.Value.StartsWith("/api/"))
                 {
                     context.Request.Path = "/";
                     await next();
                 }
             });
 
+            //default route: /api/[Controller]
             app.UseMvcWithDefaultRoute();
 
             app.UseDefaultFiles();

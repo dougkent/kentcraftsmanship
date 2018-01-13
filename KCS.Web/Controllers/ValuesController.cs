@@ -1,10 +1,10 @@
-﻿using kent.craftsmanship.web.Models;
+﻿using KCS.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace kent.craftsmanship.web.Controllers
+namespace KCS.Web.Controllers
 {
     [Route("api/values")]
     public class ValuesController : Controller

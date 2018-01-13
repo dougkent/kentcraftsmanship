@@ -1,13 +1,13 @@
-﻿using kent.craftsmanship.core.Models;
+﻿using KCS.Core.Models;
 using System;
 
-namespace kent.craftsmanship.core.Interfaces
+namespace KCS.Core.Interfaces
 {
     public interface IInquiryWriteService
     {
         void MarkInquiryAsRead(Guid inquiryId);
 
-        void SubmitInquiry(Inquiry inquiry);
+        void SubmitInquiry(InquirySubmission inquirySubmission);
 
         void DeleteInquiry(Guid inquiryId);
     }

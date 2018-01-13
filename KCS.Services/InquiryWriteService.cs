@@ -1,8 +1,8 @@
-﻿using kent.craftsmanship.core.Interfaces;
-using kent.craftsmanship.core.Models;
+﻿using KCS.Core.Interfaces;
+using KCS.Core.Models;
 using System;
 
-namespace kent.craftsmanship.services
+namespace KCS.Services
 {
     public class InquiryWriteService : IInquiryWriteService
     {
@@ -18,9 +18,9 @@ namespace kent.craftsmanship.services
             _inquiryDataLayer.MarkInquiryAsRead(inquiryId);
         }
 
-        public void SubmitInquiry(Inquiry inquiry)
+        public void SubmitInquiry(InquirySubmission inquirySubmission)
         {
-            _inquiryDataLayer.SubmitInquiry(inquiry);
+            _inquiryDataLayer.SubmitInquiry(inquirySubmission);
         }
 
         public void DeleteInquiry(Guid inquiryId)

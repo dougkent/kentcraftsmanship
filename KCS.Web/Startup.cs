@@ -1,4 +1,4 @@
-﻿using kent.craftsmanship.web.Models;
+﻿using KCS.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace kent.craftsmanship.web
+namespace KCS.Web
 {
     public class Startup
     {

@@ -1,9 +1,9 @@
-﻿using kent.craftsmanship.core.Interfaces;
-using kent.craftsmanship.core.Models;
+﻿using KCS.Core.Interfaces;
+using KCS.Core.Models;
 using System;
 using System.Collections.Generic;
 
-namespace kent.craftsmanship.services
+namespace KCS.Services
 {
     public class InquiryReadService : IInquiryReadService
     {

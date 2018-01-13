@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kent.craftsmanship.services", "kent.craftsmanship.services\kent.craftsmanship.services.csproj", "{756CAEF9-63DB-4EC6-BE47-9B9CEB15A94D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Services", "KCS.Services\KCS.Services.csproj", "{756CAEF9-63DB-4EC6-BE47-9B9CEB15A94D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kent.craftsmanship.datalayer", "kent.craftsmanship.datalayer\kent.craftsmanship.datalayer.csproj", "{246B8C51-5709-4415-B14C-A7C29C038558}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.DataLayer", "KCS.DataLayer\KCS.DataLayer.csproj", "{246B8C51-5709-4415-B14C-A7C29C038558}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "kent.craftsmanship.core", "kent.craftsmanship.core\kent.craftsmanship.core.csproj", "{D946F278-2D05-4462-99CD-5DE1FB8D1086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Core", "KCS.Core\KCS.Core.csproj", "{D946F278-2D05-4462-99CD-5DE1FB8D1086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kent.craftsmanship.web", "kent.craftsmanship.web\kent.craftsmanship.web.csproj", "{D6BE530F-0568-42C1-9B09-109E84AFF027}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Web", "KCS.Web\KCS.Web.csproj", "{D6BE530F-0568-42C1-9B09-109E84AFF027}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -17,9 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\kent.craftsmanship.core\kent.craftsmanship.core.csproj" />
-    <ProjectReference Include="..\kent.craftsmanship.datalayer\kent.craftsmanship.datalayer.csproj" />
-    <ProjectReference Include="..\kent.craftsmanship.services\kent.craftsmanship.services.csproj" />
+    <ProjectReference Include="..\KCS.Core\KCS.Core.csproj" />
+    <ProjectReference Include="..\KCS.DataLayer\KCS.DataLayer.csproj" />
+    <ProjectReference Include="..\KCS.Services\KCS.Services.csproj" />
   </ItemGroup>
 
   <ItemGroup>

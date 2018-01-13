@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace kent.craftsmanship.web
+namespace KCS.Web
 {
     public class Program
     {

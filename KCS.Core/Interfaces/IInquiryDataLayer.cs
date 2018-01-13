@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using kent.craftsmanship.core.Models;
+using KCS.Core.Models;
 
-namespace kent.craftsmanship.core.Interfaces
+namespace KCS.Core.Interfaces
 {
     public interface IInquiryDataLayer
     {
@@ -13,7 +13,7 @@ namespace kent.craftsmanship.core.Interfaces
 
         void MarkInquiryAsRead(Guid inquiryId);
 
-        void SubmitInquiry(Inquiry inquiry);
+        void SubmitInquiry(InquirySubmission inquirySubmission);
 
         void DeleteInquiry(Guid inquiryId);
     }

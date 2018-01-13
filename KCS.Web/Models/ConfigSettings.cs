@@ -1,4 +1,4 @@
-﻿namespace kent.craftsmanship.web.Models
+﻿namespace KCS.Web.Models
 {
     public class ConfigSettings
     {

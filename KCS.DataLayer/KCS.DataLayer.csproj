@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\kent.craftsmanship.core\kent.craftsmanship.core.csproj" />
+    <PackageReference Include="CassandraCSharpDriver" Version="3.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KCS.Core\KCS.Core.csproj" />
   </ItemGroup>
 
 </Project>

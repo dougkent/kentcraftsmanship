@@ -1,9 +1,7 @@
 ﻿using Cassandra;
 using Cassandra.Data.Linq;
-using Cassandra.Mapping;
 using KCS.Core.Interfaces;
-using KCS.Core.Models;
-using KCS.DataLayer.Models;
+using KCS.DataLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,133 +10,108 @@ namespace KCS.DataLayer
 {
     public class InquiryDataLayer : IInquiryDataLayer
     {
-        public InquiryDataLayer()
-        {
-            MappingConfiguration.Global.Define(
-               new Map<DataLayer.Models.Inquiry>()
-                  .TableName("inquiries")
-                  .PartitionKey(u => u.Id)
-                  .Column(u => u.ReadDate, cm => cm.WithName("read_date")),
-               new Map<DataLayer.Models.UnreadInquiry>()
-                  .TableName("unread_inquiries")
-                  .PartitionKey(u => u.Id));
-        }
+        private readonly IDseContextFactory _dseContextFactory;
 
-        private ISession GetSession()
+        public InquiryDataLayer(IDseContextFactory dseContextFactory)
         {
-            Cluster cluster = Cluster.Builder().AddContactPoint("127.0.0.1").Build();
-            return cluster.Connect("kent_craftsmanship");
+            _dseContextFactory = dseContextFactory;
         }
 
         public ICollection<Core.Models.Inquiry> GetAllInquiries()
         {
-            var session = GetSession();
-
-            var inquiries = new Table<DataLayer.Models.Inquiry>(session)
-                .Execute();
-
-            return inquiries.Select(i => new Core.Models.Inquiry
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                Id = i.Id,
-                Email = i.Email,
-                Submitted = i.Submitted.DateTime,
-                Subject = i.Subject,
-                Body = i.Body,
-                Read = i.ReadDate?.DateTime,
-            }).ToList();
+                return dse.Inquiries
+                    .Execute()
+                    .Select(i => new Core.Models.Inquiry
+                    {
+                        Id = i.Id,
+                        Email = i.Email,
+                        Submitted = i.Submitted.DateTime,
+                        Subject = i.Subject,
+                        Body = i.Body,
+                        Read = i.ReadDate?.DateTime,
+                    }).ToList();
+            }
         }
 
         public ICollection<Core.Models.Inquiry> GetUnreadInquiries()
         {
-            var session = GetSession();
-
-            var inquiries = new Table<DataLayer.Models.UnreadInquiry>(session)
-                .Execute();
-
-            return inquiries.Select(i => new Core.Models.Inquiry
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                Id = i.Id,
-                Email = i.Email,
-                Submitted = i.Submitted.DateTime,
-                Subject = i.Subject,
-                Body = i.Body,
-            }).ToList();
+                return dse.UnreadInquiries
+                    .Execute()
+                    .Select(i => new Core.Models.Inquiry
+                    {
+                        Id = i.Id,
+                        Email = i.Email,
+                        Submitted = i.Submitted.DateTime,
+                        Subject = i.Subject,
+                        Body = i.Body,
+                    }).ToList();
+            }
         }
 
         public void MarkInquiryAsRead(Guid inquiryId)
         {
-            var session = GetSession();
+            using (var dse = _dseContextFactory.GetDseContext())
+            {
+                var updateStmt = dse.Inquiries.Where(i => i.Id == inquiryId)
+                    .Select(i => new DataLayer.Models.Inquiry { ReadDate = DateTimeOffset.Now })
+                    .Update();
 
-            var inquiries = new Table<DataLayer.Models.Inquiry>(session);
-            var unreadInquiries = new Table<DataLayer.Models.UnreadInquiry>(session);
+                var deleteStmt = dse.UnreadInquiries.Where(i => i.Id == inquiryId)
+                    .Delete();
 
-            var updateStmt = inquiries.Where(i => i.Id == inquiryId)
-                .Select(i => new DataLayer.Models.Inquiry { ReadDate = DateTimeOffset.Now })
-                .Update();
-
-            var deleteStmt = unreadInquiries.Where(i => i.Id == inquiryId)
-                .Delete();
-
-            var batch = new BatchStatement()
-                .Add(updateStmt)
-                .Add(deleteStmt);
-
-            session.Execute(batch);
+                dse.ExecuteBatch(updateStmt, deleteStmt);
+            }
         }
 
         public void SubmitInquiry(Core.Models.InquirySubmission inquirySubmission)
         {
-            var session = GetSession();
-
-            var inquiries = new Table<DataLayer.Models.Inquiry>(session);
-            var unreadInquiries = new Table<DataLayer.Models.UnreadInquiry>(session);
-
-            var id = Guid.NewGuid();
-            var submitted = DateTimeOffset.Now;
-
-            var inquiryInsertStmt = inquiries.Insert(new DataLayer.Models.Inquiry
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                Id = id,
-                Email = inquirySubmission.Email,
-                Submitted = submitted,
-                Subject = inquirySubmission.Subject,
-                Body = inquirySubmission.Body,
-            });
+                var id = Guid.NewGuid();
+                var submitted = DateTimeOffset.Now;
 
-            var unreadInquiryInsertStmt = unreadInquiries.Insert(new DataLayer.Models.UnreadInquiry
-            {
-                Id = id,
-                Email = inquirySubmission.Email,
-                Submitted = submitted,
-                Subject = inquirySubmission.Subject,
-                Body = inquirySubmission.Body,
-            });
+                var inquiryInsertStmt = dse.Inquiries.Insert(new DataLayer.Models.Inquiry
+                {
+                    Id = id,
+                    Email = inquirySubmission.Email,
+                    Submitted = submitted,
+                    Subject = inquirySubmission.Subject,
+                    Body = inquirySubmission.Body,
+                });
 
-            var batch = new BatchStatement()
-                .Add(inquiryInsertStmt)
-                .Add(unreadInquiryInsertStmt);
+                var unreadInquiryInsertStmt = dse.UnreadInquiries.Insert(new DataLayer.Models.UnreadInquiry
+                {
+                    Id = id,
+                    Email = inquirySubmission.Email,
+                    Submitted = submitted,
+                    Subject = inquirySubmission.Subject,
+                    Body = inquirySubmission.Body,
+                });
 
-            session.Execute(batch);
+                dse.ExecuteBatch(inquiryInsertStmt, unreadInquiryInsertStmt);
+            }
         }
 
         public void DeleteInquiry(Guid inquiryId)
         {
-            var session = GetSession();
+            using (var dse = _dseContextFactory.GetDseContext())
+            {
+                var inquiryDeleteStmt = dse.Inquiries.Where(i => i.Id == inquiryId)
+                    .Delete();
 
-            var inquiries = new Table<DataLayer.Models.Inquiry>(session);
-            var unreadInquiries = new Table<DataLayer.Models.UnreadInquiry>(session);
+                var unreadInquiryDeleteStmt = dse.UnreadInquiries.Where(i => i.Id == inquiryId)
+                    .Delete();
 
-            var inquiryDeleteStmt = inquiries.Where(i => i.Id == inquiryId)
-                .Delete();
+                var batch = new BatchStatement()
+                    .Add(inquiryDeleteStmt)
+                    .Add(unreadInquiryDeleteStmt);
 
-            var unreadInquiryDeleteStmt = unreadInquiries.Where(i => i.Id == inquiryId)
-                .Delete();
-
-            var batch = new BatchStatement()
-                .Add(inquiryDeleteStmt)
-                .Add(unreadInquiryDeleteStmt);
-
-            session.Execute(batch);
+                dse.ExecuteBatch(inquiryDeleteStmt, unreadInquiryDeleteStmt);
+            }
         }
     }
 }

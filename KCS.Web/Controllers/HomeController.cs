@@ -12,12 +12,13 @@ namespace KCS.Web.Controllers
     {
         private readonly IInquiryWriteService _inquiryWriteService;
 
+        public HomeController(IInquiryWriteService inquiryWriteService)
+        {
+            _inquiryWriteService = inquiryWriteService;
+        }
+
         public IActionResult Index()
         {
-            var dataLayerTest = new InquiryDataLayer();
-
-            dataLayerTest.GetAllInquiries();
-
             return File("~/index.html", "text/html");
         }
 
@@ -25,7 +26,13 @@ namespace KCS.Web.Controllers
         [Route("/api/inquiry/submit")]
         public IActionResult SubmitInquiry([FromBody]InquirySubmission inquirySubmission)
         {
-            if (inquirySubmission == null) return BadRequest("An inquiry submission is required");
+            if (inquirySubmission == null)
+            {
+                return new BadRequestObjectResult("An inquiry submission is required.")
+                {
+                    StatusCode = 422,
+                };
+            }
 
             try
             {

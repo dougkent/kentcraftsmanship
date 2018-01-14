@@ -15,16 +15,22 @@ namespace KCS.Services
         
         public void MarkInquiryAsRead(Guid inquiryId)
         {
+            if (inquiryId == Guid.Empty) throw new ArgumentException("Inquiry Id is required.");
+
             _inquiryDataLayer.MarkInquiryAsRead(inquiryId);
         }
 
         public void SubmitInquiry(InquirySubmission inquirySubmission)
         {
+            if (inquirySubmission == null) throw new ArgumentException("Inquiry Submission is required.");
+
             _inquiryDataLayer.SubmitInquiry(inquirySubmission);
         }
 
         public void DeleteInquiry(Guid inquiryId)
         {
+            if (inquiryId == Guid.Empty) throw new ArgumentException("Inquiry Id is required.");
+
             _inquiryDataLayer.DeleteInquiry(inquiryId);
         }
     }

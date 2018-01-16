@@ -1,5 +1,12 @@
-﻿using Microsoft.AspNetCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace KCS.Web
 {
@@ -12,7 +19,6 @@ namespace KCS.Web
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseWebRoot("web-client")
                 .UseStartup<Startup>()
                 .Build();
     }

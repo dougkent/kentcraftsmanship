@@ -2,12 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="web-client\polyfill.ts" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
@@ -21,11 +18,9 @@
     <ProjectReference Include="..\KCS.DataLayer\KCS.DataLayer.csproj" />
     <ProjectReference Include="..\KCS.Services\KCS.Services.csproj" />
   </ItemGroup>
-
+  
   <ItemGroup>
-    <TypeScriptCompile Include="web-client\polyfill.ts" />
+    <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
-
-  <ProjectExtensions><VisualStudio><UserProperties _1angular-cli_1json__JSONSchema="node_modules\@angular\cli\lib\config\schema.json" /></VisualStudio></ProjectExtensions>
-
 </Project>

@@ -1,4 +1,8 @@
-﻿using KCS.Web.Models;
+using KCS.Core.Interfaces;
+using KCS.DataLayer;
+using KCS.DataLayer.Interfaces;
+using KCS.Services;
+using KCS.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,6 +40,11 @@ namespace KCS.Web
                 });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IInquiryDataLayer, InquiryDataLayer>();
+            services.AddScoped<IDseContext, DseContext>();
+            services.AddScoped<IDseContextFactory, DseContextFactory>();
+            services.AddScoped<IInquiryReadService, InquiryReadService>();
+            services.AddScoped<IInquiryWriteService, InquiryWriteService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

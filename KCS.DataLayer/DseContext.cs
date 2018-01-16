@@ -1,16 +1,19 @@
-﻿using Cassandra;
-using Cassandra.Data.Linq;
-using Cassandra.Mapping;
+﻿using Dse;
+using Dse.Data.Linq;
+using Dse.Mapping;
 using KCS.DataLayer.Interfaces;
 using KCS.DataLayer.Models;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace KCS.DataLayer
 {
     public class DseContext : IDseContext
     {
-        private readonly ICluster _cluster;
-        private readonly ISession _session;
+        private readonly IDseCluster _cluster;
+        private readonly IDseSession _session;
 
         private readonly Table<Inquiry> _inquiries;
 
@@ -31,7 +34,10 @@ namespace KCS.DataLayer
                   .TableName("unread_inquiries")
                   .PartitionKey(u => u.Id));
 
-            _cluster = Cassandra.Cluster.Builder().AddContactPoint("127.0.0.1").Build();
+            _cluster = DseCluster.Builder()
+                .AddContactPoint("127.0.0.1")
+                .Build();
+
             _session = _cluster.Connect("kent_craftsmanship");
             _inquiries = new Table<Inquiry>(_session);
             _unreadInquiries = new Table<UnreadInquiry>(_session);
@@ -43,7 +49,7 @@ namespace KCS.DataLayer
             _cluster.Dispose();
         }
 
-        public void ExecuteBatch(params Statement[] statements)
+        public async Task ExecuteBatchAsync(params Statement[] statements)
         {
             var batch = new BatchStatement();
 
@@ -52,7 +58,7 @@ namespace KCS.DataLayer
                 batch.Add(statement);
             }
 
-            _session.Execute(batch);
+            await _session.ExecuteAsync(batch);
         }
     }
 }

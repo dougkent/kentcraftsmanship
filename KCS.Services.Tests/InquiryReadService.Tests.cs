@@ -2,6 +2,7 @@ using KCS.Services.Tests.TestData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KCS.Services.Tests
 {
@@ -38,12 +39,12 @@ namespace KCS.Services.Tests
         }
 
         [TestMethod]
-        public void InquiryReadService_CanGetAllInquiries()
+        public async Task InquiryReadService_CanGetAllInquiries()
         {
             var mockedReadInquiryService = new MockedInquiryReadService();
 
-            var inquiries = mockedReadInquiryService.InquiryReadService
-                .GetAllInquiries();
+            var inquiries = await mockedReadInquiryService.InquiryReadService
+                .GetAllInquiriesAsync();
 
             Assert.IsNotNull(inquiries);
 
@@ -52,16 +53,16 @@ namespace KCS.Services.Tests
             Assert.AreEqual(MockedInquiry.ReadInquiry.Id, inquiries.First().Id);
 
             mockedReadInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.GetAllInquiries(), Times.Once);
+                .Verify(d => d.GetAllInquiriesAsync(), Times.Once);
         }
 
         [TestMethod]
-        public void InquiryReadService_CanGetUnreadInquiries()
+        public async Task InquiryReadService_CanGetUnreadInquiries()
         {
             var mockedReadInquiryService = new MockedInquiryReadService();
 
-            var inquiries = mockedReadInquiryService.InquiryReadService
-                .GetUnreadInquiries();
+            var inquiries = await mockedReadInquiryService.InquiryReadService
+                .GetUnreadInquiriesAsync();
 
             Assert.IsNotNull(inquiries);
 
@@ -70,7 +71,7 @@ namespace KCS.Services.Tests
             Assert.AreEqual(MockedInquiry.UnreadInquiry.Id, inquiries.First().Id);
 
             mockedReadInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.GetUnreadInquiries(), Times.Once);
+                .Verify(d => d.GetUnreadInquiriesAsync(), Times.Once);
         }
     }
 }

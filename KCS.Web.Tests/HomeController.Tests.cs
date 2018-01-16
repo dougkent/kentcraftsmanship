@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Threading.Tasks;
 
 namespace KCS.Web.Tests
 {
@@ -60,11 +61,11 @@ namespace KCS.Web.Tests
         }
 
         [TestMethod]
-        public void HomeController_SubmitInquiryRequiresModel()
+        public async Task HomeController_SubmitInquiryRequiresModel()
         {
             var mockedHomeController = new MockedHomeController();
 
-            var result = mockedHomeController.HomeController
+            var result = await mockedHomeController.HomeController
                 .SubmitInquiry(null);
 
             Assert.IsNotNull(result);
@@ -78,12 +79,12 @@ namespace KCS.Web.Tests
         }
 
         [TestMethod]
-        public void HomeController_SubmitInquiryUnhandledException()
+        public async Task HomeController_SubmitInquiryUnhandledException()
         {
             var mockedHomeController = new MockedHomeController();
 
             mockedHomeController.MockedInquiryWriteService.InquiryWriteService
-                .Setup(s => s.SubmitInquiry(It.IsAny<InquirySubmission>()))
+                .Setup(s => s.SubmitInquiryAsync(It.IsAny<InquirySubmission>()))
                 .Throws<Exception>();
 
             var inquirySubmission = new InquirySubmission
@@ -93,7 +94,7 @@ namespace KCS.Web.Tests
                 Body = "Test Submission Body",
             };
 
-            var result = mockedHomeController.HomeController
+            var result = await mockedHomeController.HomeController
                 .SubmitInquiry(inquirySubmission);
 
             Assert.IsNotNull(result);
@@ -101,12 +102,12 @@ namespace KCS.Web.Tests
             Assert.IsTrue(result is BadRequestObjectResult);
 
             var badRequestResult = (BadRequestObjectResult)result;
-            
+
             Assert.AreEqual(400, badRequestResult.StatusCode);
         }
 
         [TestMethod]
-        public void HomeController_CanSubmitInquiry()
+        public async Task HomeController_CanSubmitInquiry()
         {
             var mockedHomeController = new MockedHomeController();
 
@@ -117,7 +118,7 @@ namespace KCS.Web.Tests
                 Body = "Test Submission Body",
             };
 
-            var result = mockedHomeController.HomeController
+            var result = await mockedHomeController.HomeController
                 .SubmitInquiry(inquirySubmission);
 
             Assert.IsNotNull(result);
@@ -125,7 +126,7 @@ namespace KCS.Web.Tests
             Assert.IsTrue(result is OkResult);
 
             mockedHomeController.MockedInquiryWriteService.InquiryWriteService
-                .Verify(s => s.SubmitInquiry(inquirySubmission), Times.Once);
+                .Verify(s => s.SubmitInquiryAsync(inquirySubmission), Times.Once);
         }
     }
 }

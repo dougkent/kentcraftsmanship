@@ -3,6 +3,7 @@ using KCS.Services.Tests.TestData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Threading.Tasks;
 
 namespace KCS.Services.Tests
 {
@@ -39,37 +40,37 @@ namespace KCS.Services.Tests
         }
 
         [TestMethod]
-        public void InquiryWriteService_MarkInquiryAsReadRequiresInquiryId()
+        public async Task InquiryWriteService_MarkInquiryAsReadRequiresInquiryId()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
 
-            Assert.ThrowsException<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
-                .MarkInquiryAsRead(Guid.Empty));
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
+                .MarkInquiryAsReadAsync(Guid.Empty));
         }
 
         [TestMethod]
-        public void InquiryWriteService_CanMarkInquiryAsRead()
+        public async Task InquiryWriteService_CanMarkInquiryAsRead()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
 
-            mockedWriteInquiryService.InquiryWriteService
-                .MarkInquiryAsRead(MockedInquiry.UnreadInquiry.Id);
+            await mockedWriteInquiryService.InquiryWriteService
+                .MarkInquiryAsReadAsync(MockedInquiry.UnreadInquiry.Id);
 
             mockedWriteInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.MarkInquiryAsRead(MockedInquiry.UnreadInquiry.Id), Times.Once);
+                .Verify(d => d.MarkInquiryAsReadAsync(MockedInquiry.UnreadInquiry.Id), Times.Once);
         }
 
         [TestMethod]
-        public void InquiryWriteService_SubmitInquiryRequiresModel()
+        public async Task InquiryWriteService_SubmitInquiryRequiresModel()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
 
-            Assert.ThrowsException<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
-                .SubmitInquiry(null));
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
+                .SubmitInquiryAsync(null));
         }
 
         [TestMethod]
-        public void InquiryWriteService_CanSubmitInquiry()
+        public async Task InquiryWriteService_CanSubmitInquiry()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
 
@@ -80,32 +81,32 @@ namespace KCS.Services.Tests
                 Body = "Test Submission Body",
             };
 
-            mockedWriteInquiryService.InquiryWriteService
-                .SubmitInquiry(inquirySubmission);
+            await mockedWriteInquiryService.InquiryWriteService
+                .SubmitInquiryAsync(inquirySubmission);
 
             mockedWriteInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.SubmitInquiry(inquirySubmission), Times.Once);
+                .Verify(d => d.SubmitInquiryAsync(inquirySubmission), Times.Once);
         }
 
         [TestMethod]
-        public void InquiryWriteService_DeleteInquiryRequiresInquiryId()
+        public async Task InquiryWriteService_DeleteInquiryRequiresInquiryId()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
 
-            Assert.ThrowsException<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
-                .DeleteInquiry(Guid.Empty));
+            await Assert.ThrowsExceptionAsync<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
+                .DeleteInquiryAsync(Guid.Empty));
         }
 
         [TestMethod]
-        public void InquiryWriteService_CanDeleteInquiry()
+        public async Task InquiryWriteService_CanDeleteInquiry()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
 
-            mockedWriteInquiryService.InquiryWriteService
-                .DeleteInquiry(MockedInquiry.ReadInquiry.Id);
+            await mockedWriteInquiryService.InquiryWriteService
+                .DeleteInquiryAsync(MockedInquiry.ReadInquiry.Id);
 
             mockedWriteInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.DeleteInquiry(MockedInquiry.ReadInquiry.Id), Times.Once);
+                .Verify(d => d.DeleteInquiryAsync(MockedInquiry.ReadInquiry.Id), Times.Once);
         }
     }
 }

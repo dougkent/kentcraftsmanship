@@ -1,12 +1,13 @@
 ﻿using KCS.Core.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KCS.Core.Interfaces
 {
     public interface IInquiryReadService
     {
-        ICollection<Inquiry> GetAllInquiries();
+        Task<ICollection<Inquiry>> GetAllInquiriesAsync();
 
-        ICollection<Inquiry> GetUnreadInquiries();
+        Task<ICollection<Inquiry>> GetUnreadInquiriesAsync();
     }
 }

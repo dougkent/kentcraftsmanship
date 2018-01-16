@@ -1,10 +1,10 @@
-﻿using Cassandra;
-using Cassandra.Data.Linq;
+﻿using Dse.Data.Linq;
 using KCS.Core.Interfaces;
 using KCS.DataLayer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace KCS.DataLayer
 {
@@ -17,12 +17,11 @@ namespace KCS.DataLayer
             _dseContextFactory = dseContextFactory;
         }
 
-        public ICollection<Core.Models.Inquiry> GetAllInquiries()
+        public async Task<ICollection<Core.Models.Inquiry>> GetAllInquiriesAsync()
         {
             using (var dse = _dseContextFactory.GetDseContext())
             {
-                return dse.Inquiries
-                    .Execute()
+                return (await dse.Inquiries.ExecuteAsync())
                     .Select(i => new Core.Models.Inquiry
                     {
                         Id = i.Id,
@@ -35,12 +34,11 @@ namespace KCS.DataLayer
             }
         }
 
-        public ICollection<Core.Models.Inquiry> GetUnreadInquiries()
+        public async Task<ICollection<Core.Models.Inquiry>> GetUnreadInquiriesAsync()
         {
             using (var dse = _dseContextFactory.GetDseContext())
             {
-                return dse.UnreadInquiries
-                    .Execute()
+                return (await dse.UnreadInquiries.ExecuteAsync())
                     .Select(i => new Core.Models.Inquiry
                     {
                         Id = i.Id,
@@ -52,7 +50,7 @@ namespace KCS.DataLayer
             }
         }
 
-        public void MarkInquiryAsRead(Guid inquiryId)
+        public async Task MarkInquiryAsReadAsync(Guid inquiryId)
         {
             using (var dse = _dseContextFactory.GetDseContext())
             {
@@ -63,11 +61,11 @@ namespace KCS.DataLayer
                 var deleteStmt = dse.UnreadInquiries.Where(i => i.Id == inquiryId)
                     .Delete();
 
-                dse.ExecuteBatch(updateStmt, deleteStmt);
+                await dse.ExecuteBatchAsync(updateStmt, deleteStmt);
             }
         }
 
-        public void SubmitInquiry(Core.Models.InquirySubmission inquirySubmission)
+        public async Task SubmitInquiryAsync(Core.Models.InquirySubmission inquirySubmission)
         {
             using (var dse = _dseContextFactory.GetDseContext())
             {
@@ -92,11 +90,11 @@ namespace KCS.DataLayer
                     Body = inquirySubmission.Body,
                 });
 
-                dse.ExecuteBatch(inquiryInsertStmt, unreadInquiryInsertStmt);
+                await dse.ExecuteBatchAsync(inquiryInsertStmt, unreadInquiryInsertStmt);
             }
         }
 
-        public void DeleteInquiry(Guid inquiryId)
+        public async Task DeleteInquiryAsync(Guid inquiryId)
         {
             using (var dse = _dseContextFactory.GetDseContext())
             {
@@ -106,11 +104,7 @@ namespace KCS.DataLayer
                 var unreadInquiryDeleteStmt = dse.UnreadInquiries.Where(i => i.Id == inquiryId)
                     .Delete();
 
-                var batch = new BatchStatement()
-                    .Add(inquiryDeleteStmt)
-                    .Add(unreadInquiryDeleteStmt);
-
-                dse.ExecuteBatch(inquiryDeleteStmt, unreadInquiryDeleteStmt);
+                await dse.ExecuteBatchAsync(inquiryDeleteStmt, unreadInquiryDeleteStmt);
             }
         }
     }

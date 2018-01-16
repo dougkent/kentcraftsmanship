@@ -2,6 +2,7 @@
 using KCS.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KCS.Services
 {
@@ -14,14 +15,14 @@ namespace KCS.Services
             _inquiryDataLayer = inquiryDataLayer;
         }
 
-        public ICollection<Inquiry> GetAllInquiries()
+        public async Task<ICollection<Inquiry>> GetAllInquiriesAsync()
         {
-            return _inquiryDataLayer.GetAllInquiries();
+            return await _inquiryDataLayer.GetAllInquiriesAsync();
         }
 
-        public ICollection<Inquiry> GetUnreadInquiries()
+        public async Task<ICollection<Inquiry>> GetUnreadInquiriesAsync()
         {
-            return _inquiryDataLayer.GetUnreadInquiries();
+            return await _inquiryDataLayer.GetUnreadInquiriesAsync();
         }
     }
 }

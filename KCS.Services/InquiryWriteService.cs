@@ -1,6 +1,7 @@
 ﻿using KCS.Core.Interfaces;
 using KCS.Core.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace KCS.Services
 {
@@ -13,25 +14,25 @@ namespace KCS.Services
             _inquiryDataLayer = inquiryDataLayer;
         }
         
-        public void MarkInquiryAsRead(Guid inquiryId)
+        public async Task MarkInquiryAsReadAsync(Guid inquiryId)
         {
             if (inquiryId == Guid.Empty) throw new ArgumentException("Inquiry Id is required.");
 
-            _inquiryDataLayer.MarkInquiryAsRead(inquiryId);
+            await _inquiryDataLayer.MarkInquiryAsReadAsync(inquiryId);
         }
 
-        public void SubmitInquiry(InquirySubmission inquirySubmission)
+        public async Task SubmitInquiryAsync(InquirySubmission inquirySubmission)
         {
             if (inquirySubmission == null) throw new ArgumentException("Inquiry Submission is required.");
 
-            _inquiryDataLayer.SubmitInquiry(inquirySubmission);
+            await _inquiryDataLayer.SubmitInquiryAsync(inquirySubmission);
         }
 
-        public void DeleteInquiry(Guid inquiryId)
+        public async Task DeleteInquiryAsync(Guid inquiryId)
         {
             if (inquiryId == Guid.Empty) throw new ArgumentException("Inquiry Id is required.");
 
-            _inquiryDataLayer.DeleteInquiry(inquiryId);
+            await _inquiryDataLayer.DeleteInquiryAsync(inquiryId);
         }
     }
 }

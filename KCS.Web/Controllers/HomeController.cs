@@ -3,6 +3,7 @@ using KCS.Core.Models;
 using KCS.DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -24,7 +25,7 @@ namespace KCS.Web.Controllers
 
         [HttpPost]
         [Route("/api/inquiry/submit")]
-        public IActionResult SubmitInquiry([FromBody]InquirySubmission inquirySubmission)
+        public async Task<IActionResult> SubmitInquiry([FromBody]InquirySubmission inquirySubmission)
         {
             if (inquirySubmission == null)
             {
@@ -36,7 +37,7 @@ namespace KCS.Web.Controllers
 
             try
             {
-                _inquiryWriteService.SubmitInquiry(inquirySubmission);
+                await _inquiryWriteService.SubmitInquiryAsync(inquirySubmission);
 
                 return Ok();
             }

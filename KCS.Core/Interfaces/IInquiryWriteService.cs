@@ -1,14 +1,15 @@
 ﻿using KCS.Core.Models;
 using System;
+using System.Threading.Tasks;
 
 namespace KCS.Core.Interfaces
 {
     public interface IInquiryWriteService
     {
-        void MarkInquiryAsRead(Guid inquiryId);
+        Task MarkInquiryAsReadAsync(Guid inquiryId);
 
-        void SubmitInquiry(InquirySubmission inquirySubmission);
+        Task SubmitInquiryAsync(InquirySubmission inquirySubmission);
 
-        void DeleteInquiry(Guid inquiryId);
+        Task DeleteInquiryAsync(Guid inquiryId);
     }
 }

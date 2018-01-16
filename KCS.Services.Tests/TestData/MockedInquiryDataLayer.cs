@@ -2,6 +2,7 @@
 using KCS.Core.Models;
 using Moq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace KCS.Services.Tests.TestData
 {
@@ -15,16 +16,16 @@ namespace KCS.Services.Tests.TestData
         {
             _inquiryDataLayer = new Mock<IInquiryDataLayer>();
 
-            _inquiryDataLayer.Setup(d => d.GetAllInquiries()).Returns(new List<Inquiry>()
+            _inquiryDataLayer.Setup(d => d.GetAllInquiriesAsync()).Returns(Task.FromResult<ICollection<Inquiry>>(new List<Inquiry>()
                     {
                         MockedInquiry.ReadInquiry,
                         MockedInquiry.UnreadInquiry,
-                    });
+                    }));
 
-            _inquiryDataLayer.Setup(d => d.GetUnreadInquiries()).Returns(new List<Inquiry>()
+            _inquiryDataLayer.Setup(d => d.GetUnreadInquiriesAsync()).Returns(Task.FromResult<ICollection<Inquiry>>(new List<Inquiry>()
                     {
                         MockedInquiry.UnreadInquiry,
-                    });
+                    }));
         }
     }
 }

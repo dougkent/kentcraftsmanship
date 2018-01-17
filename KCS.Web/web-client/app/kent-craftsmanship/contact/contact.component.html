@@ -1,0 +1,25 @@
+﻿<form class="contact-form">
+    <mat-form-field>
+        <input matInput
+               maxlength="256"
+               placeholder="Email Address" />
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+               maxlength="100"
+               placeholder="Subject" />
+    </mat-form-field>
+    <mat-form-field>
+        <textarea #message
+                  matInput
+                  maxlength="500"
+                  placeholder="Body"
+                  matTextareaAutosize
+                  matAutosizeMinRows="5"
+                  matAutosizeMaxRows="5"></textarea>
+        <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
+    </mat-form-field>
+    <div class="center-form-row">
+        <button matButton>Submit</button>
+    </div>
+</form>

@@ -1,11 +1,9 @@
-﻿<mat-toolbar color="primary">
-    <span>Kent Craftsmanship</span>
-    <span><a href="/about">About</a></span>
-    <span><a href="/portfolio">Portfolio</a></span>
-    <span><a href="/mtf">Mission Trip Furniture</a></span>
-    <span><a href="/contact">Contact</a></span>
-    <span class="fill"></span>
-</mat-toolbar>
+﻿<nav>
+    <span><a routerLink="/about" routerLinkAction="active">About</a></span>
+    <span><a routerLink="/portfolio" routerLinkAction="active">Portfolio</a></span>
+    <span><a routerLink="/mtf" routerLinkAction="active">Mission Trip Furniture</a></span>
+    <span><a routerLink="/contact" routerLinkAction="active">Contact</a></span>
+</nav>
 <div class="container">
     <router-outlet></router-outlet>
 </div>

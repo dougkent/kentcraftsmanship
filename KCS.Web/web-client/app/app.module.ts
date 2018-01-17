@@ -23,11 +23,15 @@ import {
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HomeComponent } from './kent-craftsmanship/home/home.component';
+import { ContactComponent } from './kent-craftsmanship/contact/contact.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        PageNotFoundComponent
+        PageNotFoundComponent,
+        HomeComponent,
+        ContactComponent
     ],
     imports: [
         BrowserModule,
@@ -48,7 +52,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
         MatPaginatorModule,
         MatInputModule,
         BrowserAnimationsModule,
-        AppRoutingModule
+        AppRoutingModule,
     ],
     providers: [
     ],

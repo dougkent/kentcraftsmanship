@@ -1,0 +1,16 @@
+﻿.contact-form {
+    width: 500px;
+    margin: 0 auto;
+}
+
+    .contact-form input {
+        width: 100%;
+    }
+
+    .contact-form textarea {
+        width: 500px;
+    }
+
+    .contact-form .center-form-row {
+        text-align: center;
+    }

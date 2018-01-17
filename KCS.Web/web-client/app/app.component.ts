@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+//import { Router, NavigationEnd } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -28,17 +28,17 @@ export class AppComponent implements OnInit {
         }
     ];
 
-    constructor(private router: Router, private http: HttpClient) {
+    constructor(/*private router: Router,*/ private http: HttpClient) {
 
     }
 
     ngOnInit() {
         // Grab the first 2 components of the current route on navigation so that the proper mat-list-item can be focused
-        this.router.events.subscribe(e => {
-            if (e instanceof NavigationEnd) {
-                this.route = this.router.url.split('/').slice(0,3).join('/')
-            }
-        })
+        //this.router.events.subscribe(e => {
+        //    if (e instanceof NavigationEnd) {
+        //        this.route = this.router.url.split('/').slice(0,3).join('/')
+        //    }
+        //})
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

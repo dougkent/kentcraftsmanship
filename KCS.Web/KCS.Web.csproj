@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="web-client\app\kent-craftsmanship\contact\contact.component.ts" />
+    <None Remove="web-client\app\kent-craftsmanship\home\home.component.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
@@ -21,6 +26,8 @@
   
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
+    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\contact\contact.component.ts" />
+    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\home\home.component.ts" />
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 </Project>

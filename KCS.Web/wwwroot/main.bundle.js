@@ -17,62 +17,6 @@ webpackEmptyAsyncContext.id = "../../../../../web-client/$$_lazy_route_resource 
 
 /***/ }),
 
-/***/ "../../../../../web-client/app/app-routing.module.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppRoutingModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../web-client/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-
-
-
-
-
-var routes = [
-    {
-        path: 'contact',
-        component: __WEBPACK_IMPORTED_MODULE_4__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */]
-    },
-    {
-        path: '',
-        component: __WEBPACK_IMPORTED_MODULE_3__kent_craftsmanship_home_home_component__["a" /* HomeComponent */]
-    },
-    {
-        path: '**',
-        component: __WEBPACK_IMPORTED_MODULE_2__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */]
-    }
-];
-var AppRoutingModule = /** @class */ (function () {
-    function AppRoutingModule() {
-    }
-    AppRoutingModule = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["K" /* NgModule */])({
-            imports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forRoot(routes)
-            ],
-            exports: [
-                __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */]
-            ],
-            declarations: []
-        })
-    ], AppRoutingModule);
-    return AppRoutingModule;
-}());
-
-
-
-/***/ }),
-
 /***/ "../../../../../web-client/app/app.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -81,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "section{\r\n    height: 500px;\r\n}", ""]);
 
 // exports
 
@@ -94,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\r\n    <span><a routerLink=\"/about\" routerLinkAction=\"active\">About</a></span>\r\n    <span><a routerLink=\"/portfolio\" routerLinkAction=\"active\">Portfolio</a></span>\r\n    <span><a routerLink=\"/mtf\" routerLinkAction=\"active\">Mission Trip Furniture</a></span>\r\n    <span><a routerLink=\"/contact\" routerLinkAction=\"active\">Contact</a></span>\r\n</nav>\r\n<div class=\"container\">\r\n    <router-outlet></router-outlet>\r\n</div>"
+module.exports = "<nav>\r\n    <span><a pageScroll href=\"#about\">About</a></span>\r\n    <span><a pageScroll href=\"#portfolio\">Portfolio</a></span>\r\n    <span><a pageScroll href=\"#mtf\">Mission Trip Furniture</a></span>\r\n    <span><a pageScroll href=\"#contact\">Contact</a></span>\r\n</nav>\r\n<div class=\"container\">\r\n    <section>\r\n        <app-home></app-home>\r\n    </section>\r\n    <section id=\"about\">\r\n        <h2>About will go here.</h2>\r\n    </section>\r\n    <section id=\"portfolio\">\r\n        <h2>Portfolio will go here.</h2>\r\n    </section>\r\n    <section id=\"mtf\">\r\n        <h2>Mission Trip Furniture will go here.</h2>\r\n    </section>\r\n    <section id=\"contact\">\r\n        <app-contact></app-contact>\r\n    </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -105,43 +49,17 @@ module.exports = "<nav>\r\n    <span><a routerLink=\"/about\" routerLinkAction=\
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(/*private router: Router,*/ http) {
-        this.http = http;
-        this.route = '/';
-        this.links = [
-            {
-                section: 'Kent Craftsmanship',
-                children: [
-                    { name: 'About', link: '/about' },
-                    { name: 'Portfolio', link: '/portfolio' },
-                    { name: 'Mission Trip Furniture', link: '/mtf' },
-                    { name: 'Contact', link: '/contact' }
-                ]
-            }
-        ];
+    function AppComponent() {
     }
-    AppComponent.prototype.ngOnInit = function () {
-        // Grab the first 2 components of the current route on navigation so that the proper mat-list-item can be focused
-        //this.router.events.subscribe(e => {
-        //    if (e instanceof NavigationEnd) {
-        //        this.route = this.router.url.split('/').slice(0,3).join('/')
-        //    }
-        //})
-    };
     AppComponent.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }
         return function (error) {
@@ -156,8 +74,7 @@ var AppComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../web-client/app/app.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/app.component.css")],
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewEncapsulation */].None
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
+        })
     ], AppComponent);
     return AppComponent;
 }());
@@ -177,7 +94,7 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_routing_module__ = __webpack_require__("../../../../../web-client/app/app-routing.module.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__ = __webpack_require__("../../../../ngx-page-scroll/ngx-page-scroll.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../web-client/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../web-client/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
@@ -229,7 +146,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["h" /* MatPaginatorModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MatInputModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
-                __WEBPACK_IMPORTED_MODULE_6__app_routing_module__["a" /* AppRoutingModule */],
+                __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__["a" /* NgxPageScrollModule */]
             ],
             providers: [],
             entryComponents: [],

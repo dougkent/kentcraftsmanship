@@ -20,7 +20,8 @@ import {
     MatDialogModule
 } from '@angular/material';
 
-import { AppRoutingModule } from './app-routing.module';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './kent-craftsmanship/home/home.component';
@@ -52,10 +53,9 @@ import { ContactComponent } from './kent-craftsmanship/contact/contact.component
         MatPaginatorModule,
         MatInputModule,
         BrowserAnimationsModule,
-        AppRoutingModule,
+        NgxPageScrollModule
     ],
-    providers: [
-    ],
+    providers: [],
     entryComponents: [
     ],
     bootstrap: [AppComponent]

@@ -1,9 +1,23 @@
 ﻿<nav>
-    <span><a routerLink="/about" routerLinkAction="active">About</a></span>
-    <span><a routerLink="/portfolio" routerLinkAction="active">Portfolio</a></span>
-    <span><a routerLink="/mtf" routerLinkAction="active">Mission Trip Furniture</a></span>
-    <span><a routerLink="/contact" routerLinkAction="active">Contact</a></span>
+    <span><a pageScroll href="#about">About</a></span>
+    <span><a pageScroll href="#portfolio">Portfolio</a></span>
+    <span><a pageScroll href="#mtf">Mission Trip Furniture</a></span>
+    <span><a pageScroll href="#contact">Contact</a></span>
 </nav>
 <div class="container">
-    <router-outlet></router-outlet>
+    <section>
+        <app-home></app-home>
+    </section>
+    <section id="about">
+        <h2>About will go here.</h2>
+    </section>
+    <section id="portfolio">
+        <h2>Portfolio will go here.</h2>
+    </section>
+    <section id="mtf">
+        <h2>Mission Trip Furniture will go here.</h2>
+    </section>
+    <section id="contact">
+        <app-contact></app-contact>
+    </section>
 </div>

@@ -97,14 +97,16 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__ = __webpack_require__("../../../../ngx-page-scroll/ngx-page-scroll.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../web-client/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../web-client/app/page-not-found/page-not-found.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -124,31 +126,33 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
-                __WEBPACK_IMPORTED_MODULE_9__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */]
+                __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["m" /* MatToolbarModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["n" /* MatToolbarModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["i" /* MatSidenavModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["g" /* MatListModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["e" /* MatGridListModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["a" /* MatButtonModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["l" /* MatTableModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["k" /* MatSortModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["m" /* MatTableModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["l" /* MatSortModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["b" /* MatCheckboxModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["n" /* MatTooltipModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["o" /* MatTooltipModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["c" /* MatDialogModule */],
-                __WEBPACK_IMPORTED_MODULE_5__angular_material__["j" /* MatSnackBarModule */],
+                __WEBPACK_IMPORTED_MODULE_5__angular_material__["k" /* MatSnackBarModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["d" /* MatExpansionModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["h" /* MatPaginatorModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["f" /* MatInputModule */],
                 __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__["a" /* BrowserAnimationsModule */],
                 __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__["a" /* NgxPageScrollModule */]
             ],
-            providers: [],
+            providers: [
+                __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__["a" /* KCSService */]
+            ],
             entryComponents: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
         })
@@ -181,7 +185,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"contact-form\">\r\n    <mat-form-field>\r\n        <input matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <button matButton>Submit</button>\r\n    </div>\r\n</form>"
+module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"onSubmit()\" #contactForm=\"ngForm\">\r\n    <mat-form-field>\r\n        <input id=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               required\r\n               (ngModel)=\"model.email\"\r\n               name=\"email\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input id=\"subject\"\r\n               matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               required\r\n               (ngModel)=\"model.subject\"\r\n               name=\"subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea id=\"body\"\r\n                  #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  required\r\n                  (ngModel)=\"model.body\"\r\n                  name=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <button type=\"submit\" matButton [disabled]=\"!contactForm.form.valid\">Submit</button>\r\n    </div>\r\n</form>ct-form>"
 
 /***/ }),
 
@@ -191,22 +195,50 @@ module.exports = "<form class=\"contact-form\">\r\n    <mat-form-field>\r\n     
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
 
 var ContactComponent = /** @class */ (function () {
-    function ContactComponent() {
+    function ContactComponent(kcsService, snackBar) {
+        this.kcsService = kcsService;
+        this.snackBar = snackBar;
+        this.submitting = false;
     }
+    ContactComponent.prototype.onSubmit = function () {
+        this.snackBar.open('Submitted');
+    };
+    ContactComponent.prototype.submitInquiry = function (inquirySubmission) {
+        var _this = this;
+        if (!this.submitInquiry) {
+            this.submitting = true;
+            this.kcsService.submitInquiry(inquirySubmission)
+                .finally(function () { return _this.submitting = false; })
+                .subscribe(function (res) {
+                _this.snackBar.open('Requests submitted successfully!', '', { duration: 1000 });
+            }, function (err) {
+                _this.snackBar.open('Requests failed.', '', { duration: 3000 });
+                console.error(err);
+            });
+        }
+    };
     ContactComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-contact',
             template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_kcs_service__["a" /* KCSService */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MatSnackBar */]])
     ], ContactComponent);
     return ContactComponent;
 }());
@@ -325,6 +357,44 @@ var PageNotFoundComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], PageNotFoundComponent);
     return PageNotFoundComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/services/kcs.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KCSService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var KCSService = /** @class */ (function () {
+    function KCSService(http) {
+        this.http = http;
+    }
+    KCSService.prototype.submitInquiry = function (inquirySubmission) {
+        return this.http.post('/api/inquiry/submit', inquirySubmission, {
+            responseType: 'text'
+        });
+    };
+    KCSService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], KCSService);
+    return KCSService;
 }());
 
 

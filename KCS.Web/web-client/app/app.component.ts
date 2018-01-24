@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { NavLink } from './models/nav-link';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

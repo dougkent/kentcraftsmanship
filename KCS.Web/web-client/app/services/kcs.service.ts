@@ -5,13 +5,13 @@ import { Observable } from 'rxjs/Rx';
 import { InquirySubmission } from '../models/inquiry-submission';
 
 @Injectable()
-export class KCSService {
+export class KcsService {
 
     constructor(private http: HttpClient) {
 
     }
 
-    submitInquiry(inquirySubmission: InquirySubmission) {
+    submitInquiry(inquirySubmission: InquirySubmission): Observable<Object> {
         return this.http.post('/api/inquiry/submit',
             inquirySubmission,
             {

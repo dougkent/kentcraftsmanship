@@ -1,12 +1,12 @@
 ﻿<h2>Contact</h2>
-<form class="contact-form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+<form class="contact-form" (ngSubmit)="onSubmit(model)" #contactForm="ngForm">
     <mat-form-field>
         <input id="email"
                matInput
                maxlength="256"
                placeholder="Email Address"
                required
-               (ngModel)="model.email"
+               [(ngModel)]="model.email"
                name="email" />
     </mat-form-field>
     <mat-form-field>
@@ -15,7 +15,7 @@
                maxlength="100"
                placeholder="Subject"
                required
-               (ngModel)="model.subject"
+               [(ngModel)]="model.subject"
                name="subject" />
     </mat-form-field>
     <mat-form-field>
@@ -28,7 +28,7 @@
                   matAutosizeMinRows="5"
                   matAutosizeMaxRows="5"
                   required
-                  (ngModel)="model.body"
+                  [(ngModel)]="model.body"
                   name="body"></textarea>
         <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
     </mat-form-field>

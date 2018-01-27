@@ -151,7 +151,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__["a" /* NgxPageScrollModule */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__["a" /* KCSService */]
+                __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__["a" /* KcsService */]
             ],
             entryComponents: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
@@ -172,7 +172,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".contact-form {\r\n    width: 500px;\r\n    margin: 0 auto;\r\n}\r\n\r\n    .contact-form input {\r\n        width: 100%;\r\n    }\r\n\r\n    .contact-form textarea {\r\n        width: 500px;\r\n    }\r\n\r\n    .contact-form .center-form-row {\r\n        text-align: center;\r\n    }\r\n", ""]);
+exports.push([module.i, ".contact-form {\r\n    width: 500px;\r\n    margin: 0 auto;\r\n}\r\n\r\n    .contact-form mat-form-field {\r\n        width: 100%;\r\n    }\r\n\r\n    .contact-form .center-form-row {\r\n        text-align: center;\r\n    }\r\n\r\n    .text-error {\r\n        color: #8a0000\r\n    }\r\n", ""]);
 
 // exports
 
@@ -185,7 +185,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"onSubmit()\" #contactForm=\"ngForm\">\r\n    <mat-form-field>\r\n        <input id=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               required\r\n               (ngModel)=\"model.email\"\r\n               name=\"email\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input id=\"subject\"\r\n               matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               required\r\n               (ngModel)=\"model.subject\"\r\n               name=\"subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea id=\"body\"\r\n                  #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  required\r\n                  (ngModel)=\"model.body\"\r\n                  name=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <button type=\"submit\" matButton [disabled]=\"!contactForm.form.valid\">Submit</button>\r\n    </div>\r\n</form>ct-form>"
+module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"onSubmit(model)\" #contactForm=\"ngForm\">\r\n    <mat-form-field>\r\n        <input id=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               required\r\n               [(ngModel)]=\"model.email\"\r\n               name=\"email\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input id=\"subject\"\r\n               matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               required\r\n               [(ngModel)]=\"model.subject\"\r\n               name=\"subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea id=\"body\"\r\n                  #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  required\r\n                  [(ngModel)]=\"model.body\"\r\n                  name=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <button type=\"submit\" matButton [disabled]=\"!contactForm.form.valid && !this.submitting\">Submit</button>\r\n    </div>\r\n</form>"
 
 /***/ }),
 
@@ -196,7 +196,9 @@ module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_finally__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/finally.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_inquiry_submission__ = __webpack_require__("../../../../../web-client/app/models/inquiry-submission.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -209,25 +211,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ContactComponent = /** @class */ (function () {
     function ContactComponent(kcsService, snackBar) {
         this.kcsService = kcsService;
         this.snackBar = snackBar;
         this.submitting = false;
+        this.model = new __WEBPACK_IMPORTED_MODULE_4__models_inquiry_submission__["a" /* InquirySubmission */]('', '', '');
     }
     ContactComponent.prototype.onSubmit = function () {
-        this.snackBar.open('Submitted');
-    };
-    ContactComponent.prototype.submitInquiry = function (inquirySubmission) {
         var _this = this;
-        if (!this.submitInquiry) {
+        if (!this.submitting) {
             this.submitting = true;
-            this.kcsService.submitInquiry(inquirySubmission)
-                .finally(function () { return _this.submitting = false; })
+            var res = this.kcsService.submitInquiry(this.model);
+            res.finally(function () { return _this.submitting = false; })
                 .subscribe(function (res) {
-                _this.snackBar.open('Requests submitted successfully!', '', { duration: 1000 });
+                _this.submitting = false;
+                _this.snackBar.open('Inquiry submitted successfully!', '', {
+                    //duration: 2000,
+                    panelClass: ['text-success']
+                });
             }, function (err) {
-                _this.snackBar.open('Requests failed.', '', { duration: 3000 });
+                _this.submitting = false;
+                _this.snackBar.open('Inquiry submission encountered an unexpecte error.', '', {
+                    //duration: 2000,
+                    panelClass: ['text-error']
+                });
                 console.error(err);
             });
         }
@@ -238,7 +248,7 @@ var ContactComponent = /** @class */ (function () {
             template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__services_kcs_service__["a" /* KCSService */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MatSnackBar */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_kcs_service__["a" /* KcsService */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MatSnackBar */]])
     ], ContactComponent);
     return ContactComponent;
 }());
@@ -296,6 +306,24 @@ var HomeComponent = /** @class */ (function () {
         })
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/models/inquiry-submission.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InquirySubmission; });
+var InquirySubmission = /** @class */ (function () {
+    function InquirySubmission(email, subject, body) {
+        this.email = email;
+        this.subject = subject;
+        this.body = body;
+    }
+    return InquirySubmission;
 }());
 
 
@@ -367,7 +395,7 @@ var PageNotFoundComponent = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KCSService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KcsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -381,20 +409,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-var KCSService = /** @class */ (function () {
-    function KCSService(http) {
+var KcsService = /** @class */ (function () {
+    function KcsService(http) {
         this.http = http;
     }
-    KCSService.prototype.submitInquiry = function (inquirySubmission) {
+    KcsService.prototype.submitInquiry = function (inquirySubmission) {
         return this.http.post('/api/inquiry/submit', inquirySubmission, {
             responseType: 'text'
         });
     };
-    KCSService = __decorate([
+    KcsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
-    ], KCSService);
-    return KCSService;
+    ], KcsService);
+    return KcsService;
 }());
 
 

@@ -24,7 +24,7 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { KCSService } from './services/kcs.service';
+import { KcsService } from './services/kcs.service';
 import { HomeComponent } from './kent-craftsmanship/home/home.component';
 import { ContactComponent } from './kent-craftsmanship/contact/contact.component';
 
@@ -57,7 +57,7 @@ import { ContactComponent } from './kent-craftsmanship/contact/contact.component
         NgxPageScrollModule
     ],
     providers: [
-        KCSService
+        KcsService
     ],
     entryComponents: [
     ],

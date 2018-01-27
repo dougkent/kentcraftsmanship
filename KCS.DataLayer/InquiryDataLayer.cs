@@ -1,4 +1,4 @@
-﻿using Cassandra.Data.Linq;
+﻿using Dse.Data.Linq;
 using KCS.Core.Interfaces;
 using KCS.DataLayer.Interfaces;
 using System;
@@ -10,18 +10,18 @@ namespace KCS.DataLayer
 {
     public class InquiryDataLayer : IInquiryDataLayer
     {
-        private readonly ICassandraContextFactory _cassandraContextFactory;
+        private readonly IDseContextFactory _dseContextFactory;
 
-        public InquiryDataLayer(ICassandraContextFactory cassandraContextFactory)
+        public InquiryDataLayer(IDseContextFactory dseContextFactory)
         {
-            _cassandraContextFactory = cassandraContextFactory;
+            _dseContextFactory = dseContextFactory;
         }
 
         public async Task<ICollection<Core.Models.Inquiry>> GetAllInquiriesAsync()
         {
-            using (var cassandra = _cassandraContextFactory.GetCassandraContext())
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                return (await cassandra.Inquiries.ExecuteAsync())
+                return (await dse.Inquiries.ExecuteAsync())
                     .Select(i => new Core.Models.Inquiry
                     {
                         Id = i.Id,
@@ -36,9 +36,9 @@ namespace KCS.DataLayer
 
         public async Task<ICollection<Core.Models.Inquiry>> GetUnreadInquiriesAsync()
         {
-            using (var cassandra = _cassandraContextFactory.GetCassandraContext())
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                return (await cassandra.UnreadInquiries.ExecuteAsync())
+                return (await dse.UnreadInquiries.ExecuteAsync())
                     .Select(i => new Core.Models.Inquiry
                     {
                         Id = i.Id,
@@ -52,27 +52,27 @@ namespace KCS.DataLayer
 
         public async Task MarkInquiryAsReadAsync(Guid inquiryId)
         {
-            using (var cassandra = _cassandraContextFactory.GetCassandraContext())
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                var updateStmt = cassandra.Inquiries.Where(i => i.Id == inquiryId)
+                var updateStmt = dse.Inquiries.Where(i => i.Id == inquiryId)
                     .Select(i => new DataLayer.Models.Inquiry { ReadDate = DateTimeOffset.Now })
                     .Update();
 
-                var deleteStmt = cassandra.UnreadInquiries.Where(i => i.Id == inquiryId)
+                var deleteStmt = dse.UnreadInquiries.Where(i => i.Id == inquiryId)
                     .Delete();
 
-                await cassandra.ExecuteBatchAsync(updateStmt, deleteStmt);
+                await dse.ExecuteBatchAsync(updateStmt, deleteStmt);
             }
         }
 
         public async Task SubmitInquiryAsync(Core.Models.InquirySubmission inquirySubmission)
         {
-            using (var cassandra = _cassandraContextFactory.GetCassandraContext())
+            using (var dse = _dseContextFactory.GetDseContext())
             {
                 var id = Guid.NewGuid();
                 var submitted = DateTimeOffset.Now;
 
-                var inquiryInsertStmt = cassandra.Inquiries.Insert(new DataLayer.Models.Inquiry
+                var inquiryInsertStmt = dse.Inquiries.Insert(new DataLayer.Models.Inquiry
                 {
                     Id = id,
                     Email = inquirySubmission.Email,
@@ -81,7 +81,7 @@ namespace KCS.DataLayer
                     Body = inquirySubmission.Body,
                 });
 
-                var unreadInquiryInsertStmt = cassandra.UnreadInquiries.Insert(new DataLayer.Models.UnreadInquiry
+                var unreadInquiryInsertStmt = dse.UnreadInquiries.Insert(new DataLayer.Models.UnreadInquiry
                 {
                     Id = id,
                     Email = inquirySubmission.Email,
@@ -90,21 +90,21 @@ namespace KCS.DataLayer
                     Body = inquirySubmission.Body,
                 });
 
-                await cassandra.ExecuteBatchAsync(inquiryInsertStmt, unreadInquiryInsertStmt);
+                await dse.ExecuteBatchAsync(inquiryInsertStmt, unreadInquiryInsertStmt);
             }
         }
 
         public async Task DeleteInquiryAsync(Guid inquiryId)
         {
-            using (var cassandra = _cassandraContextFactory.GetCassandraContext())
+            using (var dse = _dseContextFactory.GetDseContext())
             {
-                var inquiryDeleteStmt = cassandra.Inquiries.Where(i => i.Id == inquiryId)
+                var inquiryDeleteStmt = dse.Inquiries.Where(i => i.Id == inquiryId)
                     .Delete();
 
-                var unreadInquiryDeleteStmt = cassandra.UnreadInquiries.Where(i => i.Id == inquiryId)
+                var unreadInquiryDeleteStmt = dse.UnreadInquiries.Where(i => i.Id == inquiryId)
                     .Delete();
 
-                await cassandra.ExecuteBatchAsync(inquiryDeleteStmt, unreadInquiryDeleteStmt);
+                await dse.ExecuteBatchAsync(inquiryDeleteStmt, unreadInquiryDeleteStmt);
             }
         }
     }

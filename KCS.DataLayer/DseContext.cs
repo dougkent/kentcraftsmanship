@@ -23,7 +23,7 @@ namespace KCS.DataLayer
 
         public Table<UnreadInquiry> UnreadInquiries { get { return _unreadInquiries; } }
 
-        public DseContext()
+        static DseContext()
         {
             MappingConfiguration.Global.Define(
                new Map<Inquiry>()
@@ -33,7 +33,10 @@ namespace KCS.DataLayer
                new Map<UnreadInquiry>()
                   .TableName("unread_inquiries")
                   .PartitionKey(u => u.Id));
+        }
 
+        public DseContext()
+        {
             _cluster = DseCluster.Builder()
                 .AddContactPoint("127.0.0.1")
                 .Build();

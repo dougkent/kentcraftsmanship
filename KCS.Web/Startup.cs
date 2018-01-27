@@ -41,8 +41,8 @@ namespace KCS.Web
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IInquiryDataLayer, InquiryDataLayer>();
-            services.AddScoped<IDseContext, DseContext>();
-            services.AddScoped<IDseContextFactory, DseContextFactory>();
+            services.AddScoped<ICassandraContext, CassandraContext>();
+            services.AddScoped<ICassandraContextFactory, CassandraContextFactory>();
             services.AddScoped<IInquiryReadService, InquiryReadService>();
             services.AddScoped<IInquiryWriteService, InquiryWriteService>();
         }

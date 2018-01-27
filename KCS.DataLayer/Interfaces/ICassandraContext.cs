@@ -1,12 +1,12 @@
-﻿using Dse;
-using Dse.Data.Linq;
+﻿using Cassandra;
+using Cassandra.Data.Linq;
 using KCS.DataLayer.Models;
 using System;
 using System.Threading.Tasks;
 
 namespace KCS.DataLayer.Interfaces
 {
-    public interface IDseContext : IDisposable
+    public interface ICassandraContext : IDisposable
     {
         Table<Inquiry> Inquiries { get; }
 

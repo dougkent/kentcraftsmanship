@@ -1,19 +1,16 @@
-﻿using Dse;
-using Dse.Data.Linq;
-using Dse.Mapping;
+﻿using Cassandra;
+using Cassandra.Data.Linq;
+using Cassandra.Mapping;
 using KCS.DataLayer.Interfaces;
 using KCS.DataLayer.Models;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace KCS.DataLayer
 {
-    public class DseContext : IDseContext
+    public class CassandraContext : ICassandraContext
     {
-        private readonly IDseCluster _cluster;
-        private readonly IDseSession _session;
+        private readonly ICluster _cluster;
+        private readonly ISession _session;
 
         private readonly Table<Inquiry> _inquiries;
 
@@ -23,7 +20,7 @@ namespace KCS.DataLayer
 
         public Table<UnreadInquiry> UnreadInquiries { get { return _unreadInquiries; } }
 
-        public DseContext()
+        public CassandraContext()
         {
             MappingConfiguration.Global.Define(
                new Map<Inquiry>()
@@ -34,7 +31,7 @@ namespace KCS.DataLayer
                   .TableName("unread_inquiries")
                   .PartitionKey(u => u.Id));
 
-            _cluster = DseCluster.Builder()
+            _cluster = Cluster.Builder()
                 .AddContactPoint("127.0.0.1")
                 .Build();
 

@@ -1,16 +1,8 @@
 ﻿.contact-form {
-    width: 500px;
-    margin: 0 auto;
-}
+  width: 500px;
+  margin: 0 auto; }
+  .contact-form mat-form-field {
+    width: 100%; }
+  .contact-form .center-form-row {
+    text-align: center; }
 
-    .contact-form mat-form-field {
-        width: 100%;
-    }
-
-    .contact-form .center-form-row {
-        text-align: center;
-    }
-
-    .text-error {
-        color: #8a0000
-    }

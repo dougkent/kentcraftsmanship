@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "section{\r\n    height: 500px;\r\n}", ""]);
+exports.push([module.i, "section {\n  height: 500px; }\n\n", ""]);
 
 // exports
 
@@ -172,7 +172,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".contact-form {\r\n    width: 500px;\r\n    margin: 0 auto;\r\n}\r\n\r\n    .contact-form mat-form-field {\r\n        width: 100%;\r\n    }\r\n\r\n    .contact-form .center-form-row {\r\n        text-align: center;\r\n    }\r\n\r\n    .text-error {\r\n        color: #8a0000\r\n    }\r\n", ""]);
+exports.push([module.i, ".contact-form {\n  width: 500px;\n  margin: 0 auto; }\n  .contact-form mat-form-field {\n    width: 100%; }\n  .contact-form .center-form-row {\n    text-align: center; }\n\n", ""]);
 
 // exports
 
@@ -185,7 +185,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"onSubmit(model)\" #contactForm=\"ngForm\">\r\n    <mat-form-field>\r\n        <input id=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               required\r\n               [(ngModel)]=\"model.email\"\r\n               name=\"email\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input id=\"subject\"\r\n               matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               required\r\n               [(ngModel)]=\"model.subject\"\r\n               name=\"subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea id=\"body\"\r\n                  #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  required\r\n                  [(ngModel)]=\"model.body\"\r\n                  name=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <button type=\"submit\" matButton [disabled]=\"!contactForm.form.valid && !this.submitting\">Submit</button>\r\n    </div>\r\n</form>"
+module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"onSubmit(model)\" #contactForm=\"ngForm\">\r\n    <mat-form-field>\r\n        <input id=\"email\"\r\n               type=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               required\r\n               [(ngModel)]=\"model.email\"\r\n               name=\"email\"\r\n               email />\r\n        <mat-error *ngIf=\"#email.hasError('email') && !#email.hasError('required') \">\r\n            Please enter a valid email address.\r\n        </mat-error>\r\n        <mat-error *ngIf=\"email.hasError('required')\">\r\n            Email is <strong>required</strong>\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input id=\"subject\"\r\n               matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               required\r\n               [(ngModel)]=\"model.subject\"\r\n               name=\"subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea id=\"body\"\r\n                  #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  required\r\n                  [(ngModel)]=\"model.body\"\r\n                  name=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <div class=\"g-recaptcha\"\r\n             data-sitekey=\"6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO\"></div>\r\n        <button type=\"submit\"\r\n                mat-button\r\n                [disabled]=\"!contactForm.form.valid && !this.submitting\">\r\n            Submit\r\n        </button>\r\n    </div>\r\n</form>"
 
 /***/ }),
 
@@ -229,13 +229,14 @@ var ContactComponent = /** @class */ (function () {
                 .subscribe(function (res) {
                 _this.submitting = false;
                 _this.snackBar.open('Inquiry submitted successfully!', '', {
-                    //duration: 2000,
+                    duration: 2000,
                     panelClass: ['text-success']
                 });
+                _this.model = new __WEBPACK_IMPORTED_MODULE_4__models_inquiry_submission__["a" /* InquirySubmission */]('', '', '');
             }, function (err) {
                 _this.submitting = false;
-                _this.snackBar.open('Inquiry submission encountered an unexpecte error.', '', {
-                    //duration: 2000,
+                _this.snackBar.open('Inquiry submission encountered an unexpected error.', '', {
+                    duration: 2000,
                     panelClass: ['text-error']
                 });
                 console.error(err);
@@ -265,7 +266,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n", ""]);
 
 // exports
 

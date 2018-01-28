@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "web-client/app/kent-craftsmanship/contact/contact.component.css",
+    "inputFile": "web-client/app/kent-craftsmanship/contact/contact.component.scss"
+  },
+  {
+    "outputFile": "web-client/app/app.component.css",
+    "inputFile": "web-client/app/app.component.scss"
+  },
+  {
+    "outputFile": "web-client/app/kent-craftsmanship/home/home.component.css",
+    "inputFile": "web-client/app/kent-craftsmanship/home/home.component.scss"
+  }
+]

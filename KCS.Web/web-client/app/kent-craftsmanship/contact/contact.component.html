@@ -2,12 +2,20 @@
 <form class="contact-form" (ngSubmit)="onSubmit(model)" #contactForm="ngForm">
     <mat-form-field>
         <input id="email"
+               type="email"
                matInput
                maxlength="256"
                placeholder="Email Address"
                required
                [(ngModel)]="model.email"
-               name="email" />
+               name="email"
+               email />
+        <!--<mat-error *ngIf="email.hasError('email') && !#email.hasError('required') ">
+            Please enter a valid email address.
+        </mat-error>
+        <mat-error *ngIf="email.hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>-->
     </mat-form-field>
     <mat-form-field>
         <input id="subject"
@@ -33,6 +41,12 @@
         <mat-hint align="end">{{message.value.length}} / 500</mat-hint>
     </mat-form-field>
     <div class="center-form-row">
-        <button type="submit" matButton [disabled]="!contactForm.form.valid && !this.submitting">Submit</button>
+        <div class="g-recaptcha"
+             data-sitekey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"></div>
+        <button type="submit"
+                mat-button
+                [disabled]="!contactForm.form.valid && !this.submitting">
+            Submit
+        </button>
     </div>
 </form>

@@ -15,10 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Web.Tests", "KCS.Web.Te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9877D73D-855C-468D-AD03-A70276935D6B}"
 	ProjectSection(SolutionItems) = preProject
-		KCS.Database\KCS.DSE.Schema.cql = KCS.Database\KCS.DSE.Schema.cql
+		KCS.Database\KCS.Cassandra.Schema.cql = KCS.Database\KCS.Cassandra.Schema.cql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KCS.Web", "KCS.Web\KCS.Web.csproj", "{93B4D678-E95A-49C3-B9AD-DE3373B50FFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Web", "KCS.Web\KCS.Web.csproj", "{93B4D678-E95A-49C3-B9AD-DE3373B50FFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

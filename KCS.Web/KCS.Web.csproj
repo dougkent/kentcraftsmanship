@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <None Remove="web-client\app\kent-craftsmanship\contact\contact.component.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\home\home.component.ts" />
     <None Remove="web-client\app\models\inquiry-submission.ts" />
     <None Remove="web-client\app\services\kcs.service.ts" />
     <None Remove="web-client\app\services\kcs.services.spec.ts" />
@@ -30,7 +29,6 @@
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
     <TypeScriptCompile Include="web-client\app\kent-craftsmanship\contact\contact.component.ts" />
-    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\home\home.component.ts" />
     <TypeScriptCompile Include="web-client\app\models\inquiry-submission.ts" />
     <TypeScriptCompile Include="web-client\app\services\kcs.service.ts" />
     <TypeScriptCompile Include="web-client\app\services\kcs.services.spec.ts" />

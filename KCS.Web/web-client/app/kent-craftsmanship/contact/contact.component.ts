@@ -33,15 +33,16 @@ export class ContactComponent {
                     this.submitting = false;
                     this.snackBar.open('Inquiry submitted successfully!', '',
                         {
-                            //duration: 2000,
+                            duration: 2000,
                             panelClass: ['text-success']
                         });
+                    this.model = new InquirySubmission('', '', '');
                 },
                 err => {
                     this.submitting = false;
-                    this.snackBar.open('Inquiry submission encountered an unexpecte error.', '',
+                    this.snackBar.open('Inquiry submission encountered an unexpected error.', '',
                         {
-                            //duration: 2000,
+                            duration: 2000,
                             panelClass: ['text-error']
                         });
                     console.error(err);

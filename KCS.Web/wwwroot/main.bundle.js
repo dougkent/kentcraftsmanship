@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "section {\n  height: 500px; }\n\n", ""]);
+exports.push([module.i, "section {\r\n  height: 500px; }\r\n\r\n", ""]);
 
 // exports
 
@@ -92,7 +92,7 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_platform_browser_animations__ = __webpack_require__("../../../platform-browser/esm5/animations.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__ = __webpack_require__("../../../../ngx-page-scroll/ngx-page-scroll.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../web-client/app/app.component.ts");
@@ -100,6 +100,7 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -109,6 +110,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
+//import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -127,12 +130,15 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
                 __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */]
+                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__directives_recaptcha_directive__["b" /* ReCaptchaDirective */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_4__angular_common_http__["b" /* HttpClientModule */],
-                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["c" /* FormsModule */],
+                //HttpClientModule,
+                __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* HttpModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
+                __WEBPACK_IMPORTED_MODULE_2__angular_forms__["i" /* ReactiveFormsModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["n" /* MatToolbarModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["i" /* MatSidenavModule */],
                 __WEBPACK_IMPORTED_MODULE_5__angular_material__["g" /* MatListModule */],
@@ -164,6 +170,230 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../web-client/app/directives/recaptcha.directive.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RECAPTCHA_URL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ReCaptchaDirective; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+
+
+
+
+var RECAPTCHA_URL = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["D" /* InjectionToken */]('RECAPTCHA_URL');
+var ReCaptchaAsyncValidator = /** @class */ (function () {
+    function ReCaptchaAsyncValidator(http, url) {
+        this.http = http;
+        this.url = url;
+    }
+    ReCaptchaAsyncValidator.prototype.validateToken = function (token) {
+        var _this = this;
+        return function (_) {
+            return _this.http.get(_this.url, { params: { token: token } }).map(function (res) { return res.json(); }).map(function (res) {
+                if (!res.success) {
+                    return { tokenInvalid: true };
+                }
+                return null;
+            });
+        };
+    };
+    ReCaptchaAsyncValidator = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __param(1, Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Inject */])(RECAPTCHA_URL)),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_http__["a" /* Http */], String])
+    ], ReCaptchaAsyncValidator);
+    return ReCaptchaAsyncValidator;
+}());
+var ReCaptchaDirective = /** @class */ (function () {
+    function ReCaptchaDirective(element, ngZone, injector, reCaptchaAsyncValidator, cd) {
+        this.element = element;
+        this.ngZone = ngZone;
+        this.injector = injector;
+        this.reCaptchaAsyncValidator = reCaptchaAsyncValidator;
+        this.cd = cd;
+        this.config = {};
+        this.captchaResponse = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+        this.captchaExpired = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
+    }
+    ReCaptchaDirective_1 = ReCaptchaDirective;
+    ReCaptchaDirective.prototype.ngOnInit = function () {
+        this.registerReCaptchaCallback();
+        this.addScript();
+    };
+    ReCaptchaDirective.prototype.registerReCaptchaCallback = function () {
+        var _this = this;
+        window.reCaptchaLoad = function () {
+            var config = __assign({}, _this.config, { 'sitekey': _this.key, 'callback': _this.onSuccess.bind(_this), 'expired-callback': _this.onExpired.bind(_this) });
+            _this.widgetId = _this.render(_this.element.nativeElement, config);
+        };
+    };
+    ReCaptchaDirective.prototype.ngAfterViewInit = function () {
+        this.control = this.injector.get(__WEBPACK_IMPORTED_MODULE_1__angular_forms__["g" /* NgControl */]).control;
+        this.setValidators();
+        this.cd.detectChanges();
+    };
+    /**
+     * Useful for multiple captcha
+     * @returns {number}
+     */
+    ReCaptchaDirective.prototype.getId = function () {
+        return this.widgetId;
+    };
+    /**
+     * Calling the setValidators doesn't trigger any update or value change event.
+     * Therefore, we need to call updateValueAndValidity to trigger the update
+     */
+    ReCaptchaDirective.prototype.setValidators = function () {
+        this.control.setValidators(__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required);
+        this.control.updateValueAndValidity();
+    };
+    ReCaptchaDirective.prototype.writeValue = function (obj) {
+    };
+    ReCaptchaDirective.prototype.registerOnChange = function (fn) {
+        this.onChange = fn;
+    };
+    ReCaptchaDirective.prototype.registerOnTouched = function (fn) {
+        this.onTouched = fn;
+    };
+    /**
+     * onExpired
+     */
+    ReCaptchaDirective.prototype.onExpired = function () {
+        var _this = this;
+        this.ngZone.run(function () {
+            _this.captchaExpired.emit();
+            _this.onChange('');
+            _this.onTouched('');
+        });
+    };
+    /**
+     *
+     * @param response
+     */
+    ReCaptchaDirective.prototype.onSuccess = function (token) {
+        var _this = this;
+        this.ngZone.run(function () {
+            _this.verifyToken(token);
+            _this.captchaResponse.next(token);
+            _this.onChange(token);
+            _this.onTouched(token);
+        });
+    };
+    /**
+     *
+     * @param token
+     */
+    ReCaptchaDirective.prototype.verifyToken = function (token) {
+        this.control.setAsyncValidators(this.reCaptchaAsyncValidator.validateToken(token));
+        this.control.updateValueAndValidity();
+    };
+    /**
+     * Renders the container as a reCAPTCHA widget and returns the ID of the newly created widget.
+     * @param element
+     * @param config
+     * @returns {number}
+     */
+    ReCaptchaDirective.prototype.render = function (element, config) {
+        return grecaptcha.render(element, config);
+    };
+    /**
+     * Resets the reCAPTCHA widget.
+     */
+    ReCaptchaDirective.prototype.reset = function () {
+        if (!this.widgetId)
+            return;
+        grecaptcha.reset(this.widgetId);
+        this.onChange('');
+    };
+    /**
+     * Gets the response for the reCAPTCHA widget.
+     * @returns {string}
+     */
+    ReCaptchaDirective.prototype.getResponse = function () {
+        if (!this.widgetId)
+            return grecaptcha.getResponse(this.widgetId);
+        else
+            return '';
+    };
+    /**
+     * Add the script
+     */
+    ReCaptchaDirective.prototype.addScript = function () {
+        var script = document.createElement('script');
+        var lang = this.lang ? '&hl=' + this.lang : '';
+        script.src = "https://www.google.com/recaptcha/api.js?onload=reCaptchaLoad&render=explicit" + lang;
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", String)
+    ], ReCaptchaDirective.prototype, "key", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", Object)
+    ], ReCaptchaDirective.prototype, "config", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", String)
+    ], ReCaptchaDirective.prototype, "lang", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+        __metadata("design:type", Object)
+    ], ReCaptchaDirective.prototype, "captchaResponse", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["R" /* Output */])(),
+        __metadata("design:type", Object)
+    ], ReCaptchaDirective.prototype, "captchaExpired", void 0);
+    ReCaptchaDirective = ReCaptchaDirective_1 = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["t" /* Directive */])({
+            selector: '[kcsRecaptcha]',
+            exportAs: 'kcsRecaptcha',
+            providers: [
+                {
+                    provide: __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* NG_VALUE_ACCESSOR */],
+                    useExisting: Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_18" /* forwardRef */])(function () { return ReCaptchaDirective_1; }),
+                    multi: true
+                },
+                ReCaptchaAsyncValidator
+            ]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["P" /* NgZone */], __WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Injector */],
+            ReCaptchaAsyncValidator, __WEBPACK_IMPORTED_MODULE_0__angular_core__["k" /* ChangeDetectorRef */]])
+    ], ReCaptchaDirective);
+    return ReCaptchaDirective;
+    var ReCaptchaDirective_1;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -172,7 +402,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".contact-form {\n  width: 500px;\n  margin: 0 auto; }\n  .contact-form mat-form-field {\n    width: 100%; }\n  .contact-form .center-form-row {\n    text-align: center; }\n\n", ""]);
+exports.push([module.i, ".contact-form {\r\n  width: 500px;\r\n  margin: 0 auto; }\r\n  .contact-form mat-form-field {\r\n    width: 100%; }\r\n  .contact-form .center-form-row {\r\n    text-align: center; }\r\n\r\n", ""]);
 
 // exports
 
@@ -185,7 +415,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"onSubmit(model)\" #contactForm=\"ngForm\">\r\n    <mat-form-field>\r\n        <input id=\"email\"\r\n               type=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               required\r\n               [(ngModel)]=\"model.email\"\r\n               name=\"email\"\r\n               email />\r\n        <mat-error *ngIf=\"#email.hasError('email') && !#email.hasError('required') \">\r\n            Please enter a valid email address.\r\n        </mat-error>\r\n        <mat-error *ngIf=\"email.hasError('required')\">\r\n            Email is <strong>required</strong>\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input id=\"subject\"\r\n               matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               required\r\n               [(ngModel)]=\"model.subject\"\r\n               name=\"subject\" />\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea id=\"body\"\r\n                  #message\r\n                  matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  required\r\n                  [(ngModel)]=\"model.body\"\r\n                  name=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{message.value.length}} / 500</mat-hint>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <div class=\"g-recaptcha\"\r\n             data-sitekey=\"6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO\"></div>\r\n        <button type=\"submit\"\r\n                mat-button\r\n                [disabled]=\"!contactForm.form.valid && !this.submitting\">\r\n            Submit\r\n        </button>\r\n    </div>\r\n</form>"
+module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\"\r\n      [formGroup]=\"contactForm\"\r\n      (ngSubmit)=\"submitInquiry(contactForm.value, contactForm.valid)\"\r\n      novalidate>\r\n    <mat-form-field>\r\n        <input type=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               formControlName=\"email\" />\r\n        <mat-error *ngIf=\"contactForm.controls['email'].errors?.email && !contactForm.controls['email'].errors?.required\">\r\n            Please enter a valid email address.\r\n        </mat-error>\r\n        <mat-error *ngIf=\"contactForm.controls['email'].errors?.required\">\r\n            Email address is required.\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               formControlName=\"subject\" />\r\n        <mat-error *ngIf=\"contactForm.controls['subject'].errors?.required\">\r\n            A subject is required.\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  formControlName=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{contactForm.controls['body'].value.length}} / 500</mat-hint>\r\n        <mat-error *ngIf=\"contactForm.controls['body'].errors?.required\">\r\n            A body is required.\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <div kcsRecaptcha key=\"6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO\" formControlName=\"captcha\"></div>\r\n        <button mat-button\r\n                type=\"submit\"\r\n                [disabled]=\"!contactForm.valid\">\r\n            Submit\r\n        </button>\r\n    </div>\r\n</form>"
 
 /***/ }),
 
@@ -195,10 +425,11 @@ module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\" (ngSubmit)=\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContactComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_finally__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/finally.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_inquiry_submission__ = __webpack_require__("../../../../../web-client/app/models/inquiry-submission.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__("../../../forms/esm5/forms.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_finally__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/finally.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -213,18 +444,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var ContactComponent = /** @class */ (function () {
-    function ContactComponent(kcsService, snackBar) {
+    function ContactComponent(formBuilder, kcsService, snackBar) {
+        this.formBuilder = formBuilder;
         this.kcsService = kcsService;
         this.snackBar = snackBar;
         this.submitting = false;
-        this.model = new __WEBPACK_IMPORTED_MODULE_4__models_inquiry_submission__["a" /* InquirySubmission */]('', '', '');
     }
-    ContactComponent.prototype.onSubmit = function () {
+    ContactComponent.prototype.ngOnInit = function () {
+        this.contactForm = this.formBuilder.group({
+            email: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].email, __WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required]],
+            subject: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required]],
+            body: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required]],
+            captcha: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required]]
+        });
+    };
+    ContactComponent.prototype.submitInquiry = function (model) {
         var _this = this;
         if (!this.submitting) {
             this.submitting = true;
-            var res = this.kcsService.submitInquiry(this.model);
+            var res = this.kcsService.submitInquiry(model);
             res.finally(function () { return _this.submitting = false; })
                 .subscribe(function (res) {
                 _this.submitting = false;
@@ -232,7 +472,6 @@ var ContactComponent = /** @class */ (function () {
                     duration: 2000,
                     panelClass: ['text-success']
                 });
-                _this.model = new __WEBPACK_IMPORTED_MODULE_4__models_inquiry_submission__["a" /* InquirySubmission */]('', '', '');
             }, function (err) {
                 _this.submitting = false;
                 _this.snackBar.open('Inquiry submission encountered an unexpected error.', '', {
@@ -247,9 +486,13 @@ var ContactComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-contact',
             template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html"),
-            styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css")]
+            styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css")],
+            providers: [{
+                    provide: __WEBPACK_IMPORTED_MODULE_5__directives_recaptcha_directive__["a" /* RECAPTCHA_URL */],
+                    useValue: '/api/inquiries/validate-captcha'
+                }]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3__services_kcs_service__["a" /* KcsService */], __WEBPACK_IMPORTED_MODULE_1__angular_material__["j" /* MatSnackBar */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__services_kcs_service__["a" /* KcsService */], __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatSnackBar */]])
     ], ContactComponent);
     return ContactComponent;
 }());
@@ -266,7 +509,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, "\r\n", ""]);
 
 // exports
 
@@ -307,24 +550,6 @@ var HomeComponent = /** @class */ (function () {
         })
     ], HomeComponent);
     return HomeComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "../../../../../web-client/app/models/inquiry-submission.ts":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InquirySubmission; });
-var InquirySubmission = /** @class */ (function () {
-    function InquirySubmission(email, subject, body) {
-        this.email = email;
-        this.subject = subject;
-        this.body = body;
-    }
-    return InquirySubmission;
 }());
 
 
@@ -398,7 +623,7 @@ var PageNotFoundComponent = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KcsService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -409,19 +634,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+//import { HttpClient, HttpParams } from '@angular/common/http';
 
 var KcsService = /** @class */ (function () {
     function KcsService(http) {
         this.http = http;
     }
     KcsService.prototype.submitInquiry = function (inquirySubmission) {
-        return this.http.post('/api/inquiry/submit', inquirySubmission, {
-            responseType: 'text'
-        });
+        return this.http.post('/api/inquiries', inquirySubmission);
     };
     KcsService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]])
     ], KcsService);
     return KcsService;
 }());

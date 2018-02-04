@@ -43,8 +43,8 @@ namespace KCS.Web
             services.AddScoped<IInquiryDataLayer, InquiryDataLayer>();
             services.AddScoped<ICassandraContext, CassandraContext>();
             services.AddScoped<ICassandraContextFactory, CassandraContextFactory>();
-            services.AddScoped<IInquiryReadService, InquiryReadService>();
             services.AddScoped<IInquiryWriteService, InquiryWriteService>();
+            services.AddScoped<IReCaptchaValidationService, ReCaptchaValidationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -11,10 +11,12 @@ namespace KCS.Web.Controllers
     public class HomeController : Controller
     {
         private readonly IInquiryWriteService _inquiryWriteService;
+        private readonly IReCaptchaValidationService _reCaptchaValidationService;
 
-        public HomeController(IInquiryWriteService inquiryWriteService)
+        public HomeController(IInquiryWriteService inquiryWriteService, IReCaptchaValidationService reCaptchaValidationService)
         {
             _inquiryWriteService = inquiryWriteService;
+            _reCaptchaValidationService = reCaptchaValidationService;
         }
 
         public IActionResult Index()
@@ -23,7 +25,7 @@ namespace KCS.Web.Controllers
         }
 
         [HttpPost]
-        [Route("/api/inquiry/submit")]
+        [Route("/api/inquiries")]
         public async Task<IActionResult> SubmitInquiry([FromBody]InquirySubmission inquirySubmission)
         {
             if (inquirySubmission == null)
@@ -44,6 +46,15 @@ namespace KCS.Web.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpGet]
+        [Route("/api/inquiries/validate-captcha")]
+        public async Task<IActionResult> ValidateCaptcha(string token)
+        {
+            var response = await _reCaptchaValidationService.Validate(token);
+
+            return Json(response);
         }
     }
 }

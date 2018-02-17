@@ -26,6 +26,7 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { KcsService } from './services/kcs.service';
+import { NavBarComponent } from './kent-craftsmanship/nav/nav.component';
 import { HomeComponent } from './kent-craftsmanship/home/home.component';
 import { ContactComponent } from './kent-craftsmanship/contact/contact.component';
 import { ReCaptchaDirective } from './directives/recaptcha.directive';
@@ -34,13 +35,13 @@ import { ReCaptchaDirective } from './directives/recaptcha.directive';
     declarations: [
         AppComponent,
         PageNotFoundComponent,
+        NavBarComponent,
         HomeComponent,
         ContactComponent,
         ReCaptchaDirective
     ],
     imports: [
         BrowserModule,
-        //HttpClientModule,
         HttpModule,
         FormsModule,
         ReactiveFormsModule,

@@ -1,1 +1,10 @@
-﻿
+﻿.home {
+  background: url(../../../assets/home-bg.jpg);
+  background-size: cover;
+  height: 100vh; }
+  .home .kcs-title {
+    padding-top: 200px;
+    text-align: center; }
+    .home .kcs-title h1, .home .kcs-title h2 {
+      font-weight: 400; }
+

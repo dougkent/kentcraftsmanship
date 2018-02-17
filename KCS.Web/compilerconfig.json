@@ -10,5 +10,9 @@
   {
     "outputFile": "web-client/app/kent-craftsmanship/home/home.component.css",
     "inputFile": "web-client/app/kent-craftsmanship/home/home.component.scss"
+  },
+  {
+    "outputFile": "web-client/app/kent-craftsmanship/nav/nav.component.css",
+    "inputFile": "web-client/app/kent-craftsmanship/nav/nav.component.scss"
   }
 ]

@@ -25,7 +25,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "section {\r\n  height: 500px; }\r\n\r\n", ""]);
+exports.push([module.i, "body {\n  font-family: 'Montserrat', sans-serif;\n  margin: 0; }\n\n.kcs-container {\n  padding: 0; }\n\nsection {\n  height: 100vh; }\n\n", ""]);
 
 // exports
 
@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav>\r\n    <span><a pageScroll href=\"#about\">About</a></span>\r\n    <span><a pageScroll href=\"#portfolio\">Portfolio</a></span>\r\n    <span><a pageScroll href=\"#mtf\">Mission Trip Furniture</a></span>\r\n    <span><a pageScroll href=\"#contact\">Contact</a></span>\r\n</nav>\r\n<div class=\"container\">\r\n    <section>\r\n        <app-home></app-home>\r\n    </section>\r\n    <section id=\"about\">\r\n        <h2>About will go here.</h2>\r\n    </section>\r\n    <section id=\"portfolio\">\r\n        <h2>Portfolio will go here.</h2>\r\n    </section>\r\n    <section id=\"mtf\">\r\n        <h2>Mission Trip Furniture will go here.</h2>\r\n    </section>\r\n    <section id=\"contact\">\r\n        <app-contact></app-contact>\r\n    </section>\r\n</div>\r\n"
+module.exports = "<app-nav></app-nav>\r\n<div class=\"container-fluid kcs-container\">\r\n    <section>\r\n        <app-home></app-home>\r\n    </section>\r\n    <section id=\"about\">\r\n        <h2>About will go here.</h2>\r\n    </section>\r\n    <section id=\"portfolio\">\r\n        <h2>Portfolio will go here.</h2>\r\n    </section>\r\n    <section id=\"mtf\">\r\n        <h2>Mission Trip Furniture will go here.</h2>\r\n    </section>\r\n    <section id=\"contact\">\r\n        <app-contact></app-contact>\r\n    </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -55,11 +55,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent() {
+    function AppComponent(element) {
+        this.element = element;
+        this.currentSectionName = '';
+        this.sectionIndexes = [];
     }
+    AppComponent.prototype.ngOnInit = function () {
+    };
+    AppComponent.prototype.sectionPosition = function ($event) {
+        //filter out the old position if it has been set
+        //this.sectionIndexes = this.sectionIndexes.filter(item => item.name != $event.name);
+        //set the new position
+        this.sectionIndexes.push($event);
+        //sort the section based on their apperance order 
+        this.sectionIndexes.sort(function (a, b) {
+            return b.position - a.position;
+        });
+        //if the page has already been scrolled find the current name
+        if (document.body.scrollTop > 0) {
+            this.currentSectionName = this.getCurrentSectionName();
+        }
+    };
+    AppComponent.prototype.onWindowScroll = function () {
+        this.currentSectionName = this.getCurrentSectionName();
+    };
+    AppComponent.prototype.getCurrentSectionName = function () {
+        var offset = this.element.nativeElement.parentElement.offsetTop - this.element.nativeElement.offsetTop;
+        for (var _i = 0, _a = this.sectionIndexes; _i < _a.length; _i++) {
+            var section = _a[_i];
+            //Note: 13px is the margin-top value of the h2 element in the header
+            if ((section.position + offset - window.scrollY - 13) < 0) {
+                return section.name;
+            }
+        }
+        return '';
+    };
     AppComponent.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }
         return function (error) {
@@ -68,13 +104,24 @@ var AppComponent = /** @class */ (function () {
             return Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__["a" /* of */])(result);
         };
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
+        __metadata("design:type", Object)
+    ], AppComponent.prototype, "sections", void 0);
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])("window:scroll", []),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], AppComponent.prototype, "onWindowScroll", null);
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
             template: __webpack_require__("../../../../../web-client/app/app.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/app.component.css")],
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewEncapsulation */].None
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */]])
     ], AppComponent);
     return AppComponent;
 }());
@@ -98,9 +145,10 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../web-client/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../web-client/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_nav_nav_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -121,6 +169,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
+
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -129,13 +178,13 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__directives_recaptcha_directive__["b" /* ReCaptchaDirective */]
+                __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_nav_nav_component__["a" /* NavBarComponent */],
+                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__directives_recaptcha_directive__["b" /* ReCaptchaDirective */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                //HttpClientModule,
                 __WEBPACK_IMPORTED_MODULE_4__angular_http__["b" /* HttpModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["d" /* FormsModule */],
                 __WEBPACK_IMPORTED_MODULE_2__angular_forms__["i" /* ReactiveFormsModule */],
@@ -504,12 +553,13 @@ var ContactComponent = /** @class */ (function () {
 /***/ "../../../../../web-client/app/kent-craftsmanship/home/home.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__("../../../../css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\r\n", ""]);
+exports.push([module.i, ".home {\n  background: url(" + escape(__webpack_require__("../../../../../web-client/assets/home-bg.jpg")) + ");\n  background-size: cover;\n  height: 100vh; }\n  .home .kcs-title {\n    padding-top: 200px;\n    text-align: center; }\n  .home .kcs-title h1, .home .kcs-title h2 {\n      font-weight: 400; }\n\n", ""]);
 
 // exports
 
@@ -522,7 +572,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container text-center\">\r\n    <h1>Kent Craftsmanship</h1>\r\n    <h2>Hand Crafted Semi-fine Furniture</h2>\r\n</div>"
+module.exports = "<div class=\"home\">\r\n    <div class=\"kcs-title\">\r\n        <img alt=\"logo\" src=\"../../../assets/kent-craftsmanship-logo.png\" width=\"500px;\" />\r\n        <h2>Hand Crafted Semi-fine Furniture</h2>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -550,6 +600,66 @@ var HomeComponent = /** @class */ (function () {
         })
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/nav/nav.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".nav-bar {\n  height: 70px;\n  position: fixed;\n  top: 0px;\n  left: 0;\n  width: 100vw; }\n  .nav-bar .hidden {\n    display: none; }\n  .nav-bar .nav-bar-container {\n    padding: 10px 20px; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav {\n      margin: 0;\n      padding: 0; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n        display: inline-block;\n        margin-right: 50px;\n        text-align: center; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item a.nav-link {\n          color: #3d3d3d;\n          text-decoration: none; }\n\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/nav/nav.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"nav-bar\">\r\n    <div class=\"nav-bar-container\">\r\n        <div class=\"navbar-header hidden\">\r\n            <a class=\"navbar-brand\" pageScroll href=\"#home\">\r\n                <!--<img alt=\"icon\" src=\"../../../assets/kent-craftsmanship-icon.png\" height=\"50px;\" />-->\r\n                KCS\r\n            </a>\r\n        </div>\r\n        <div>\r\n            <ul class=\"nav-bar-nav\">\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#about\">About</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#portfolio\">Portfolio</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#mtf\">Mission Trip Furniture</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#contact\">Contact</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>"
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/nav/nav.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavBarComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+var NavBarComponent = /** @class */ (function () {
+    function NavBarComponent() {
+        this.isIn = false; // store state
+    }
+    NavBarComponent.prototype.toggleState = function () {
+        var bool = this.isIn;
+        this.isIn = bool === false ? true : false;
+    };
+    NavBarComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-nav',
+            template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.html"),
+            styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.css")]
+        })
+    ], NavBarComponent);
+    return NavBarComponent;
 }());
 
 
@@ -651,6 +761,13 @@ var KcsService = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "../../../../../web-client/assets/home-bg.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "home-bg.82b129bcfc5c28f1e47a.jpg";
 
 /***/ }),
 

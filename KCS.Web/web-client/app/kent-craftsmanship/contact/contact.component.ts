@@ -1,11 +1,13 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, ElementRef, EventEmitter, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/finally';
 
 import { KcsService } from '../../services/kcs.service';
+import { CurrentSectionService } from '../../services/current-section.service';
 import { InquirySubmission } from '../../models/inquiry-submission';
+import { Section } from '../../models/section';
 import { ReCaptchaDirective, RECAPTCHA_URL } from '../../directives/recaptcha.directive';
 
 @Component({
@@ -21,8 +23,10 @@ import { ReCaptchaDirective, RECAPTCHA_URL } from '../../directives/recaptcha.di
 export class ContactComponent implements OnInit {
     submitting = false;
     public contactForm: FormGroup;
+    private section: Section;
 
-    constructor(private formBuilder: FormBuilder, private kcsService: KcsService, private snackBar: MatSnackBar) {
+    constructor(private formBuilder: FormBuilder, private kcsService: KcsService, private snackBar: MatSnackBar,
+        private element: ElementRef, private currentSectionService: CurrentSectionService) {
 
     }
 
@@ -33,6 +37,15 @@ export class ContactComponent implements OnInit {
             body: ['', [<any>Validators.required]],
             captcha: ['', [<any>Validators.required]]
         });
+
+        this.section = new Section('contact', this.element.nativeElement.offsetTop);
+        this.currentSectionService.registerSection(this.section);
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any) {
+        this.section.position = this.element.nativeElement.offsetTop
+        this.currentSectionService.registerSection(this.section);
     }
 
     submitInquiry(model: InquirySubmission) {

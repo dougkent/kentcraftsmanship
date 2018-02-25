@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<app-nav></app-nav>\r\n<div class=\"container-fluid kcs-container\">\r\n    <section>\r\n        <app-home></app-home>\r\n    </section>\r\n    <section id=\"about\">\r\n        <h2>About will go here.</h2>\r\n    </section>\r\n    <section id=\"portfolio\">\r\n        <h2>Portfolio will go here.</h2>\r\n    </section>\r\n    <section id=\"mtf\">\r\n        <h2>Mission Trip Furniture will go here.</h2>\r\n    </section>\r\n    <section id=\"contact\">\r\n        <app-contact></app-contact>\r\n    </section>\r\n</div>\r\n"
+module.exports = "<app-nav></app-nav>\r\n<div class=\"kcs-container\">\r\n    <section id=\"home\">\r\n        <app-home></app-home>\r\n    </section>\r\n    <section id=\"about\">\r\n        <app-about></app-about>\r\n    </section>\r\n    <section id=\"portfolio\">\r\n        <app-portfolio></app-portfolio>\r\n    </section>\r\n    <section id=\"mtf\">\r\n        <app-mtf></app-mtf>\r\n    </section>\r\n    <section id=\"contact\">\r\n        <app-contact></app-contact>\r\n    </section>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -61,41 +61,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(element) {
-        this.element = element;
-        this.currentSectionName = '';
-        this.sectionIndexes = [];
+    function AppComponent() {
     }
-    AppComponent.prototype.ngOnInit = function () {
-    };
-    AppComponent.prototype.sectionPosition = function ($event) {
-        //filter out the old position if it has been set
-        //this.sectionIndexes = this.sectionIndexes.filter(item => item.name != $event.name);
-        //set the new position
-        this.sectionIndexes.push($event);
-        //sort the section based on their apperance order 
-        this.sectionIndexes.sort(function (a, b) {
-            return b.position - a.position;
-        });
-        //if the page has already been scrolled find the current name
-        if (document.body.scrollTop > 0) {
-            this.currentSectionName = this.getCurrentSectionName();
-        }
-    };
-    AppComponent.prototype.onWindowScroll = function () {
-        this.currentSectionName = this.getCurrentSectionName();
-    };
-    AppComponent.prototype.getCurrentSectionName = function () {
-        var offset = this.element.nativeElement.parentElement.offsetTop - this.element.nativeElement.offsetTop;
-        for (var _i = 0, _a = this.sectionIndexes; _i < _a.length; _i++) {
-            var section = _a[_i];
-            //Note: 13px is the margin-top value of the h2 element in the header
-            if ((section.position + offset - window.scrollY - 13) < 0) {
-                return section.name;
-            }
-        }
-        return '';
-    };
     AppComponent.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }
         return function (error) {
@@ -104,16 +71,6 @@ var AppComponent = /** @class */ (function () {
             return Object(__WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__["a" /* of */])(result);
         };
     };
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
-        __metadata("design:type", Object)
-    ], AppComponent.prototype, "sections", void 0);
-    __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])("window:scroll", []),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
-    ], AppComponent.prototype, "onWindowScroll", null);
     AppComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-root',
@@ -121,7 +78,7 @@ var AppComponent = /** @class */ (function () {
             styles: [__webpack_require__("../../../../../web-client/app/app.component.css")],
             encapsulation: __WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* ViewEncapsulation */].None
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */]])
+        __metadata("design:paramtypes", [])
     ], AppComponent);
     return AppComponent;
 }());
@@ -145,10 +102,14 @@ var AppComponent = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__("../../../../../web-client/app/app.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__ = __webpack_require__("../../../../../web-client/app/page-not-found/page-not-found.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_nav_nav_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_nav_nav_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__kent_craftsmanship_home_home_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__kent_craftsmanship_about_about_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/about/about.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__kent_craftsmanship_portfolio_portfolio_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__kent_craftsmanship_mtf_mtf_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__kent_craftsmanship_contact_contact_component__ = __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -159,7 +120,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-//import { HttpClientModule } from '@angular/common/http';
+
+
+
+
 
 
 
@@ -178,10 +142,13 @@ var AppModule = /** @class */ (function () {
             declarations: [
                 __WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */],
                 __WEBPACK_IMPORTED_MODULE_8__page_not_found_page_not_found_component__["a" /* PageNotFoundComponent */],
-                __WEBPACK_IMPORTED_MODULE_10__kent_craftsmanship_nav_nav_component__["a" /* NavBarComponent */],
-                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
-                __WEBPACK_IMPORTED_MODULE_12__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */],
-                __WEBPACK_IMPORTED_MODULE_13__directives_recaptcha_directive__["b" /* ReCaptchaDirective */]
+                __WEBPACK_IMPORTED_MODULE_11__kent_craftsmanship_nav_nav_component__["a" /* NavBarComponent */],
+                __WEBPACK_IMPORTED_MODULE_12__kent_craftsmanship_home_home_component__["a" /* HomeComponent */],
+                __WEBPACK_IMPORTED_MODULE_13__kent_craftsmanship_about_about_component__["a" /* AboutComponent */],
+                __WEBPACK_IMPORTED_MODULE_14__kent_craftsmanship_portfolio_portfolio_component__["a" /* PortfolioComponent */],
+                __WEBPACK_IMPORTED_MODULE_15__kent_craftsmanship_mtf_mtf_component__["a" /* MtfComponent */],
+                __WEBPACK_IMPORTED_MODULE_16__kent_craftsmanship_contact_contact_component__["a" /* ContactComponent */],
+                __WEBPACK_IMPORTED_MODULE_17__directives_recaptcha_directive__["b" /* ReCaptchaDirective */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -206,7 +173,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_6_ngx_page_scroll__["a" /* NgxPageScrollModule */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__["a" /* KcsService */]
+                __WEBPACK_IMPORTED_MODULE_9__services_kcs_service__["a" /* KcsService */],
+                __WEBPACK_IMPORTED_MODULE_10__services_current_section_service__["a" /* CurrentSectionService */]
             ],
             entryComponents: [],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_7__app_component__["a" /* AppComponent */]]
@@ -443,6 +411,85 @@ var ReCaptchaDirective = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "../../../../../web-client/app/kent-craftsmanship/about/about.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/about/about.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2>About will go here.</h2>"
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/about/about.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_section__ = __webpack_require__("../../../../../web-client/app/models/section.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AboutComponent = /** @class */ (function () {
+    function AboutComponent(element, currentSectionService) {
+        this.element = element;
+        this.currentSectionService = currentSectionService;
+    }
+    AboutComponent.prototype.ngOnInit = function () {
+        this.section = new __WEBPACK_IMPORTED_MODULE_2__models_section__["a" /* Section */]('about', this.element.nativeElement.offsetTop);
+        this.currentSectionService.registerSection(this.section);
+    };
+    AboutComponent.prototype.onResize = function (event) {
+        this.section.position = this.element.nativeElement.offsetTop;
+        this.currentSectionService.registerSection(this.section);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], AboutComponent.prototype, "onResize", null);
+    AboutComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-about',
+            template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/about/about.component.html"),
+            styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/about/about.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__["a" /* CurrentSectionService */]])
+    ], AboutComponent);
+    return AboutComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -478,7 +525,9 @@ module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\"\r\n      [for
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_material__ = __webpack_require__("../../../material/esm5/material.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_finally__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/finally.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_kcs_service__ = __webpack_require__("../../../../../web-client/app/services/kcs.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_section__ = __webpack_require__("../../../../../web-client/app/models/section.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_recaptcha_directive__ = __webpack_require__("../../../../../web-client/app/directives/recaptcha.directive.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -494,11 +543,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var ContactComponent = /** @class */ (function () {
-    function ContactComponent(formBuilder, kcsService, snackBar) {
+    function ContactComponent(formBuilder, kcsService, snackBar, element, currentSectionService) {
         this.formBuilder = formBuilder;
         this.kcsService = kcsService;
         this.snackBar = snackBar;
+        this.element = element;
+        this.currentSectionService = currentSectionService;
         this.submitting = false;
     }
     ContactComponent.prototype.ngOnInit = function () {
@@ -508,6 +561,12 @@ var ContactComponent = /** @class */ (function () {
             body: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required]],
             captcha: ['', [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["j" /* Validators */].required]]
         });
+        this.section = new __WEBPACK_IMPORTED_MODULE_6__models_section__["a" /* Section */]('contact', this.element.nativeElement.offsetTop);
+        this.currentSectionService.registerSection(this.section);
+    };
+    ContactComponent.prototype.onResize = function (event) {
+        this.section.position = this.element.nativeElement.offsetTop;
+        this.currentSectionService.registerSection(this.section);
     };
     ContactComponent.prototype.submitInquiry = function (model) {
         var _this = this;
@@ -531,17 +590,24 @@ var ContactComponent = /** @class */ (function () {
             });
         }
     };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], ContactComponent.prototype, "onResize", null);
     ContactComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-contact',
             template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css")],
             providers: [{
-                    provide: __WEBPACK_IMPORTED_MODULE_5__directives_recaptcha_directive__["a" /* RECAPTCHA_URL */],
+                    provide: __WEBPACK_IMPORTED_MODULE_7__directives_recaptcha_directive__["a" /* RECAPTCHA_URL */],
                     useValue: '/api/inquiries/validate-captcha'
                 }]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__services_kcs_service__["a" /* KcsService */], __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatSnackBar */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_forms__["b" /* FormBuilder */], __WEBPACK_IMPORTED_MODULE_4__services_kcs_service__["a" /* KcsService */], __WEBPACK_IMPORTED_MODULE_2__angular_material__["j" /* MatSnackBar */],
+            __WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_5__services_current_section_service__["a" /* CurrentSectionService */]])
     ], ContactComponent);
     return ContactComponent;
 }());
@@ -582,24 +648,127 @@ module.exports = "<div class=\"home\">\r\n    <div class=\"kcs-title\">\r\n     
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_section__ = __webpack_require__("../../../../../web-client/app/models/section.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(element, currentSectionService) {
+        this.element = element;
+        this.currentSectionService = currentSectionService;
     }
+    HomeComponent.prototype.ngOnInit = function () {
+        this.section = new __WEBPACK_IMPORTED_MODULE_2__models_section__["a" /* Section */]('home', this.element.nativeElement.offsetTop);
+        this.currentSectionService.registerSection(this.section);
+    };
+    HomeComponent.prototype.onResize = function (event) {
+        this.section.position = this.element.nativeElement.offsetTop;
+        this.currentSectionService.registerSection(this.section);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], HomeComponent.prototype, "onResize", null);
     HomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-home',
             template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/home/home.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__["a" /* CurrentSectionService */]])
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Mission Trip Furniture will go here.</h2>"
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MtfComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_section__ = __webpack_require__("../../../../../web-client/app/models/section.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var MtfComponent = /** @class */ (function () {
+    function MtfComponent(element, currentSectionService) {
+        this.element = element;
+        this.currentSectionService = currentSectionService;
+    }
+    MtfComponent.prototype.ngOnInit = function () {
+        this.section = new __WEBPACK_IMPORTED_MODULE_2__models_section__["a" /* Section */]('mtf', this.element.nativeElement.offsetTop);
+        this.currentSectionService.registerSection(this.section);
+    };
+    MtfComponent.prototype.onResize = function (event) {
+        this.section.position = this.element.nativeElement.offsetTop;
+        this.currentSectionService.registerSection(this.section);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], MtfComponent.prototype, "onResize", null);
+    MtfComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-mtf',
+            template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.html"),
+            styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__["a" /* CurrentSectionService */]])
+    ], MtfComponent);
+    return MtfComponent;
 }());
 
 
@@ -614,7 +783,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".nav-bar {\n  height: 70px;\n  position: fixed;\n  top: 0px;\n  left: 0;\n  width: 100vw; }\n  .nav-bar .hidden {\n    display: none; }\n  .nav-bar .nav-bar-container {\n    padding: 10px 20px; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav {\n      margin: 0;\n      padding: 0; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n        display: inline-block;\n        margin-right: 50px;\n        text-align: center; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item a.nav-link {\n          color: #3d3d3d;\n          text-decoration: none; }\n\n", ""]);
+exports.push([module.i, ".nav-bar {\n  height: 70px;\n  position: fixed;\n  top: 0px;\n  left: 0;\n  width: 100vw; }\n  .nav-bar .hidden {\n    display: none; }\n  .nav-bar .nav-bar-container {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    height: 70px;\n    padding: 10px 20px; }\n  .nav-bar .nav-bar-container .nav-bar-header {\n      position: absolute;\n      left: 0;\n      top: 0; }\n  .nav-bar .nav-bar-container .nav-bar-header .nav-bar-brand {\n        display: block; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav {\n      position: absolute;\n      right: 20px;\n      top: 10px;\n      margin: 0;\n      padding: 0; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n        display: inline-block;\n        margin-right: 50px;\n        text-align: center; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item a.nav-link {\n          color: #3d3d3d;\n          text-decoration: none; }\n\n", ""]);
 
 // exports
 
@@ -627,7 +796,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/nav/nav.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"nav-bar\">\r\n    <div class=\"nav-bar-container\">\r\n        <div class=\"navbar-header hidden\">\r\n            <a class=\"navbar-brand\" pageScroll href=\"#home\">\r\n                <!--<img alt=\"icon\" src=\"../../../assets/kent-craftsmanship-icon.png\" height=\"50px;\" />-->\r\n                KCS\r\n            </a>\r\n        </div>\r\n        <div>\r\n            <ul class=\"nav-bar-nav\">\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#about\">About</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#portfolio\">Portfolio</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#mtf\">Mission Trip Furniture</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#contact\">Contact</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>"
+module.exports = "<nav class=\"nav-bar\">\r\n    <div class=\"nav-bar-container\">\r\n        <div class=\"nav-bar-header\" [ngClass]=\"{'hidden': isFirstSection}\">\r\n            <a class=\"nav-bar-brand\" pageScroll href=\"#home\">\r\n                <img alt=\"icon\" src=\"../../../assets/kent-craftsmanship-icon.png\" height=\"50px;\" />\r\n            </a>\r\n        </div>\r\n        <div>\r\n            <ul class=\"nav-bar-nav\">\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#about\">About</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#portfolio\">Portfolio</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#mtf\">Mission Trip Furniture</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#contact\">Contact</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>"
 
 /***/ }),
 
@@ -637,29 +806,133 @@ module.exports = "<nav class=\"nav-bar\">\r\n    <div class=\"nav-bar-container\
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavBarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
 
 var NavBarComponent = /** @class */ (function () {
-    function NavBarComponent() {
-        this.isIn = false; // store state
+    function NavBarComponent(currentSectionService) {
+        var _this = this;
+        this.currentSectionService = currentSectionService;
+        this.isFirstSection = true;
+        this.currentSectionService.currentSection$.subscribe(function (currentSection) {
+            console.log(currentSection.name);
+            _this.isFirstSection = currentSection.name == 'home';
+        });
     }
-    NavBarComponent.prototype.toggleState = function () {
-        var bool = this.isIn;
-        this.isIn = bool === false ? true : false;
-    };
     NavBarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-nav',
             template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.html"),
             styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/nav/nav.component.css")]
-        })
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__services_current_section_service__["a" /* CurrentSectionService */]])
     ], NavBarComponent);
     return NavBarComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.css":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.html":
+/***/ (function(module, exports) {
+
+module.exports = "<h2>Portfolio will go here.</h2>"
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PortfolioComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__ = __webpack_require__("../../../../../web-client/app/services/current-section.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_section__ = __webpack_require__("../../../../../web-client/app/models/section.ts");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PortfolioComponent = /** @class */ (function () {
+    function PortfolioComponent(element, currentSectionService) {
+        this.element = element;
+        this.currentSectionService = currentSectionService;
+    }
+    PortfolioComponent.prototype.ngOnInit = function () {
+        this.section = new __WEBPACK_IMPORTED_MODULE_2__models_section__["a" /* Section */]('portfolio', this.element.nativeElement.offsetTop);
+        this.currentSectionService.registerSection(this.section);
+    };
+    PortfolioComponent.prototype.onResize = function (event) {
+        this.section.position = this.element.nativeElement.offsetTop;
+        this.currentSectionService.registerSection(this.section);
+    };
+    __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* HostListener */])('window:resize', ['$event']),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", [Object]),
+        __metadata("design:returntype", void 0)
+    ], PortfolioComponent.prototype, "onResize", null);
+    PortfolioComponent = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+            selector: 'app-portfolio',
+            template: __webpack_require__("../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.html"),
+            styles: [__webpack_require__("../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.css")]
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_0__angular_core__["u" /* ElementRef */], __WEBPACK_IMPORTED_MODULE_1__services_current_section_service__["a" /* CurrentSectionService */]])
+    ], PortfolioComponent);
+    return PortfolioComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/models/section.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Section; });
+var Section = /** @class */ (function () {
+    function Section(name, position) {
+        this.name = name;
+        this.position = position;
+    }
+    return Section;
 }());
 
 
@@ -721,6 +994,69 @@ var PageNotFoundComponent = /** @class */ (function () {
         __metadata("design:paramtypes", [])
     ], PageNotFoundComponent);
     return PageNotFoundComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "../../../../../web-client/app/services/current-section.service.ts":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrentSectionService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__ = __webpack_require__("../../../../rxjs/_esm5/Subject.js");
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var CurrentSectionService = /** @class */ (function () {
+    function CurrentSectionService() {
+        var _this = this;
+        this.currentSection = new __WEBPACK_IMPORTED_MODULE_1_rxjs_Subject__["b" /* Subject */]();
+        this.currentSection$ = this.currentSection.asObservable();
+        this.sections = [];
+        window.addEventListener('scroll', function (event) {
+            _this.getCurrentSection();
+        });
+    }
+    CurrentSectionService.prototype.registerSection = function (section) {
+        //filter out the old position if it has been set
+        this.sections = this.sections.filter(function (item) { return item.name != section.name; });
+        //set the new position
+        this.sections.push(section);
+        //sort the section based on their apperance order 
+        this.sections.sort(function (a, b) {
+            return b.position - a.position;
+        });
+        //if the page has already been scrolled find the current name
+        if (document.body.scrollTop > 0) {
+            this.getCurrentSection();
+        }
+    };
+    CurrentSectionService.prototype.getCurrentSection = function () {
+        for (var _i = 0, _a = this.sections; _i < _a.length; _i++) {
+            var section = _a[_i];
+            if (section.position - (window.scrollY + 70) < 0) {
+                this.currentSection.next(section);
+                return;
+            }
+        }
+        return;
+    };
+    CurrentSectionService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], CurrentSectionService);
+    return CurrentSectionService;
 }());
 
 

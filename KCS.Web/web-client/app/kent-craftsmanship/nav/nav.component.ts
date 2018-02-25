@@ -1,15 +1,21 @@
 ﻿import { Component } from '@angular/core';
 
+import { CurrentSectionService } from '../../services/current-section.service';
+import { Section } from '../../models/section';
+
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.css']
 })
 export class NavBarComponent {
-    isIn = false;   // store state
+    isFirstSection = true;
 
-    toggleState() { // click handler
-        let bool = this.isIn;
-        this.isIn = bool === false ? true : false;
+    constructor(private currentSectionService: CurrentSectionService) {
+        this.currentSectionService.currentSection$.subscribe((currentSection: Section) => {
+            console.log(currentSection.name)
+            this.isFirstSection = currentSection.name == 'home';
+        })
     }
+
 }

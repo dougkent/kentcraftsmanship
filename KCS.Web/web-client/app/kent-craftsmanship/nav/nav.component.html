@@ -1,9 +1,8 @@
 ﻿<nav class="nav-bar">
     <div class="nav-bar-container">
-        <div class="navbar-header hidden">
-            <a class="navbar-brand" pageScroll href="#home">
-                <!--<img alt="icon" src="../../../assets/kent-craftsmanship-icon.png" height="50px;" />-->
-                KCS
+        <div class="nav-bar-header" [ngClass]="{'hidden': isFirstSection}">
+            <a class="nav-bar-brand" pageScroll href="#home">
+                <img alt="icon" src="../../../assets/kent-craftsmanship-icon.png" height="50px;" />
             </a>
         </div>
         <div>

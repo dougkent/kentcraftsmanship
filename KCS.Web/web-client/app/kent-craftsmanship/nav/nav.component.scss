@@ -10,9 +10,27 @@
     }
 
     .nav-bar-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 70px;
         padding: 10px 20px;
 
+        .nav-bar-header {
+            position: absolute;
+            left: 0;
+            top: 0;
+
+            .nav-bar-brand {
+                display: block;
+            }
+        }
+
         ul.nav-bar-nav {
+            position: absolute;
+            right: 20px;
+            top: 10px;
             margin: 0;
             padding: 0;
 

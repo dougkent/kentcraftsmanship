@@ -14,5 +14,17 @@
   {
     "outputFile": "web-client/app/kent-craftsmanship/nav/nav.component.css",
     "inputFile": "web-client/app/kent-craftsmanship/nav/nav.component.scss"
+  },
+  {
+    "outputFile": "web-client/app/kent-craftsmanship/about/about.component.css",
+    "inputFile": "web-client/app/kent-craftsmanship/about/about.component.scss"
+  },
+  {
+    "outputFile": "web-client/app/kent-craftsmanship/mtf/mtf.component.css",
+    "inputFile": "web-client/app/kent-craftsmanship/mtf/mtf.component.scss"
+  },
+  {
+    "outputFile": "web-client/app/kent-craftsmanship/portfolio/portfolio.component.css",
+    "inputFile": "web-client/app/kent-craftsmanship/portfolio/portfolio.component.scss"
   }
 ]

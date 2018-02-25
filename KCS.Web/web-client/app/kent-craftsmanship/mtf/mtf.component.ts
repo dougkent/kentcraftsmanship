@@ -1,22 +1,22 @@
-﻿import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
+﻿import { Component, ElementRef, EventEmitter, HostListener, OnInit } from '@angular/core';
 
 import { CurrentSectionService } from '../../services/current-section.service';
 import { Section } from '../../models/section';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    selector: 'app-mtf',
+    templateUrl: './mtf.component.html',
+    styleUrls: ['./mtf.component.css']
 })
 
-export class HomeComponent implements OnInit {
+export class MtfComponent implements OnInit {
     private section: Section;
 
     constructor(private element: ElementRef, private currentSectionService: CurrentSectionService) {
     }
 
     ngOnInit() {
-        this.section = new Section('home', this.element.nativeElement.offsetTop);
+        this.section = new Section('mtf', this.element.nativeElement.offsetTop);
         this.currentSectionService.registerSection(this.section);
     }
 

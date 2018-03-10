@@ -10,12 +10,20 @@ import { Section } from '../../models/section';
 })
 export class NavBarComponent {
     isFirstSection = true;
+    isMenuDisplayed = false;
 
     constructor(private currentSectionService: CurrentSectionService) {
         this.currentSectionService.currentSection$.subscribe((currentSection: Section) => {
             console.log(currentSection.name)
             this.isFirstSection = currentSection.name == 'home';
-        })
+        });
     }
 
+    toggleMenu(force: boolean) {
+        if (force) {
+            this.isMenuDisplayed = force;
+            return;
+        }
+        this.isMenuDisplayed = !this.isMenuDisplayed;
+    }
 }

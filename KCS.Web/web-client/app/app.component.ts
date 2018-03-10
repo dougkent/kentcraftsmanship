@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { HttpClient } from '@angular/common/http';
+import { PageScrollConfig } from 'ngx-page-scroll';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +16,7 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
 
     constructor() {
-
+        PageScrollConfig.defaultDuration = 500;
     }
     
     private handleError<T>(operation = 'operation', result?: T) {

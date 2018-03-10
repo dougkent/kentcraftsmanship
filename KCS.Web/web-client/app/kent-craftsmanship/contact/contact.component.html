@@ -1,49 +1,56 @@
-﻿<h2>Contact</h2>
-<form class="contact-form"
-      [formGroup]="contactForm"
-      (ngSubmit)="submitInquiry(contactForm.value, contactForm.valid)"
-      novalidate>
-    <mat-form-field>
-        <input type="email"
-               matInput
-               maxlength="256"
-               placeholder="Email Address"
-               formControlName="email" />
-        <mat-error *ngIf="contactForm.controls['email'].errors?.email && !contactForm.controls['email'].errors?.required">
-            Please enter a valid email address.
-        </mat-error>
-        <mat-error *ngIf="contactForm.controls['email'].errors?.required">
-            Email address is required.
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <input matInput
-               maxlength="100"
-               placeholder="Subject"
-               formControlName="subject" />
-        <mat-error *ngIf="contactForm.controls['subject'].errors?.required">
-            A subject is required.
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-        <textarea matInput
-                  maxlength="500"
-                  placeholder="Body"
-                  matTextareaAutosize
-                  matAutosizeMinRows="5"
-                  matAutosizeMaxRows="5"
-                  formControlName="body"></textarea>
-        <mat-hint align="end">{{contactForm.controls['body'].value.length}} / 500</mat-hint>
-        <mat-error *ngIf="contactForm.controls['body'].errors?.required">
-            A body is required.
-        </mat-error>
-    </mat-form-field>
-    <div class="center-form-row">
-        <div kcsRecaptcha key="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO" formControlName="captcha"></div>
-        <button mat-button
-                type="submit"
-                [disabled]="!contactForm.valid">
-            Submit
-        </button>
+﻿<div class="kcs-contact-container">
+    <!--Photo by Simon Stankowski on Unsplash-->
+    <div class="contact-form">
+        <div>
+            <a href="mailto:kentcraftsmanship@gmail.com">kentcraftsmanship@gmail.com</a>
+            <a href="https://www.instagram.com/kentcraftsmanship/?hl=en">Kent Craftsmanship on Instagram</a>
+        </div>
+        <form [formGroup]="contactForm"
+              (ngSubmit)="submitInquiry(contactForm.value, contactForm.valid)"
+              novalidate>
+            <mat-form-field>
+                <input type="email"
+                       matInput
+                       maxlength="256"
+                       placeholder="Email Address"
+                       formControlName="email" />
+                <mat-error *ngIf="contactForm.controls['email'].errors?.email && !contactForm.controls['email'].errors?.required">
+                    Please enter a valid email address.
+                </mat-error>
+                <mat-error *ngIf="contactForm.controls['email'].errors?.required">
+                    Email address is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput
+                       maxlength="100"
+                       placeholder="Subject"
+                       formControlName="subject" />
+                <mat-error *ngIf="contactForm.controls['subject'].errors?.required">
+                    A subject is required.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <textarea matInput
+                          maxlength="500"
+                          placeholder="Body"
+                          matTextareaAutosize
+                          matAutosizeMinRows="5"
+                          matAutosizeMaxRows="5"
+                          formControlName="body"></textarea>
+                <mat-hint align="end">{{contactForm.controls['body'].value.length}} / 500</mat-hint>
+                <mat-error *ngIf="contactForm.controls['body'].errors?.required">
+                    A body is required.
+                </mat-error>
+            </mat-form-field>
+            <div class="center-form-row">
+                <div kcsRecaptcha key="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO" formControlName="captcha"></div>
+                <button mat-button
+                        type="submit"
+                        [disabled]="!contactForm.valid">
+                    Submit
+                </button>
+            </div>
+        </form>
     </div>
-</form>
+</div>

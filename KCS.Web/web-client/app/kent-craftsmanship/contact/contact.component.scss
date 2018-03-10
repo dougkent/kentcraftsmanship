@@ -1,12 +1,22 @@
-﻿.contact-form {
-    width: 500px;
-    margin: 0 auto;
+﻿.kcs-contact-container {
+    padding-top: 40px;
+    background: url(../../../assets/contact-bg.jpg); //Photo by Simon Stankowski on Unsplash
+    background-size: cover;
+    height: 100vh;
 
-    mat-form-field {
-        width: 100%;
-    }
+    .contact-form {
+        font-size: 14px;
+        width: 50%;
+        margin: 100px auto 0 auto;
+        padding: 20px;
+        background: rgba(255,255, 255, 0.7);
 
-    .center-form-row {
-        text-align: center;
+        mat-form-field {
+            width: 100%;
+        }
+
+        .center-form-row {
+            text-align: center;
+        }
     }
 }

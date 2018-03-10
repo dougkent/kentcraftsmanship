@@ -1,52 +1,122 @@
 ﻿.nav-bar {
-    height: 70px;
+    height: 40px;
     position: fixed;
-    top: 0px;
+    top: 0;
     left: 0;
-    width: 100vw;
-
-    .hidden {
-        display: none;
-    }
+    width: 100vw;    
 
     .nav-bar-container {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
-        right: 0;
-        height: 70px;
-        padding: 10px 20px;
+        height: 30px;
+        padding: 5px;
 
         .nav-bar-header {
             position: absolute;
-            left: 0;
-            top: 0;
+            left: 5px;
+            top: 5px;
 
             .nav-bar-brand {
                 display: block;
             }
         }
 
-        ul.nav-bar-nav {
+        .nav-bar-nav {
             position: absolute;
-            right: 20px;
-            top: 10px;
-            margin: 0;
-            padding: 0;
+            right: 5px;
+            top: 5px;
 
-            li.nav-item {
-                margin: 0;
-                padding: 0;
-                list-style: none;
-                display: inline-block;
-                margin-right: 50px;
-                text-align: center;
+            .nav-bar-toggle {
+                background: none;
+                border: none;
+                height: 30px;
+                width: 30px;
+                cursor: pointer;
+                position: absolute;
+                top: 0px;
+                right: 10px;
+            }
+        }
+    }
 
-                a.nav-link {
-                    color: #3d3d3d;
-                    text-decoration: none;
+    .hidden {
+        display: none !important;
+    }
+    /* #### Tablets Portrait or Landscape #### */
+    @media screen and (max-width: 1024px) {
+        .nav-bar-container {
+
+            .nav-bar-nav {
+                .nav-bar-mobile {
+                    position: relative;
+
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        position: absolute;
+                        top: 35px;
+                        right: 0px;
+                        width: 200px;
+
+                        li.nav-item {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            text-align: center;
+                            height: 25px;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                            }
+                        }
+                    }
+                }
+
+                .nav-bar-reg {
+                    display: none;
                 }
             }
         }
     }
+    /* #### Desktops #### */
+    @media screen and (min-width: 1024px) {
+        .nav-bar-container {
+
+            .nav-bar-nav {
+                .nav-bar-mobile {
+                    display: none;
+                }
+
+                .nav-bar-reg {
+                    position: relative;
+
+                    ul {
+                        margin: 0;
+                        padding: 0;
+
+                        li.nav-item {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            display: inline-block;
+                            margin-right: 50px;
+                            text-align: center;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                                line-height: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.nav-bar-background {
+    background: rgba(255,255, 255, 0.7);
 }

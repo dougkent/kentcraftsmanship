@@ -1,25 +1,72 @@
-﻿<nav class="nav-bar">
+﻿<nav class="nav-bar" [ngClass]="{ 'nav-bar-background': !isFirstSection }">
     <div class="nav-bar-container">
-        <div class="nav-bar-header" [ngClass]="{'hidden': isFirstSection}">
-            <a class="nav-bar-brand" pageScroll href="#home">
-                <img alt="icon" src="../../../assets/kent-craftsmanship-icon.png" height="50px;" />
+        <div class="nav-bar-header">
+            <a class="nav-bar-brand"
+               pageScroll
+               href="#home"
+               [ngClass]="{ 'hidden': isFirstSection }">
+                <img alt="icon"
+                     src="../../../assets/kent-craftsmanship-icon.png"
+                     height="30px;" />
             </a>
         </div>
-        <div>
-            <ul class="nav-bar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" pageScroll href="#about">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" pageScroll href="#portfolio">Portfolio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" pageScroll href="#mtf">Mission Trip Furniture</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" pageScroll href="#contact">Contact</a>
-                </li>
-            </ul>
+        <div class="nav-bar-nav">
+            <div class="nav-bar-mobile">
+                <button class="nav-bar-toggle"
+                        (click)="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul [ngClass]="{ 'hidden': !isMenuDisplayed, 'nav-bar-background': !isFirstSection }">
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           pageScroll
+                           href="#about"
+                           (click)="toggleMenu(false)">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link"
+                           pageScroll
+                           href="#portfolio"
+                           (click)="toggleMenu(false)">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           pageScroll 
+                           href="#mtf" 
+                           (click)="toggleMenu(false)">Mission Trip Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           pageScroll 
+                           href="#contact" 
+                           (click)="toggleMenu(false)">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-bar-reg">
+                <ul>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           pageScroll 
+                           href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           pageScroll 
+                           href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           pageScroll 
+                           href="#mtf">Mission Trip Furniture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" 
+                           pageScroll 
+                           href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

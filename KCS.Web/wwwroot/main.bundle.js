@@ -49,6 +49,7 @@ module.exports = "<app-nav></app-nav>\r\n<div class=\"kcs-container\">\r\n    <s
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ngx_page_scroll__ = __webpack_require__("../../../../ngx-page-scroll/ngx-page-scroll.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -60,8 +61,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
+        __WEBPACK_IMPORTED_MODULE_2_ngx_page_scroll__["b" /* PageScrollConfig */].defaultDuration = 500;
     }
     AppComponent.prototype.handleError = function (operation, result) {
         if (operation === void 0) { operation = 'operation'; }
@@ -414,12 +417,13 @@ var ReCaptchaDirective = /** @class */ (function () {
 /***/ "../../../../../web-client/app/kent-craftsmanship/about/about.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__("../../../../css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, ".kcs-about-container {\n  padding-top: 40px;\n  background: url(" + escape(__webpack_require__("../../../../../web-client/assets/about-bg.jpg")) + ");\n  background-size: cover;\n  height: 100vh; }\n\n", ""]);
 
 // exports
 
@@ -432,7 +436,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/about/about.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>About will go here.</h2>"
+module.exports = "<div class=\"kcs-about-container\">\r\n    <!--Photo by Jessica Furtney on Unsplash-->\r\n    <h2>About will go here.</h2>\r\n</div>"
 
 /***/ }),
 
@@ -493,12 +497,13 @@ var AboutComponent = /** @class */ (function () {
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
+var escape = __webpack_require__("../../../../css-loader/lib/url/escape.js");
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
 // imports
 
 
 // module
-exports.push([module.i, ".contact-form {\r\n  width: 500px;\r\n  margin: 0 auto; }\r\n  .contact-form mat-form-field {\r\n    width: 100%; }\r\n  .contact-form .center-form-row {\r\n    text-align: center; }\r\n\r\n", ""]);
+exports.push([module.i, ".kcs-contact-container {\n  padding-top: 40px;\n  background: url(" + escape(__webpack_require__("../../../../../web-client/assets/contact-bg.jpg")) + ");\n  background-size: cover;\n  height: 100vh; }\n  .kcs-contact-container .contact-form {\n    font-size: 14px;\n    width: 50%;\n    margin: 100px auto 0 auto;\n    padding: 20px;\n    background: rgba(255, 255, 255, 0.7); }\n  .kcs-contact-container .contact-form mat-form-field {\n      width: 100%; }\n  .kcs-contact-container .contact-form .center-form-row {\n      text-align: center; }\n\n", ""]);
 
 // exports
 
@@ -511,7 +516,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/contact/contact.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Contact</h2>\r\n<form class=\"contact-form\"\r\n      [formGroup]=\"contactForm\"\r\n      (ngSubmit)=\"submitInquiry(contactForm.value, contactForm.valid)\"\r\n      novalidate>\r\n    <mat-form-field>\r\n        <input type=\"email\"\r\n               matInput\r\n               maxlength=\"256\"\r\n               placeholder=\"Email Address\"\r\n               formControlName=\"email\" />\r\n        <mat-error *ngIf=\"contactForm.controls['email'].errors?.email && !contactForm.controls['email'].errors?.required\">\r\n            Please enter a valid email address.\r\n        </mat-error>\r\n        <mat-error *ngIf=\"contactForm.controls['email'].errors?.required\">\r\n            Email address is required.\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <input matInput\r\n               maxlength=\"100\"\r\n               placeholder=\"Subject\"\r\n               formControlName=\"subject\" />\r\n        <mat-error *ngIf=\"contactForm.controls['subject'].errors?.required\">\r\n            A subject is required.\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <mat-form-field>\r\n        <textarea matInput\r\n                  maxlength=\"500\"\r\n                  placeholder=\"Body\"\r\n                  matTextareaAutosize\r\n                  matAutosizeMinRows=\"5\"\r\n                  matAutosizeMaxRows=\"5\"\r\n                  formControlName=\"body\"></textarea>\r\n        <mat-hint align=\"end\">{{contactForm.controls['body'].value.length}} / 500</mat-hint>\r\n        <mat-error *ngIf=\"contactForm.controls['body'].errors?.required\">\r\n            A body is required.\r\n        </mat-error>\r\n    </mat-form-field>\r\n    <div class=\"center-form-row\">\r\n        <div kcsRecaptcha key=\"6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO\" formControlName=\"captcha\"></div>\r\n        <button mat-button\r\n                type=\"submit\"\r\n                [disabled]=\"!contactForm.valid\">\r\n            Submit\r\n        </button>\r\n    </div>\r\n</form>"
+module.exports = "<div class=\"kcs-contact-container\">\r\n    <!--Photo by Simon Stankowski on Unsplash-->\r\n    <div class=\"contact-form\">\r\n        <div>\r\n            <a href=\"mailto:kentcraftsmanship@gmail.com\">kentcraftsmanship@gmail.com</a>\r\n            <a href=\"https://www.instagram.com/kentcraftsmanship/?hl=en\">Kent Craftsmanship on Instagram</a>\r\n        </div>\r\n        <form [formGroup]=\"contactForm\"\r\n              (ngSubmit)=\"submitInquiry(contactForm.value, contactForm.valid)\"\r\n              novalidate>\r\n            <mat-form-field>\r\n                <input type=\"email\"\r\n                       matInput\r\n                       maxlength=\"256\"\r\n                       placeholder=\"Email Address\"\r\n                       formControlName=\"email\" />\r\n                <mat-error *ngIf=\"contactForm.controls['email'].errors?.email && !contactForm.controls['email'].errors?.required\">\r\n                    Please enter a valid email address.\r\n                </mat-error>\r\n                <mat-error *ngIf=\"contactForm.controls['email'].errors?.required\">\r\n                    Email address is required.\r\n                </mat-error>\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <input matInput\r\n                       maxlength=\"100\"\r\n                       placeholder=\"Subject\"\r\n                       formControlName=\"subject\" />\r\n                <mat-error *ngIf=\"contactForm.controls['subject'].errors?.required\">\r\n                    A subject is required.\r\n                </mat-error>\r\n            </mat-form-field>\r\n            <mat-form-field>\r\n                <textarea matInput\r\n                          maxlength=\"500\"\r\n                          placeholder=\"Body\"\r\n                          matTextareaAutosize\r\n                          matAutosizeMinRows=\"5\"\r\n                          matAutosizeMaxRows=\"5\"\r\n                          formControlName=\"body\"></textarea>\r\n                <mat-hint align=\"end\">{{contactForm.controls['body'].value.length}} / 500</mat-hint>\r\n                <mat-error *ngIf=\"contactForm.controls['body'].errors?.required\">\r\n                    A body is required.\r\n                </mat-error>\r\n            </mat-form-field>\r\n            <div class=\"center-form-row\">\r\n                <div kcsRecaptcha key=\"6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO\" formControlName=\"captcha\"></div>\r\n                <button mat-button\r\n                        type=\"submit\"\r\n                        [disabled]=\"!contactForm.valid\">\r\n                    Submit\r\n                </button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -638,7 +643,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"home\">\r\n    <div class=\"kcs-title\">\r\n        <img alt=\"logo\" src=\"../../../assets/kent-craftsmanship-logo.png\" width=\"500px;\" />\r\n        <h2>Hand Crafted Semi-fine Furniture</h2>\r\n    </div>\r\n</div>"
+module.exports = "<div class=\"home\">\r\n    <!--Photo by Ian Keefe on Unsplash-->\r\n    <div class=\"kcs-title\">\r\n        <img alt=\"logo\" src=\"../../../assets/kent-craftsmanship-logo.png\" width=\"500px;\" />\r\n        <h2>Hand Crafted Semi-fine Furniture</h2>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -704,7 +709,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, ".kcs-mtf-container {\n  padding-top: 40px; }\n\n", ""]);
 
 // exports
 
@@ -717,7 +722,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/mtf/mtf.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Mission Trip Furniture will go here.</h2>"
+module.exports = "<div class=\"kcs-mtf-container\">\r\n    <h2>Mission Trip Furniture will go here.</h2>\r\n</div>"
 
 /***/ }),
 
@@ -783,7 +788,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".nav-bar {\n  height: 70px;\n  position: fixed;\n  top: 0px;\n  left: 0;\n  width: 100vw; }\n  .nav-bar .hidden {\n    display: none; }\n  .nav-bar .nav-bar-container {\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    height: 70px;\n    padding: 10px 20px; }\n  .nav-bar .nav-bar-container .nav-bar-header {\n      position: absolute;\n      left: 0;\n      top: 0; }\n  .nav-bar .nav-bar-container .nav-bar-header .nav-bar-brand {\n        display: block; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav {\n      position: absolute;\n      right: 20px;\n      top: 10px;\n      margin: 0;\n      padding: 0; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item {\n        margin: 0;\n        padding: 0;\n        list-style: none;\n        display: inline-block;\n        margin-right: 50px;\n        text-align: center; }\n  .nav-bar .nav-bar-container ul.nav-bar-nav li.nav-item a.nav-link {\n          color: #3d3d3d;\n          text-decoration: none; }\n\n", ""]);
+exports.push([module.i, ".nav-bar {\n  height: 40px;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100vw;\n  /* #### Tablets Portrait or Landscape #### */\n  /* #### Desktops #### */ }\n  .nav-bar .nav-bar-container {\n    position: relative;\n    top: 0;\n    left: 0;\n    height: 30px;\n    padding: 5px; }\n  .nav-bar .nav-bar-container .nav-bar-header {\n      position: absolute;\n      left: 5px;\n      top: 5px; }\n  .nav-bar .nav-bar-container .nav-bar-header .nav-bar-brand {\n        display: block; }\n  .nav-bar .nav-bar-container .nav-bar-nav {\n      position: absolute;\n      right: 5px;\n      top: 5px; }\n  .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-toggle {\n        background: none;\n        border: none;\n        height: 30px;\n        width: 30px;\n        cursor: pointer;\n        position: absolute;\n        top: 0px;\n        right: 10px; }\n  .nav-bar .hidden {\n    display: none !important; }\n  @media screen and (max-width: 1024px) {\n    .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-mobile {\n      position: relative; }\n      .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-mobile ul {\n        margin: 0;\n        padding: 0;\n        position: absolute;\n        top: 30px;\n        right: 0px;\n        width: 200px; }\n        .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-mobile ul li.nav-item {\n          margin: 0;\n          padding: 0;\n          list-style: none;\n          text-align: center;\n          height: 25px; }\n          .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-mobile ul li.nav-item a.nav-link {\n            color: #3d3d3d;\n            text-decoration: none; }\n    .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-reg {\n      display: none; } }\n  @media screen and (min-width: 1024px) {\n    .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-mobile {\n      display: none; }\n    .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-reg {\n      position: relative; }\n      .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-reg ul {\n        margin: 0;\n        padding: 0; }\n        .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-reg ul li.nav-item {\n          margin: 0;\n          padding: 0;\n          list-style: none;\n          display: inline-block;\n          margin-right: 50px;\n          text-align: center; }\n          .nav-bar .nav-bar-container .nav-bar-nav .nav-bar-reg ul li.nav-item a.nav-link {\n            color: #3d3d3d;\n            text-decoration: none;\n            line-height: 30px; } }\n  .nav-bar-background {\n  background: rgba(255, 255, 255, 0.7); }\n\n", ""]);
 
 // exports
 
@@ -796,7 +801,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/nav/nav.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"nav-bar\">\r\n    <div class=\"nav-bar-container\">\r\n        <div class=\"nav-bar-header\" [ngClass]=\"{'hidden': isFirstSection}\">\r\n            <a class=\"nav-bar-brand\" pageScroll href=\"#home\">\r\n                <img alt=\"icon\" src=\"../../../assets/kent-craftsmanship-icon.png\" height=\"50px;\" />\r\n            </a>\r\n        </div>\r\n        <div>\r\n            <ul class=\"nav-bar-nav\">\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#about\">About</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#portfolio\">Portfolio</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#mtf\">Mission Trip Furniture</a>\r\n                </li>\r\n                <li class=\"nav-item\">\r\n                    <a class=\"nav-link\" pageScroll href=\"#contact\">Contact</a>\r\n                </li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>"
+module.exports = "<nav class=\"nav-bar\" [ngClass]=\"{ 'nav-bar-background': !isFirstSection }\">\r\n    <div class=\"nav-bar-container\">\r\n        <div class=\"nav-bar-header\">\r\n            <a class=\"nav-bar-brand\"\r\n               pageScroll\r\n               href=\"#home\"\r\n               [ngClass]=\"{ 'hidden': isFirstSection }\">\r\n                <img alt=\"icon\"\r\n                     src=\"../../../assets/kent-craftsmanship-icon.png\"\r\n                     height=\"30px;\" />\r\n            </a>\r\n        </div>\r\n        <div class=\"nav-bar-nav\">\r\n            <div class=\"nav-bar-mobile\">\r\n                <button class=\"nav-bar-toggle\"\r\n                        (click)=\"toggleMenu()\">\r\n                    <i class=\"fas fa-bars\"></i>\r\n                </button>\r\n                <ul [ngClass]=\"{ 'hidden': !isMenuDisplayed, 'nav-bar-background': !isFirstSection }\">\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\"\r\n                           pageScroll\r\n                           href=\"#about\"\r\n                           (click)=\"toggleMenu(false)\">About</a>\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\"\r\n                           pageScroll\r\n                           href=\"#portfolio\"\r\n                           (click)=\"toggleMenu(false)\">Portfolio</a>\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\" \r\n                           pageScroll \r\n                           href=\"#mtf\" \r\n                           (click)=\"toggleMenu(false)\">Mission Trip Furniture</a>\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\" \r\n                           pageScroll \r\n                           href=\"#contact\" \r\n                           (click)=\"toggleMenu(false)\">Contact</a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n            <div class=\"nav-bar-reg\">\r\n                <ul>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\" \r\n                           pageScroll \r\n                           href=\"#about\">About</a>\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\" \r\n                           pageScroll \r\n                           href=\"#portfolio\">Portfolio</a>\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\" \r\n                           pageScroll \r\n                           href=\"#mtf\">Mission Trip Furniture</a>\r\n                    </li>\r\n                    <li class=\"nav-item\">\r\n                        <a class=\"nav-link\" \r\n                           pageScroll \r\n                           href=\"#contact\">Contact</a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</nav>"
 
 /***/ }),
 
@@ -823,11 +828,19 @@ var NavBarComponent = /** @class */ (function () {
         var _this = this;
         this.currentSectionService = currentSectionService;
         this.isFirstSection = true;
+        this.isMenuDisplayed = false;
         this.currentSectionService.currentSection$.subscribe(function (currentSection) {
             console.log(currentSection.name);
             _this.isFirstSection = currentSection.name == 'home';
         });
     }
+    NavBarComponent.prototype.toggleMenu = function (force) {
+        if (force) {
+            this.isMenuDisplayed = force;
+            return;
+        }
+        this.isMenuDisplayed = !this.isMenuDisplayed;
+    };
     NavBarComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-nav',
@@ -851,7 +864,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "\n", ""]);
+exports.push([module.i, ".kcs-portfolio-container {\n  padding-top: 40px; }\n\n", ""]);
 
 // exports
 
@@ -864,7 +877,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../web-client/app/kent-craftsmanship/portfolio/portfolio.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<h2>Portfolio will go here.</h2>"
+module.exports = "<div class=\"kcs-portfolio-container\">\r\n    <h2>Portfolio will go here.</h2>\r\n</div>"
 
 /***/ }),
 
@@ -1097,6 +1110,20 @@ var KcsService = /** @class */ (function () {
 }());
 
 
+
+/***/ }),
+
+/***/ "../../../../../web-client/assets/about-bg.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "about-bg.d9b7ef935a2f3574d360.jpg";
+
+/***/ }),
+
+/***/ "../../../../../web-client/assets/contact-bg.jpg":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "contact-bg.bc164f4945fabc71206f.jpg";
 
 /***/ }),
 

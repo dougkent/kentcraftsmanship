@@ -1,31 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="web-client\app\directives\recaptcha.directive.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\about\about.component.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\contact\contact.component.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\mtf\mtf.component.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\nav\nav.component.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\portfolio\portfolio.component.ts" />
-    <None Remove="web-client\app\kent-craftsmanship\section.ts" />
-    <None Remove="web-client\app\models\inquiry-submission.ts" />
-    <None Remove="web-client\app\services\current-section.service.ts" />
-    <None Remove="web-client\app\services\kcs.service.ts" />
-    <None Remove="web-client\app\services\kcs.services.spec.ts" />
+    <None Remove="kentcraftsmanship\src\app\components\index.ts" />
+    <None Remove="kentcraftsmanship\src\app\containers\index.ts" />
+    <None Remove="kentcraftsmanship\src\app\directives\index.ts" />
+    <None Remove="kentcraftsmanship\src\app\models\index.ts" />
+    <None Remove="kentcraftsmanship\src\app\services\index.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.1" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,17 +30,11 @@
   
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
-    <TypeScriptCompile Include="web-client\app\directives\recaptcha.directive.ts" />
-    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\about\about.component.ts" />
-    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\contact\contact.component.ts" />
-    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\mtf\mtf.component.ts" />
-    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\nav\nav.component.ts" />
-    <TypeScriptCompile Include="web-client\app\kent-craftsmanship\portfolio\portfolio.component.ts" />
-    <TypeScriptCompile Include="web-client\app\models\section.ts" />
-    <TypeScriptCompile Include="web-client\app\models\inquiry-submission.ts" />
-    <TypeScriptCompile Include="web-client\app\services\current-section.service.ts" />
-    <TypeScriptCompile Include="web-client\app\services\kcs.service.ts" />
-    <TypeScriptCompile Include="web-client\app\services\kcs.services.spec.ts" />
+    <TypeScriptCompile Include="kentcraftsmanship\src\app\components\index.ts" />
+    <TypeScriptCompile Include="kentcraftsmanship\src\app\containers\index.ts" />
+    <TypeScriptCompile Include="kentcraftsmanship\src\app\directives\index.ts" />
+    <TypeScriptCompile Include="kentcraftsmanship\src\app\models\index.ts" />
+    <TypeScriptCompile Include="kentcraftsmanship\src\app\services\index.ts" />
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 </Project>

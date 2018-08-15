@@ -31,6 +31,11 @@ namespace KCS.Web
             //load configuration data into ConfigSettings object
             services.Configure<ConfigSettings>(Configuration.GetSection("configsettings"));
 
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "kentcraftsmanship/dist";
+            });
+
             services.AddMvc()
                 .AddJsonOptions(options =>
                 {
@@ -50,33 +55,44 @@ namespace KCS.Web
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
 
-            app.Use(async (context, next) =>
-            {
-                // Redirect index.html request to a controller that can have authorization in front of it
-                if (context.Request.Path.Value == "/index.html")
-                {
-                    context.Request.Path = "/";
-                }
+            app.UseHttpsRedirection();
+            app.UseMvc();
 
-                await next();
-                if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) &&
-                    !context.Request.Path.Value.StartsWith("/api/"))
-                {
-                    context.Request.Path = "/";
-                    await next();
-                }
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "kentcraftsmanship";
+
+                //if (env.IsDevelopment())
+                //{
+                //    spa.UseAngularCliServer(npmScript: "start");
+                //}
             });
 
-            //default route: /api/[Controller]
-            app.UseMvcWithDefaultRoute();
+            //app.Use(async (context, next) =>
+            //{
+            //    // Redirect index.html request to a controller that can have authorization in front of it
+            //    if (context.Request.Path.Value == "/index.html")
+            //    {
+            //        context.Request.Path = "/";
+            //    }
 
-            app.UseDefaultFiles();
-            app.UseStaticFiles();
+            //    await next();
+            //    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) &&
+            //        !context.Request.Path.Value.StartsWith("/api/"))
+            //    {
+            //        context.Request.Path = "/";
+            //        await next();
+            //    }
+            //});
+
+            ////default route: /api/[Controller]
+            //app.UseMvcWithDefaultRoute();
+
+            //app.UseDefaultFiles();
         }
     }
 }

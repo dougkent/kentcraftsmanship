@@ -6,7 +6,7 @@
             <a href="https://www.instagram.com/kentcraftsmanship/?hl=en">Kent Craftsmanship on Instagram</a>
         </div>
         <form [formGroup]="contactForm"
-              (ngSubmit)="submitInquiry(contactForm.value, contactForm.valid)"
+              (ngSubmit)="submitInquiry(contactForm.value)"
               novalidate>
             <mat-form-field>
                 <input type="email"
@@ -44,7 +44,7 @@
                 </mat-error>
             </mat-form-field>
             <div class="center-form-row">
-                <div kcsRecaptcha key="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO" formControlName="captcha"></div>
+                <!-- <div kcsRecaptcha key="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO" formControlName="captcha"></div> -->
                 <button mat-button
                         type="submit"
                         [disabled]="!contactForm.valid">

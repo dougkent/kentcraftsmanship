@@ -25,13 +25,13 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import * as fromContainers from './containers';
 import * as fromServices from './services';
 import * as fromComponents from './components';
-import * as fromDirectives from './directives';
+//import * as fromDirectives from './directives';
 
 @NgModule({
   declarations: [
     ...fromContainers.containers,
     ...fromComponents.components,
-    ...fromDirectives.directives,
+    // ...fromDirectives.directives,
   ],
   imports: [
     BrowserModule,

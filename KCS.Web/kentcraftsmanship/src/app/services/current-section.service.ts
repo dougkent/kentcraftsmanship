@@ -1,17 +1,20 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { Injectable, OnInit } from '@angular/core';
 
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
-import { Section } from '../models/section';
+import { Section } from '../models/section.model';
 
 @Injectable()
-export class CurrentSectionService {
+export class CurrentSectionService implements OnInit {
     private currentSection = new Subject<Section>();
 
     currentSection$ = this.currentSection.asObservable();
     sections: any = [];
 
     constructor() {
+    }
+
+    ngOnInit() {
         window.addEventListener('scroll', (event: any) => {
             this.getCurrentSection();
         });
@@ -27,6 +30,7 @@ export class CurrentSectionService {
             return b.position - a.position;
         });
 
+        debugger;
         //if the page has already been scrolled find the current name
         if (document.body.scrollTop > 0) {
             this.getCurrentSection();

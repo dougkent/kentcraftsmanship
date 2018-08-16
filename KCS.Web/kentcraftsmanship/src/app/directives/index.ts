@@ -1,5 +1,5 @@
-import { ReCaptchaDirective } from './recaptcha.directive';
+// import { ReCaptchaDirective } from './recaptcha.directive';
 
-export const directives = {
-  ReCaptchaDirective
-};
+// export const directives = [
+//   ReCaptchaDirective
+// ];

@@ -13,7 +13,7 @@
         <div class="nav-bar-nav">
             <div class="nav-bar-mobile">
                 <button class="nav-bar-toggle"
-                        (click)="toggleMenu()">
+                        (click)="toggleMenu(null)">
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul [ngClass]="{ 'hidden': !isMenuDisplayed, 'nav-bar-background': !isFirstSection }">

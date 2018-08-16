@@ -1,9 +1,8 @@
 ﻿import { Injectable } from '@angular/core';
-//import { HttpClient, HttpParams } from '@angular/common/http';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
-import { InquirySubmission } from '../models/inquiry-submission';
+import { InquirySubmission } from '../models/inquiry-submission.model';
 
 @Injectable()
 export class KcsService {

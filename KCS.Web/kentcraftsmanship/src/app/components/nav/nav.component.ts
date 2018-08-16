@@ -1,22 +1,29 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, Input } from '@angular/core';
 
-import { CurrentSectionService } from '../../services/current-section.service';
-import { Section } from '../../models/section';
+import { Section } from '../../models/section.model';
 
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
-    styleUrls: ['./nav.component.css']
+    styleUrls: ['./nav.component.scss']
 })
 export class NavBarComponent {
+    private _currentSection: Section;
+
+    @Input()
+    set currentSection(currentSection: Section) {
+        if(currentSection)
+        {
+            this._currentSection = currentSection;
+            this.isFirstSection = currentSection.name == 'home';
+        }
+    }
+
     isFirstSection = true;
     isMenuDisplayed = false;
 
-    constructor(private currentSectionService: CurrentSectionService) {
-        this.currentSectionService.currentSection$.subscribe((currentSection: Section) => {
-            console.log(currentSection.name)
-            this.isFirstSection = currentSection.name == 'home';
-        });
+    constructor() {
+
     }
 
     toggleMenu(force: boolean) {

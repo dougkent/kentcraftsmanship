@@ -1,28 +1,28 @@
-﻿import { Component, ElementRef, EventEmitter, HostListener, OnInit } from '@angular/core';
+﻿import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 
-import { CurrentSectionService } from '../../services/current-section.service';
-import { Section } from '../../models/section';
+import { Section } from '../../models/section.model';
 
 @Component({
     selector: 'app-portfolio',
     templateUrl: './portfolio.component.html',
-    styleUrls: ['./portfolio.component.css']
+    styleUrls: ['./portfolio.component.scss']
 })
 
 export class PortfolioComponent implements OnInit {
+    @Output() sectionDimensioned = new EventEmitter<Section>();
     private section: Section;
 
-    constructor(private element: ElementRef, private currentSectionService: CurrentSectionService) {
+    constructor(private element: ElementRef) {
     }
 
     ngOnInit() {
         this.section = new Section('portfolio', this.element.nativeElement.offsetTop);
-        this.currentSectionService.registerSection(this.section);
+        this.sectionDimensioned.emit(this.section);
     }
 
     @HostListener('window:resize', ['$event'])
     onResize(event: any) {
         this.section.position = this.element.nativeElement.offsetTop
-        this.currentSectionService.registerSection(this.section);
+        this.sectionDimensioned.emit(this.section);
     }
 }

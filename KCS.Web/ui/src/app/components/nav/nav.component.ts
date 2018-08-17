@@ -12,11 +12,8 @@ export class NavBarComponent {
 
     @Input()
     set currentSection(currentSection: Section) {
-        if(currentSection)
-        {
-            this._currentSection = currentSection;
-            this.isFirstSection = currentSection.name == 'home';
-        }
+        this._currentSection = currentSection;
+        this.isFirstSection = currentSection.name == 'home';
     }
 
     isFirstSection = true;

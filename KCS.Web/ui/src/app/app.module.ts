@@ -20,8 +20,6 @@ import {
   MatDialogModule
 } from '@angular/material';
 
-import { NgxPageScrollModule } from 'ngx-page-scroll';
-
 import * as fromContainers from './containers';
 import * as fromServices from './services';
 import * as fromComponents from './components';
@@ -53,7 +51,6 @@ import * as fromComponents from './components';
     MatPaginatorModule,
     MatInputModule,
     BrowserAnimationsModule,
-    NgxPageScrollModule
   ],
   providers: [
     ...fromServices.services

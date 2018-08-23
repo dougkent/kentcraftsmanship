@@ -19,6 +19,7 @@ import {
   MatInputModule,
   MatDialogModule
 } from '@angular/material';
+import { AppRoutingModule } from './app.routing.module';
 
 import * as fromContainers from './containers';
 import * as fromServices from './services';
@@ -51,6 +52,7 @@ import * as fromComponents from './components';
     MatPaginatorModule,
     MatInputModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
   ],
   providers: [
     ...fromServices.services

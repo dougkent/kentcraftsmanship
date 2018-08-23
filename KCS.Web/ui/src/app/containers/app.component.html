@@ -1,6 +1,9 @@
-﻿<app-nav></app-nav>
+﻿<app-nav [currentUrl]='currentUrl'></app-nav>
 <div class="kcs-container">
-    <section id="home">
+    <section>
+        <router-outlet></router-outlet>
+    </section>
+    <!-- <section id="home">
         <app-home (section-dimensioned)="registerSection($event)"></app-home>
     </section>
     <section id="about">
@@ -15,5 +18,5 @@
     <section id="contact">
         <app-contact (section-dimensioned)="registerSection($event)"
                      (inquiry-submitted)="submitInquiry($event)"></app-contact>
-    </section>
+    </section> -->
 </div>

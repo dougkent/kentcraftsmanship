@@ -1,30 +1,25 @@
 ﻿import { Component, Input } from '@angular/core';
 
-import { Section } from '../../models/section.model';
-
 @Component({
     selector: 'app-nav',
     templateUrl: './nav.component.html',
     styleUrls: ['./nav.component.scss']
 })
 export class NavBarComponent {
-    private _currentSection: Section;
+    private _currentUrl: string = '/';
+    private isFirstSection = true;
+    private isMenuDisplayed = false;
 
     @Input()
-    set currentSection(currentSection: Section) {
-        this._currentSection = currentSection;
-        this.isFirstSection = currentSection.name == 'home';
+    set currentUrl(currentUrl: string) {
+        this._currentUrl = currentUrl;
+        this.isFirstSection = currentUrl === '/';
     }
 
-    isFirstSection = true;
-    isMenuDisplayed = false;
-
-    constructor() {
-
-    }
+    constructor() { }
 
     toggleMenu(force: boolean) {
-        if (force) {
+        if (force !== null) {
             this.isMenuDisplayed = force;
             return;
         }

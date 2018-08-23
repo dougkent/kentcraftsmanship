@@ -1,10 +1,12 @@
 ﻿<div class="kcs-contact-container">
     <!--Photo by Simon Stankowski on Unsplash-->
     <div class="contact-form">
-        <div>
+        <h1>Submit Inquiry</h1>
+        <!-- <div class="links">
             <a href="mailto:kentcraftsmanship@gmail.com">kentcraftsmanship@gmail.com</a>
-            <a href="https://www.instagram.com/kentcraftsmanship/?hl=en">Kent Craftsmanship on Instagram</a>
-        </div>
+            <a href="https://www.instagram.com/kentcraftsmanship/?hl=en">Instagram</a>
+            <a href="https://www.youtube.com/channel/UC_qOG9bWZSDhiVU5YFEkehg">Youtube</a>
+        </div> -->
         <form [formGroup]="contactForm"
               (ngSubmit)="submitInquiry(contactForm.value)"
               novalidate>

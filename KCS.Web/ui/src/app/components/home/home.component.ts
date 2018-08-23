@@ -1,6 +1,4 @@
-﻿import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-
-import { Section } from '../../models/section.model';
+﻿import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-home',
@@ -8,22 +6,7 @@ import { Section } from '../../models/section.model';
     styleUrls: ['./home.component.scss']
 })
 
-export class HomeComponent implements OnInit {
-    @Output() sectionDimensioned = new EventEmitter<Section>();
-    private section: Section;
+export class HomeComponent {
 
-    constructor(private element: ElementRef) {
-    }
-
-    ngOnInit() {
-        this.section = new Section('home', this.element.nativeElement.offsetTop);
-        this.sectionDimensioned.emit(this.section);
-    }
-
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event: any) {
-        this.section.position = this.element.nativeElement.offsetTop
-        this.sectionDimensioned.emit(this.section);
-    }
+    constructor() { }
 }

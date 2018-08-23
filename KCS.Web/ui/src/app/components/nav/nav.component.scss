@@ -14,7 +14,7 @@
 
         .nav-bar-header {
             position: absolute;
-            left: 5px;
+            left: 10px;
             top: 5px;
 
             .nav-bar-brand {
@@ -43,10 +43,66 @@
     .hidden {
         display: none !important;
     }
-    /* #### Tablets Portrait or Landscape #### */
-    @media screen and (max-width: 1024px) {
-        .nav-bar-container {
 
+    /* #### Mobile Phones #### */
+    @media screen and (max-width: 768px) {
+        .nav-bar-container {
+            .nav-bar-nav {
+                width: 100%;
+                right: 0px;
+
+                .nav-bar-mobile {
+                    position: relative;
+
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        position: absolute;
+                        top: 35px;
+                        right: 0px;
+                        width: 100%;
+
+                        li.nav-item {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            text-align: center;
+                            height: 30px;
+                            line-height: 30px;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                            }
+                        }
+                        
+                        li.nav-item-icon {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            text-align: center;
+                            height: 30px;
+                            line-height: 30px;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                                margin: 0 10px;
+                            }
+                        }
+                    }
+                }
+
+                .nav-bar-reg {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    /* #### Tablets Portrait or Landscape #### */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        .nav-bar-container {
             .nav-bar-nav {
                 .nav-bar-mobile {
                     position: relative;
@@ -69,6 +125,20 @@
                             a.nav-link {
                                 color: #3d3d3d;
                                 text-decoration: none;
+                            }
+                        }
+                        
+                        li.nav-item-icon {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            text-align: center;
+                            height: 25px;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                                margin-left: 20px;
                             }
                         }
                     }
@@ -110,6 +180,21 @@
                                 line-height: 30px;
                             }
                         }
+
+                        li.nav-item-icon {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            display: inline-block;
+                            text-align: center;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                                line-height: 30px;
+                                margin-right: 20px;
+                            }
+                        }
                     }
                 }
             }
@@ -118,5 +203,5 @@
 }
 
 .nav-bar-background {
-    background: rgba(255,255, 255, 0.7);
+    background: rgba(255,255, 255, 0.75);
 }

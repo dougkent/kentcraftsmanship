@@ -7,6 +7,27 @@
         padding-top: 200px;
         text-align: center;
 
+        /* #### Mobile Phones #### */
+        @media screen and (max-width: 768px) {
+            .kcs-logo {
+                width: 80%;
+            }
+        }
+
+        /* #### Tablets Portrait or Landscape #### */
+        @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .kcs-logo {
+                width: 500px;
+            }
+        }
+
+        /* #### Desktops #### */
+        @media screen and (min-width: 1024px) {
+            .kcs-logo {
+                width: 500px;
+            }
+        }
+
         h1, h2 {
             font-weight: 400;
         }

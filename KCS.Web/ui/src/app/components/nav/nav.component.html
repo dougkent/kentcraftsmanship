@@ -2,8 +2,8 @@
     <div class="nav-bar-container">
         <div class="nav-bar-header">
             <a class="nav-bar-brand"
-               pageScroll
-               href="#home"
+               routerLink="/"
+               (click)="toggleMenu(false)"
                [ngClass]="{ 'hidden': isFirstSection }">
                 <img alt="icon"
                      src="../../../assets/kent-craftsmanship-icon.png"
@@ -14,56 +14,64 @@
             <div class="nav-bar-mobile">
                 <button class="nav-bar-toggle"
                         (click)="toggleMenu(null)">
-                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-bars fa-lg"></i>
                 </button>
                 <ul [ngClass]="{ 'hidden': !isMenuDisplayed, 'nav-bar-background': !isFirstSection }">
                     <li class="nav-item">
                         <a class="nav-link"
-                           pageScroll
-                           href="#about"
+                           routerLink="/about"
                            (click)="toggleMenu(false)">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link"
-                           pageScroll
-                           href="#portfolio"
+                           routerLink="/portfolio"
                            (click)="toggleMenu(false)">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" 
-                           pageScroll 
-                           href="#mtf" 
+                        <a class="nav-link"
+                           routerLink="/mission-trip-furniture" 
                            (click)="toggleMenu(false)">Mission Trip Furniture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" 
-                           pageScroll 
-                           href="#contact" 
+                        <a class="nav-link"
+                           routerLink="/contact" 
                            (click)="toggleMenu(false)">Contact</a>
                     </li>
+                    <li class="nav-item-icon">
+                            <a class="nav-link" href="https://www.instagram.com/kentcraftsmanship/?hl=en" target="_blank">
+                                <i class="fab fa-instagram fa-lg"></i>
+                            </a>
+                            <a class="nav-link" href="https://www.youtube.com/channel/UC_qOG9bWZSDhiVU5YFEkehg" target="_blank">
+                                <i class="fab fa-youtube fa-lg"></i>
+                            </a>
+                        </li>
                 </ul>
             </div>
             <div class="nav-bar-reg">
                 <ul>
                     <li class="nav-item">
-                        <a class="nav-link" 
-                           pageScroll 
-                           href="#about">About</a>
+                        <a class="nav-link"
+                           routerLink="/about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" 
-                           pageScroll 
-                           href="#portfolio">Portfolio</a>
+                        <a class="nav-link"
+                           routerLink="/portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" 
-                           pageScroll 
-                           href="#mtf">Mission Trip Furniture</a>
+                        <a class="nav-link"
+                           routerLink="/mission-trip-furniture">Mission Trip Furniture</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" 
-                           pageScroll 
-                           href="#contact">Contact</a>
+                        <a class="nav-link"
+                           routerLink="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item-icon">
+                        <a class="nav-link" href="https://www.instagram.com/kentcraftsmanship/?hl=en" target="_blank">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a class="nav-link" href="https://www.youtube.com/channel/UC_qOG9bWZSDhiVU5YFEkehg" target="_blank">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
                     </li>
                 </ul>
             </div>

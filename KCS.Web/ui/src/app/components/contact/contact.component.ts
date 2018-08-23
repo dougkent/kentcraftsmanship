@@ -1,7 +1,7 @@
-import { Component, ElementRef, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Section, InquirySubmission } from '../../models';
+import { InquirySubmission } from '../../models';
 //import { ReCaptchaDirective, RECAPTCHA_URL } from '../../directives/recaptcha.directive';
 
 @Component({
@@ -15,15 +15,12 @@ import { Section, InquirySubmission } from '../../models';
 })
 
 export class ContactComponent implements OnInit {
-    @Output() sectionDimensioned = new EventEmitter<Section>();
     @Output() inquirySubmitted = new EventEmitter<InquirySubmission>();
     submitting = false;
+    
     public contactForm: FormGroup;
-    private section: Section;
 
-    constructor(private formBuilder: FormBuilder, private element: ElementRef) {
-
-    }
+    constructor(private formBuilder: FormBuilder) { }
 
     ngOnInit() {
         this.contactForm = this.formBuilder.group({
@@ -32,15 +29,6 @@ export class ContactComponent implements OnInit {
             body: ['', [<any>Validators.required]],
             captcha: ['', [<any>Validators.required]]
         });
-
-        this.section = new Section('contact', this.element.nativeElement.offsetTop);
-        this.sectionDimensioned.emit(this.section);
-    }
-
-    @HostListener('window:resize', ['$event'])
-    onResize(event: any) {
-        this.section.position = this.element.nativeElement.offsetTop;
-        this.sectionDimensioned.emit(this.section);
     }
 
     submitInquiry(model: InquirySubmission) {

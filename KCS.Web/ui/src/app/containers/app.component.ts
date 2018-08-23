@@ -1,8 +1,9 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { Router, NavigationStart } from '@angular/router';
 
-import { Section, InquirySubmission } from '../models';
-import { CurrentSectionService } from '../services/current-section.service';
+import { filter } from 'rxjs/operators';
+
+import { InquirySubmission } from '../models';
 
 @Component({
     selector: 'app-root',
@@ -10,17 +11,16 @@ import { CurrentSectionService } from '../services/current-section.service';
 })
 
 export class AppComponent implements OnInit {
-    currentSection: Section;
+    currentUrl: string;
 
-    constructor(private currentSectionService : CurrentSectionService) {
+    constructor(private router: Router) {
     }
 
-    ngOnInit(){
-
-    }
-
-    registerSection(section: Section) {
-        this.currentSectionService.registerSection(section);
+    ngOnInit() {
+        this.router.events.pipe(filter(e => e instanceof NavigationStart))
+        .subscribe((event: NavigationStart) => {
+            this.currentUrl = event.url;
+        })
     }
 
     submitInquiry(inquirySubmission: InquirySubmission) {

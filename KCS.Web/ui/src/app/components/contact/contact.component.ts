@@ -1,40 +1,30 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// Angular
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { InquirySubmission } from '../../models';
-//import { ReCaptchaDirective, RECAPTCHA_URL } from '../../directives/recaptcha.directive';
 
 @Component({
     selector: 'app-contact',
     templateUrl: './contact.component.html',
     styleUrls: ['./contact.component.scss'],
-    // providers: [{
-    //     provide: RECAPTCHA_URL,
-    //     useValue: '/api/inquiries/validate-captcha'
-    // }]
 })
 
-export class ContactComponent implements OnInit {
-    @Output() inquirySubmitted = new EventEmitter<InquirySubmission>();
-    submitting = false;
+export class ContactComponent {
+    @Input()
+    submitting: boolean;
+
+    @Output() 
+    inquirySubmitted: EventEmitter<InquirySubmission> = new EventEmitter<InquirySubmission>();
+
+    constructor() { }
     
-    public contactForm: FormGroup;
-
-    constructor(private formBuilder: FormBuilder) { }
-
-    ngOnInit() {
-        this.contactForm = this.formBuilder.group({
-            email: ['', [<any>Validators.email, <any>Validators.required]],
-            subject: ['', [<any>Validators.required]],
-            body: ['', [<any>Validators.required]],
-            captcha: ['', [<any>Validators.required]]
-        });
+    resolved(captchaResponse: string) {
+        console.log(`Resolved captcha with response ${captchaResponse}:`);
     }
 
-    submitInquiry(model: InquirySubmission) {
+    submitInquiry(model: InquirySubmission, isValid: boolean) {
 
-        if (!this.submitting) {
-            this.submitting = true;
+        if (!this.submitting && isValid) {
 
             this.inquirySubmitted.emit(model);
 

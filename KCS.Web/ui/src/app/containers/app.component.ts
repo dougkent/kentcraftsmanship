@@ -12,6 +12,7 @@ import { InquirySubmission } from '../models';
 
 export class AppComponent implements OnInit {
     currentUrl: string;
+    submittingInquiry: boolean;
 
     constructor(private router: Router) {
     }
@@ -20,10 +21,12 @@ export class AppComponent implements OnInit {
         this.router.events.pipe(filter(e => e instanceof NavigationStart))
         .subscribe((event: NavigationStart) => {
             this.currentUrl = event.url;
-        })
+        });
+
+        this.submittingInquiry = false;
     }
 
     submitInquiry(inquirySubmission: InquirySubmission) {
-
+        this.submittingInquiry = true;
     }
 }

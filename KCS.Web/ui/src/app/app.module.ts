@@ -1,60 +1,50 @@
+// Angular Modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
-import {
-  MatToolbarModule,
-  MatSidenavModule,
-  MatListModule,
-  MatGridListModule,
-  MatButtonModule,
-  MatTableModule,
-  MatSortModule,
-  MatCheckboxModule,
-  MatTooltipModule,
-  MatSnackBarModule,
-  MatExpansionModule,
-  MatPaginatorModule,
-  MatInputModule,
-  MatDialogModule
-} from '@angular/material';
-import { AppRoutingModule } from './app.routing.module';
 
+//Third Party Modules
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+
+// App Modules
+import { AppRoutingModule } from './app.routing.module';
+import { AppMaterialModule } from './app.material.module';
+
+// Containers
 import * as fromContainers from './containers';
+
+// Services
 import * as fromServices from './services';
+
+// Components
 import * as fromComponents from './components';
-//import * as fromDirectives from './directives';
 
 @NgModule({
   declarations: [
+    // Containers
     ...fromContainers.containers,
+    //Components
     ...fromComponents.components,
-    // ...fromDirectives.directives,
   ],
   imports: [
+    // Angular Modules
     BrowserModule,
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    MatButtonModule,
-    MatTableModule,
-    MatSortModule,
-    MatCheckboxModule,
-    MatTooltipModule,
-    MatDialogModule,
-    MatSnackBarModule,
-    MatExpansionModule,
-    MatPaginatorModule,
-    MatInputModule,
     BrowserAnimationsModule,
+    // Third Party Modules,
+    RecaptchaModule.forRoot(),
+    ReactiveFormsModule,
+    // App Modules
     AppRoutingModule,
+    AppMaterialModule
   ],
   providers: [
+    // Services
     ...fromServices.services
   ],
   bootstrap: [fromContainers.AppComponent]

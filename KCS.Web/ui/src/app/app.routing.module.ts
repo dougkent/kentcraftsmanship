@@ -6,7 +6,7 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { MtfComponent } from './components/mtf/mtf.component';
 import { ContactComponent } from './components/contact/contact.component';
 
-const routes = [
+const routes : Routes = [
     { path: '', component: HomeComponent },
     { path: 'about', component: AboutComponent },
     { path: 'portfolio', component: PortfolioComponent },

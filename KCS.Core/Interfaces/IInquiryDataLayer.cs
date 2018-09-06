@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using KCS.Core.Models;
+using System;
 using System.Collections.Generic;
-using KCS.Core.Models;
+using System.Threading.Tasks;
 
 namespace KCS.Core.Interfaces
 {
     public interface IInquiryDataLayer
     {
-        ICollection<Inquiry> GetAllInquiries();
+        Task<ICollection<Inquiry>> GetAllInquiriesAsync();
 
-        ICollection<Inquiry> GetUnreadInquiries();
+        Task<ICollection<Inquiry>> GetUnreadInquiriesAsync();
 
-        void MarkInquiryAsRead(Guid inquiryId);
+        Task MarkInquiryAsReadAsync(Guid inquiryId);
 
-        void SubmitInquiry(InquirySubmission inquirySubmission);
+        Task SubmitInquiryAsync(InquirySubmission inquirySubmission);
 
-        void DeleteInquiry(Guid inquiryId);
+        Task DeleteInquiryAsync(Guid inquiryId);
     }
 }

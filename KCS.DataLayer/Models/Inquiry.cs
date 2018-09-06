@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dse.Data.Linq;
+using System;
 
 namespace KCS.DataLayer.Models
 {

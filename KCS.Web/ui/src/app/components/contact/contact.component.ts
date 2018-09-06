@@ -1,6 +1,10 @@
 // Angular
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+// Third Party
+import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 
+// Models
 import { InquirySubmission } from '../../models';
 
 @Component({

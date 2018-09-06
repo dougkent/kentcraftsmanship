@@ -51,7 +51,10 @@
                 </mat-error>
             </mat-form-field>
             <div class="center-form-row">
-                <re-captcha (resolved)="resolved($event)" siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"></re-captcha>
+                <re-captcha name="captcha"
+                            [(ngModel)]="contactForm.captcha"
+                            required 
+                            siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"></re-captcha>
                 <button mat-button
                         type="submit"
                         [disabled]="contactForm.invalid || submitting">

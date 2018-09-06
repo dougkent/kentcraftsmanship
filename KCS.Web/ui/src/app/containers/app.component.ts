@@ -14,8 +14,7 @@ export class AppComponent implements OnInit {
     currentUrl: string;
     submittingInquiry: boolean;
 
-    constructor(private router: Router) {
-    }
+    constructor(private router: Router) {}
 
     ngOnInit() {
         this.router.events.pipe(filter(e => e instanceof NavigationStart))

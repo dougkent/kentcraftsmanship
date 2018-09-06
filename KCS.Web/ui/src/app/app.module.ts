@@ -38,7 +38,7 @@ import * as fromComponents from './components';
     BrowserAnimationsModule,
     // Third Party Modules,
     RecaptchaModule.forRoot(),
-    ReactiveFormsModule,
+    RecaptchaFormsModule,
     // App Modules
     AppRoutingModule,
     AppMaterialModule

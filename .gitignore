@@ -31,6 +31,9 @@ Obj/
 /wwwroot/dist/
 /ClientApp/dist/
 
+# Visual Studio Code
+.vscode/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*

@@ -3,29 +3,30 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;    
+    width: 100vw;
+    z-index: 9999;   
 
     .nav-bar-container {
-        position: relative;
-        top: 0;
-        left: 0;
+        display: flex;
         height: 30px;
         padding: 5px;
+        width: 100%;
 
         .nav-bar-header {
-            position: absolute;
-            left: 10px;
-            top: 5px;
+            display: flex;
+            justify-content: flex-start;
+            width: 50%;
 
             .nav-bar-brand {
                 display: block;
+                margin-left: 20px;
             }
         }
 
         .nav-bar-nav {
-            position: absolute;
-            right: 5px;
-            top: 5px;
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
 
             .nav-bar-toggle {
                 background: none;
@@ -33,9 +34,6 @@
                 height: 30px;
                 width: 30px;
                 cursor: pointer;
-                position: absolute;
-                top: 0px;
-                right: 10px;
             }
         }
     }
@@ -48,53 +46,60 @@
     @media screen and (max-width: 768px) {
         .nav-bar-container {
             .nav-bar-nav {
-                width: 100%;
-                right: 0px;
-
                 .nav-bar-mobile {
-                    position: relative;
-
-                    ul {
-                        margin: 0;
-                        padding: 0;
-                        position: absolute;
-                        top: 35px;
-                        right: 0px;
-                        width: 100%;
-
-                        li.nav-item {
-                            margin: 0;
-                            padding: 0;
-                            list-style: none;
-                            text-align: center;
-                            height: 30px;
-                            line-height: 30px;
-
-                            a.nav-link {
-                                color: #3d3d3d;
-                                text-decoration: none;
-                            }
-                        }
-                        
-                        li.nav-item-icon {
-                            margin: 0;
-                            padding: 0;
-                            list-style: none;
-                            text-align: center;
-                            height: 30px;
-                            line-height: 30px;
-
-                            a.nav-link {
-                                color: #3d3d3d;
-                                text-decoration: none;
-                                margin: 0 10px;
-                            }
-                        }
-                    }
+                    margin-right: 40px;
+                    display: flex;
+                    align-content: stretch;
+                    justify-content: right;
                 }
 
                 .nav-bar-reg {
                     display: none;
+                }
+            }
+
+            .nav-bar-dropdown {
+                width: 100%;
+                position: fixed;
+                top: 40px;
+                left: 0px;
+                display: flex;
+                justify-content: flex-end;
+
+                ul {
+                    display: block;
+                    margin: 0;
+                    padding: 20px;
+                    width: 100%;
+
+                    li.nav-item {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                        }
+                    }
+                    
+                    li.nav-item-icon {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                            margin-left: 20px;
+                        }
+                    }
                 }
             }
         }
@@ -105,51 +110,64 @@
         .nav-bar-container {
             .nav-bar-nav {
                 .nav-bar-mobile {
-                    position: relative;
-
-                    ul {
-                        margin: 0;
-                        padding: 0;
-                        position: absolute;
-                        top: 35px;
-                        right: 0px;
-                        width: 200px;
-
-                        li.nav-item {
-                            margin: 0;
-                            padding: 0;
-                            list-style: none;
-                            text-align: center;
-                            height: 25px;
-
-                            a.nav-link {
-                                color: #3d3d3d;
-                                text-decoration: none;
-                            }
-                        }
-                        
-                        li.nav-item-icon {
-                            margin: 0;
-                            padding: 0;
-                            list-style: none;
-                            text-align: center;
-                            height: 25px;
-
-                            a.nav-link {
-                                color: #3d3d3d;
-                                text-decoration: none;
-                                margin-left: 20px;
-                            }
-                        }
-                    }
+                    margin-right: 40px;
+                    display: flex;
+                    align-content: stretch;
+                    justify-content: right;
                 }
 
                 .nav-bar-reg {
                     display: none;
                 }
             }
+
+            .nav-bar-dropdown {
+                width: 100%;
+                position: fixed;
+                top: 40px;
+                left: 0px;
+                display: flex;
+                justify-content: flex-end;
+
+                ul {
+                    display: block;
+                    margin: 0;
+                    padding: 20px;
+                    width: 240px;
+
+                    li.nav-item {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                        }
+                    }
+                    
+                    li.nav-item-icon {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
         }
     }
+
     /* #### Desktops #### */
     @media screen and (min-width: 1024px) {
         .nav-bar-container {
@@ -160,18 +178,20 @@
                 }
 
                 .nav-bar-reg {
-                    position: relative;
-
+                    margin-right: 15px;
+                    width: 100%;
+                    
                     ul {
                         margin: 0;
                         padding: 0;
+                        display: flex;
+                        justify-content: space-around; 
 
                         li.nav-item {
                             margin: 0;
                             padding: 0;
                             list-style: none;
                             display: inline-block;
-                            margin-right: 50px;
                             text-align: center;
 
                             a.nav-link {
@@ -197,6 +217,10 @@
                         }
                     }
                 }
+            }
+
+            .nav-bar-dropdown {
+                display: none;
             }
         }
     }

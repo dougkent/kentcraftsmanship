@@ -15,23 +15,53 @@ export class PortfolioComponent {
     tiles: ImageTile[] = [
         {
             src: "src1",
-            cols: 4,
-            rows: 1,
+            cols: 2,
+            rows: 2,
         },
         {
             src: "src2",
-            cols: 3,
+            cols: 4,
             rows: 2,
         },
         {
             src: "src3",
-            cols: 3,
+            cols: 4,
             rows: 2,
         },
         {
             src: "src4",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "src5",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "src6",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "src7",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "src8",
             cols: 2,
-            rows: 3,
+            rows: 1,
+        },
+        {
+            src: "src9",
+            cols: 2,
+            rows: 1,
+        },
+        {
+            src: "src10",
+            cols: 2,
+            rows: 1,
         }
     ];
 

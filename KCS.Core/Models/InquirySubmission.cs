@@ -12,5 +12,8 @@ namespace KCS.Core.Models
 
         [Required]
         public string Body { get; set; }
+
+        [Required]
+        public string Captcha {get;set;}
     }
 }

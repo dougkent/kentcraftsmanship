@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace KCS.Web.Controllers
 {
     public class HomeController : Controller
@@ -38,23 +36,26 @@ namespace KCS.Web.Controllers
 
             try
             {
-                await _inquiryWriteService.SubmitInquiryAsync(inquirySubmission);
+                var response = await _reCaptchaValidationService.Validate(inquirySubmission.Captcha);
 
-                return Ok();
+                if(response.Success)
+                {
+                    await _inquiryWriteService.SubmitInquiryAsync(inquirySubmission);
+
+                    return Ok();
+                }
+                else
+                {
+                    var responseErrors = string.Join(",", response.ErrorCodes);
+                    Console.WriteLine("Recaptcha Errors: " + responseErrors);
+                    return BadRequest(responseErrors);
+                }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Unexpected Error: " + ex.ToString());
                 return BadRequest(ex.Message);
             }
-        }
-
-        [HttpGet]
-        [Route("/api/inquiries/validate-captcha")]
-        public async Task<IActionResult> ValidateCaptcha(string token)
-        {
-            var response = await _reCaptchaValidationService.Validate(token);
-
-            return Json(response);
         }
     }
 }

@@ -1,8 +1,9 @@
 // Angular
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-// Third Party
-import { RecaptchaModule } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { MatSnackBar } from '@angular/material';
+
+// Services
+import { KcsService } from '../../services/kcs.service';
 
 // Models
 import { InquirySubmission } from '../../models';
@@ -20,40 +21,33 @@ export class ContactComponent {
     @Output() 
     inquirySubmitted: EventEmitter<InquirySubmission> = new EventEmitter<InquirySubmission>();
 
-    constructor() { }
-    
-    resolved(captchaResponse: string) {
-        console.log(`Resolved captcha with response ${captchaResponse}:`);
-    }
+    constructor(
+        public snackBar: MatSnackBar,
+        private kcsService: KcsService
+    ) { }
 
     submitInquiry(model: InquirySubmission, isValid: boolean) {
 
         if (!this.submitting && isValid) {
-
+            this.submitting = true;
             this.inquirySubmitted.emit(model);
-
-            // var res = this.kcsService.submitInquiry(model);
-
-            // res.finally(() => this.submitting = false)
-            //     .subscribe(
-            //     res => {
-            //         this.submitting = false;
-            //         this.snackBar.open('Inquiry submitted successfully!', '',
-            //             {
-            //                 duration: 2000,
-            //                 panelClass: ['text-success']
-            //             });
-            //     },
-            //     err => {
-            //         this.submitting = false;
-            //         this.snackBar.open('Inquiry submission encountered an unexpected error.', '',
-            //             {
-            //                 duration: 2000,
-            //                 panelClass: ['text-error']
-            //             });
-            //         console.error(err);
-            //     }
-            //     );
+            
+            this.kcsService.submitInquiry(model).subscribe(resp => {
+                this.submitting = false;
+                    this.snackBar.open('Inquiry submitted successfully!', '',
+                        {
+                            duration: 3000,
+                            panelClass: ['text-success'],
+                        });
+            },
+            err => {
+                this.submitting = false;
+                this.snackBar.open('Inquiry submission encountered an unexpected error.', '',
+                    {
+                        duration: 3000,
+                        panelClass: ['text-error'],
+                    });
+            });
         }
     }
 }

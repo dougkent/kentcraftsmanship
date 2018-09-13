@@ -1,5 +1,6 @@
-﻿export class InquirySubmission {
-    constructor(public email: string, public subject: string, public body: string) {
-
-    }
+﻿export interface InquirySubmission {
+    email: string;
+    subject: string;
+    body: string;
+    captcha: string;
 }

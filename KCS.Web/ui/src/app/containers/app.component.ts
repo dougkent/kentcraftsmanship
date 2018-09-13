@@ -1,9 +1,9 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿// Angular Classes
+import { Component, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 
+// RxJS Classes
 import { filter } from 'rxjs/operators';
-
-import { InquirySubmission } from '../models';
 
 @Component({
     selector: 'app-root',
@@ -12,20 +12,15 @@ import { InquirySubmission } from '../models';
 
 export class AppComponent implements OnInit {
     currentUrl: string;
-    submittingInquiry: boolean;
 
-    constructor(private router: Router) {}
+    constructor(
+        private router: Router
+    ) {}
 
     ngOnInit() {
         this.router.events.pipe(filter(e => e instanceof NavigationStart))
         .subscribe((event: NavigationStart) => {
             this.currentUrl = event.url;
         });
-
-        this.submittingInquiry = false;
-    }
-
-    submitInquiry(inquirySubmission: InquirySubmission) {
-        this.submittingInquiry = true;
     }
 }

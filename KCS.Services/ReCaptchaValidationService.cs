@@ -8,7 +8,7 @@ namespace KCS.Services
 {
     public class ReCaptchaValidationService : IReCaptchaValidationService
     {
-        private const string PRIVATE_KEY = "6Lcc5UIUAAAAAB-mdNsp_I-2TZB1ghcDQkjszbbB";
+        private const string PRIVATE_KEY = "6Lcc5UIUAAAAAB-mdNsp_I-2TZB1ghcDQkjszbbB"; // TODO: Make this more secure
         private const string VALIDATION_URL = "https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}";
 
         public async Task<ReCaptchaResponse> Validate(string token)

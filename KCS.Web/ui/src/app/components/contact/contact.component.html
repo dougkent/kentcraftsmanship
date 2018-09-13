@@ -12,6 +12,7 @@
                        name="email"
                        ngModel
                        #email="ngModel"
+                       email
                        required
                        maxlength="256" />
                 <mat-error *ngIf="email.errors?.email && !email.errors?.required">
@@ -54,7 +55,8 @@
                 <re-captcha name="captcha"
                             [(ngModel)]="contactForm.captcha"
                             required 
-                            siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"></re-captcha>
+                            siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"
+                            #captcha="ngModel"></re-captcha>
                 <button mat-button
                         type="submit"
                         [disabled]="contactForm.invalid || submitting">

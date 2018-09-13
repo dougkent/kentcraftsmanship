@@ -6,9 +6,11 @@
     styleUrls: ['./nav.component.scss']
 })
 export class NavBarComponent {
+    
+    isFirstSection = true;
+    isMenuDisplayed = false;
+
     private _currentUrl: string = '/';
-    private isFirstSection = true;
-    private isMenuDisplayed = false;
 
     @Input()
     set currentUrl(currentUrl: string) {

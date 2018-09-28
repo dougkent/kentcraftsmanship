@@ -1,16 +1,26 @@
 ﻿.kcs-portfolio-container {
-    padding-top: 40px;
-    background: url(../../../assets/about-bg.jpg); //Photo by Jessica Furtney on Unsplash
-    background-size: cover;
-    background-attachment: fixed;
-    height: 100vh;
+
+    .portfolio-background {
+        background: url(../../../assets/about-bg.jpg); //Photo by Jessica Furtney on Unsplash
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+    }
 
     .portfolio {
-        padding: 30px 5%;
+        padding: 70px 5%;
 
         .tile {
             margin: 10px;
             background-color: rgba(255, 255, 255, 0.75);
+
+            .image-tile {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+            }
         }
     }
 }

@@ -12,57 +12,68 @@ interface ImageTile {
     styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent {
+    // TODO: Optimize image sizes
     tiles: ImageTile[] = [
         {
-            src: "src1",
+            src: "../../../assets/portfolio/lazy-susan.jpg",
             cols: 2,
             rows: 2,
         },
         {
-            src: "src2",
+            src: "../../../assets/portfolio/cribbage-board.jpg",
             cols: 4,
             rows: 2,
         },
         {
-            src: "src3",
-            cols: 4,
+            src: "../../../assets/portfolio/sofa-table-1.jpg",
+            cols: 2,
+            rows: 3,
+        },
+        {
+            src: "../../../assets/portfolio/wine-box.jpg",
+            cols: 2,
+            rows: 3,
+        },
+        {
+            src: "../../../assets/portfolio/cutting-boards-2.jpg",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "../../../assets/portfolio/sofa-table-2.jpg",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "../../../assets/portfolio/ring-box.jpg",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "../../../assets/portfolio/headboard.jpg",
+            cols: 1,
+            rows: 1,
+        },
+        {
+            src: "../../../assets/portfolio/towel-rack.jpg",
+            cols: 2,
+            rows: 3,
+        },
+        {
+            src: "../../../assets/portfolio/bookcase.jpg",
+            cols: 2,
             rows: 2,
         },
         {
-            src: "src4",
-            cols: 1,
-            rows: 1,
-        },
-        {
-            src: "src5",
-            cols: 1,
-            rows: 1,
-        },
-        {
-            src: "src6",
-            cols: 1,
-            rows: 1,
-        },
-        {
-            src: "src7",
-            cols: 1,
-            rows: 1,
-        },
-        {
-            src: "src8",
+            src: "../../../assets/portfolio/cutting-boards-1.jpg",
             cols: 2,
             rows: 1,
         },
         {
-            src: "src9",
+            src: "../../../assets/portfolio/chalkboard.jpg",
             cols: 2,
             rows: 1,
         },
-        {
-            src: "src10",
-            cols: 2,
-            rows: 1,
-        }
     ];
 
     constructor() { }

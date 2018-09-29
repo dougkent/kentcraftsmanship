@@ -30,9 +30,9 @@ export class PortfolioComponent {
             rows: 3,
         },
         {
-            src: "../../../assets/portfolio/wine-box.jpg",
+            src: "../../../assets/portfolio/dog-bed.jpg",
             cols: 2,
-            rows: 3,
+            rows: 1,
         },
         {
             src: "../../../assets/portfolio/cutting-boards-2.jpg",
@@ -42,6 +42,11 @@ export class PortfolioComponent {
         {
             src: "../../../assets/portfolio/sofa-table-2.jpg",
             cols: 1,
+            rows: 1,
+        },
+        {
+            src: "../../../assets/portfolio/desk.jpg",
+            cols: 2,
             rows: 1,
         },
         {
@@ -55,6 +60,11 @@ export class PortfolioComponent {
             rows: 1,
         },
         {
+            src: "../../../assets/portfolio/wine-box.jpg",
+            cols: 2,
+            rows: 3,
+        },
+        {
             src: "../../../assets/portfolio/towel-rack.jpg",
             cols: 2,
             rows: 3,
@@ -66,13 +76,13 @@ export class PortfolioComponent {
         },
         {
             src: "../../../assets/portfolio/cutting-boards-1.jpg",
-            cols: 2,
-            rows: 1,
+            cols: 3,
+            rows: 2,
         },
         {
-            src: "../../../assets/portfolio/chalkboard.jpg",
-            cols: 2,
-            rows: 1,
+            src: "../../../assets/portfolio/chandelier.jpg",
+            cols: 3,
+            rows: 2,
         },
     ];
 

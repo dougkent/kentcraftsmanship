@@ -45,8 +45,8 @@
                           ngModel
                           #body="ngModel"
                           required
-                          maxlength="500"></textarea>
-                <mat-hint align="end">{{body.value?.length}} / 500</mat-hint>
+                          maxlength="1000"></textarea>
+                <mat-hint align="end">{{body.value?.length}} / 1000</mat-hint>
                 <mat-error *ngIf="body.errors?.required">
                     A body is required.
                 </mat-error>
@@ -57,7 +57,8 @@
                             required 
                             siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"
                             #captcha="ngModel"></re-captcha>
-                <button mat-button
+                <button mat-raised-button
+                        color="primary"
                         type="submit"
                         [disabled]="contactForm.invalid || submitting">
                     Submit

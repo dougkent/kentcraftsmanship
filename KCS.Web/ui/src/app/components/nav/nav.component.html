@@ -1,4 +1,4 @@
-﻿<nav class="nav-bar" [ngClass]="{ 'nav-bar-background': !isFirstSection }">
+﻿<nav class="nav-bar nav-bar-background">
     <div class="nav-bar-container">
         <div class="nav-bar-header">
             <a class="nav-bar-brand"
@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="nav-bar-dropdown" [ngClass]="{ 'hidden': !isMenuDisplayed }">
-            <ul [ngClass]="{ 'nav-bar-background': !isFirstSection }">
+            <ul class="nav-bar-background">
                 <li class="nav-item">
                     <a class="nav-link"
                        routerLink="/about"

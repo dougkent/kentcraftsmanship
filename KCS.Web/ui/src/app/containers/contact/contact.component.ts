@@ -6,7 +6,7 @@ import { MatSnackBar } from '@angular/material';
 import { KcsService } from '../../services/kcs.service';
 
 // Models
-import { InquirySubmission } from '../../models';
+import { InquirySubmission } from '../../models/inquiry-submission.model';
 
 @Component({
     selector: 'app-contact',

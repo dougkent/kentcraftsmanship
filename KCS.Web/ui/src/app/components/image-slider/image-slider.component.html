@@ -1,12 +1,8 @@
 <div class="slider-container">
-    <div class="image" 
-         [ngStyle]="{ 'background-image': 'url(' + getSelectedImageUrl() + ')' }">
+    <div class="image" [ngStyle]="{ 'background-image': 'url(' + getSelectedImageUrl() + ')' }">
     </div>
-    <div class="buttons" 
-         *ngIf="imageSliderUrls.length > 1">
-        <button mat-icon-button 
-                *ngFor="let url of imageSliderUrls" 
-                (click)="selectImage(url)">
+    <div class="buttons" *ngIf="imageSliderUrls.length > 1">
+        <button mat-icon-button *ngFor="let url of imageSliderUrls" (click)="selectImage(url)">
             <mat-icon *ngIf="!url.selected">radio_button_unchecked</mat-icon>
             <mat-icon *ngIf="url.selected">radio_button_checked</mat-icon>
         </button>

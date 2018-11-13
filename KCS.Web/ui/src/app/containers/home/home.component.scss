@@ -4,32 +4,41 @@
     height: 100vh;
 
     .kcs-title {
-        padding-top: 200px;
         text-align: center;
 
         /* #### Mobile Phones #### */
         @media screen and (max-width: 768px) {
+            & {
+                padding-top: 150px;
+            }
+
             .kcs-logo {
-                width: 80%;
+                width: 75%;
             }
         }
 
         /* #### Tablets Portrait or Landscape #### */
-        @media screen and (min-width: 769px) and (max-width: 1024px) {
-            .kcs-logo {
-                width: 500px;
+        @media screen and (min-width: 769px) and (max-width: 1023px) {
+            & {
+                padding-top: 100px;
+
+                .kcs-logo {
+                    width: 450px;
+                    height: 400px;
+                }
             }
         }
 
         /* #### Desktops #### */
         @media screen and (min-width: 1024px) {
-            .kcs-logo {
-                width: 500px;
-            }
-        }
+            & {
+                padding-top: 150px;
 
-        h1, h2 {
-            font-weight: 400;
+                .kcs-logo {
+                    width: 450px;
+                    height: 400px;
+                }
+            }
         }
     }
 }

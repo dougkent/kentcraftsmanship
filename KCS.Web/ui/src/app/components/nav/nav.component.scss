@@ -20,6 +20,7 @@
             .nav-bar-brand {
                 display: block;
                 margin-left: 20px;
+                text-align: center;
             }
         }
 
@@ -106,7 +107,7 @@
     }
 
     /* #### Tablets Portrait or Landscape #### */
-    @media screen and (min-width: 769px) and (max-width: 1024px) {
+    @media screen and (min-width: 769px) and (max-width: 1023px) {
         .nav-bar-container {
             .nav-bar-nav {
                 .nav-bar-mobile {

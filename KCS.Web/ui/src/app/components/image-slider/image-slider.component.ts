@@ -11,7 +11,7 @@ interface ImageSliderUrl {
     styleUrls: [ './image-slider.component.scss']
 })
 export class ImageSliderComponent {
-    private imageSliderUrls: ImageSliderUrl[]
+    imageSliderUrls: ImageSliderUrl[]
 
     @Input()
     set imageUrls(imageUrls: string[]){

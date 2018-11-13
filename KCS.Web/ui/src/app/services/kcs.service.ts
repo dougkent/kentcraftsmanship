@@ -25,6 +25,13 @@ export class KcsService {
             mobileRows: 1,
         },
         {
+            src: "../../../assets/portfolio/coffee-table.jpg",
+            cols: 6,
+            rows: 2,
+            mobileCols: 2,
+            mobileRows: 1,
+        },
+        {
             src: "../../../assets/portfolio/sofa-table-1.jpg",
             cols: 2,
             rows: 3,
@@ -114,7 +121,7 @@ export class KcsService {
 
     }
 
-    getPortfolioImages(): Observable<ImageTile[]>{
+    getPortfolioImages(): Observable<ImageTile[]> {
         return of(this.portfolioImages);
     }
 
@@ -125,8 +132,7 @@ export class KcsService {
             );
     }
 
-    private handleError(error: Response)
-    {
+    private handleError(error: Response) {
         console.error(error);
         return throwError(error.body);
     }

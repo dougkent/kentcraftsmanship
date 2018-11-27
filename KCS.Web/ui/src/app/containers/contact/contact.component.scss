@@ -1,8 +1,17 @@
 ﻿.kcs-contact-container {
     padding-top: 40px;
-    background: url(../../../assets/contact-bg.jpg); //Photo by Simon Stankowski on Unsplash
-    background-size: cover;
-    height: 100vh;
+
+    .contact-background {
+        background: url(../../../assets/contact-bg.jpg); //Photo by Jessica Furtney on Unsplash
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        opacity: 0.75;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
 
     .contact-form {
         font-size: 14px;

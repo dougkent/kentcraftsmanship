@@ -1,7 +1,15 @@
 ﻿.home {
-    background: url(../../../assets/home-bg.jpg); //Photo by Ian Keefe on Unsplash
-    background-size: cover;
-    height: 100vh;
+
+    .home-background {
+        background: url(../../../assets/home-bg.jpg); //Photo by Jessica Furtney on Unsplash
+        background-size: cover;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
 
     .kcs-title {
         text-align: center;
@@ -9,7 +17,7 @@
         /* #### Mobile Phones #### */
         @media screen and (max-width: 768px) {
             & {
-                padding-top: 150px;
+                padding-top: 15vh;
             }
 
             .kcs-logo {
@@ -20,7 +28,7 @@
         /* #### Tablets Portrait or Landscape #### */
         @media screen and (min-width: 769px) and (max-width: 1023px) {
             & {
-                padding-top: 100px;
+                padding-top: 10vh;
 
                 .kcs-logo {
                     width: 450px;
@@ -32,7 +40,7 @@
         /* #### Desktops #### */
         @media screen and (min-width: 1024px) {
             & {
-                padding-top: 150px;
+                padding-top: 15vh;
 
                 .kcs-logo {
                     width: 450px;

@@ -1,6 +1,4 @@
 using KCS.Core.Interfaces;
-using KCS.DataLayer;
-using KCS.DataLayer.Interfaces;
 using KCS.Services;
 using KCS.Web.Models;
 using Microsoft.AspNetCore.Builder;
@@ -45,9 +43,7 @@ namespace KCS.Web
                 });
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IInquiryDataLayer, InquiryDataLayer>();
-            services.AddScoped<ICassandraContext, CassandraContext>();
-            services.AddScoped<ICassandraContextFactory, CassandraContextFactory>();
+            services.AddScoped<IAirtableService, AirtableService>();
             services.AddScoped<IInquiryWriteService, InquiryWriteService>();
             services.AddScoped<IReCaptchaValidationService, ReCaptchaValidationService>();
         }

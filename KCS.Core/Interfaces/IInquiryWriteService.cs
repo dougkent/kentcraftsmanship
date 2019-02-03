@@ -6,10 +6,6 @@ namespace KCS.Core.Interfaces
 {
     public interface IInquiryWriteService
     {
-        Task MarkInquiryAsReadAsync(Guid inquiryId);
-
         Task SubmitInquiryAsync(InquirySubmission inquirySubmission);
-
-        Task DeleteInquiryAsync(Guid inquiryId);
     }
 }

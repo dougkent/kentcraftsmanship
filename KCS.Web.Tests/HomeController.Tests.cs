@@ -1,3 +1,4 @@
+using KCS.Core.Exceptions;
 using KCS.Core.Models;
 using KCS.Web.Controllers;
 using KCS.Web.Tests.TestData;
@@ -38,7 +39,7 @@ namespace KCS.Web.Tests
             {
                 _mockedInquiryWriteService = new MockedInquiryWriteService();
 
-                _homeController = new HomeController(_mockedInquiryWriteService.InquiryWriteService.Object, null);
+                _homeController = new HomeController(_mockedInquiryWriteService.InquiryWriteService.Object);
             }
         }
 
@@ -104,6 +105,63 @@ namespace KCS.Web.Tests
             var badRequestResult = (BadRequestObjectResult)result;
 
             Assert.AreEqual(400, badRequestResult.StatusCode);
+        }
+
+        [TestMethod]
+        public async Task HomeController_SubmitInquiryReCaptchaException()
+        {
+            var mockedHomeController = new MockedHomeController();
+
+            mockedHomeController.MockedInquiryWriteService.InquiryWriteService
+                .Setup(s => s.SubmitInquiryAsync(It.IsAny<InquirySubmission>()))
+                .Throws<ReCaptchaException>();
+
+            var inquirySubmission = new InquirySubmission
+            {
+                Email = "Test Submission Email",
+                Subject = "Test Submission Subject",
+                Body = "Test Submission Body",
+            };
+
+            var result = await mockedHomeController.HomeController
+                .SubmitInquiry(inquirySubmission);
+
+            Assert.IsNotNull(result);
+
+            Assert.IsTrue(result is BadRequestObjectResult);
+
+            var badRequestResult = (BadRequestObjectResult)result;
+
+            Assert.AreEqual(400, badRequestResult.StatusCode);
+            Assert.AreEqual("There was an error validating that you are not a robot.", badRequestResult.Value);
+        }
+
+        public async Task HomeController_SubmitInquiryAirtableException()
+        {
+            var mockedHomeController = new MockedHomeController();
+
+            mockedHomeController.MockedInquiryWriteService.InquiryWriteService
+                .Setup(s => s.SubmitInquiryAsync(It.IsAny<InquirySubmission>()))
+                .Throws<AirtableException>();
+
+            var inquirySubmission = new InquirySubmission
+            {
+                Email = "Test Submission Email",
+                Subject = "Test Submission Subject",
+                Body = "Test Submission Body",
+            };
+
+            var result = await mockedHomeController.HomeController
+                .SubmitInquiry(inquirySubmission);
+
+            Assert.IsNotNull(result);
+
+            Assert.IsTrue(result is BadRequestObjectResult);
+
+            var badRequestResult = (BadRequestObjectResult)result;
+
+            Assert.AreEqual(400, badRequestResult.StatusCode);
+            Assert.AreEqual("There was an error trying to submit your inquiry", badRequestResult.Value);
         }
 
         [TestMethod]

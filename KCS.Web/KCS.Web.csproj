@@ -24,7 +24,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KCS.Core\KCS.Core.csproj" />
-    <ProjectReference Include="..\KCS.DataLayer\KCS.DataLayer.csproj" />
     <ProjectReference Include="..\KCS.Services\KCS.Services.csproj" />
   </ItemGroup>
   

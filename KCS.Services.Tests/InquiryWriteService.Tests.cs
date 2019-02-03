@@ -1,8 +1,10 @@
-﻿using KCS.Core.Models;
+﻿using KCS.Core.Exceptions;
+using KCS.Core.Models;
 using KCS.Services.Tests.TestData;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace KCS.Services.Tests
@@ -12,13 +14,23 @@ namespace KCS.Services.Tests
     {
         private class MockedInquiryWriteService
         {
-            private readonly MockedInquiryDataLayer _inquiryDataLayer;
+            private readonly MockedReCaptchaValidationService _reCaptchaService;
 
-            internal MockedInquiryDataLayer InquiryDataLayer
+            internal MockedReCaptchaValidationService ReCaptchaValidationService
             {
                 get
                 {
-                    return _inquiryDataLayer;
+                    return _reCaptchaService;
+                }
+            }
+
+            private readonly MockedAirtableService _airtableService;
+
+            internal MockedAirtableService AirtableService
+            {
+                get
+                {
+                    return _airtableService;
                 }
             }
 
@@ -34,30 +46,10 @@ namespace KCS.Services.Tests
 
             internal MockedInquiryWriteService()
             {
-                _inquiryDataLayer = new MockedInquiryDataLayer();
-                _inquiryWriteService = new InquiryWriteService(_inquiryDataLayer.InquiryDataLayer.Object);
+                _airtableService = new MockedAirtableService();
+                _reCaptchaService = new MockedReCaptchaValidationService();
+                _inquiryWriteService = new InquiryWriteService(_reCaptchaService.ReCaptchaValidationService.Object, _airtableService.AirtableService.Object);
             }
-        }
-
-        [TestMethod]
-        public async Task InquiryWriteService_MarkInquiryAsReadRequiresInquiryId()
-        {
-            var mockedWriteInquiryService = new MockedInquiryWriteService();
-
-            await Assert.ThrowsExceptionAsync<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
-                .MarkInquiryAsReadAsync(Guid.Empty));
-        }
-
-        [TestMethod]
-        public async Task InquiryWriteService_CanMarkInquiryAsRead()
-        {
-            var mockedWriteInquiryService = new MockedInquiryWriteService();
-
-            await mockedWriteInquiryService.InquiryWriteService
-                .MarkInquiryAsReadAsync(MockedInquiry.UnreadInquiry.Id);
-
-            mockedWriteInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.MarkInquiryAsReadAsync(MockedInquiry.UnreadInquiry.Id), Times.Once);
         }
 
         [TestMethod]
@@ -70,6 +62,68 @@ namespace KCS.Services.Tests
         }
 
         [TestMethod]
+        public async Task InquiryWriteService_SubmitInquiryReCaptchaValidation()
+        {
+            var mockedWriteInquiryService = new MockedInquiryWriteService();
+
+            mockedWriteInquiryService.ReCaptchaValidationService.ReCaptchaValidationService
+                .Setup(r => r.Validate(It.IsAny<string>()))
+                .Returns(Task.FromResult(new ReCaptchaResponse
+                {
+                    Success = false,
+                    ErrorCodes = new List<string>() { "Error Code 1", "Error Code 2" },
+                }));
+
+            var inquirySubmission = new InquirySubmission
+            {
+                Email = "Test Submission Email",
+                Subject = "Test Submission Subject",
+                Body = "Test Submission Body",
+                Captcha = "token",
+            };
+
+            await Assert.ThrowsExceptionAsync<ReCaptchaException>(() => mockedWriteInquiryService.InquiryWriteService
+              .SubmitInquiryAsync(inquirySubmission), "Error Code 1,Error Code 2");
+
+            mockedWriteInquiryService.ReCaptchaValidationService.ReCaptchaValidationService
+                .Verify(r => r.Validate(It.IsAny<string>()), Times.Once);
+
+            mockedWriteInquiryService.AirtableService.AirtableService
+                .Verify(d => d.SubmitRequest(It.IsAny<AirtableRequest>()), Times.Never);
+        }
+
+        [TestMethod]
+        public async Task InquiryWriteService_SubmitInquiryAirtableException()
+        {
+            var mockedWriteInquiryService = new MockedInquiryWriteService();
+
+            mockedWriteInquiryService.AirtableService.AirtableService
+                .Setup(a => a.SubmitRequest(It.IsAny<AirtableRequest>()))
+                .Returns(Task.FromResult(new AirtableResponse
+                {
+                    Success = false,
+                    ErrorMessage = "Error Message",
+                }));
+
+            var inquirySubmission = new InquirySubmission
+            {
+                Email = "Test Submission Email",
+                Subject = "Test Submission Subject",
+                Body = "Test Submission Body",
+                Captcha = "token",
+            };
+
+            await Assert.ThrowsExceptionAsync<AirtableException>(() => mockedWriteInquiryService.InquiryWriteService
+                .SubmitInquiryAsync(inquirySubmission), "Error Message");
+
+            mockedWriteInquiryService.ReCaptchaValidationService.ReCaptchaValidationService
+                .Verify(r => r.Validate(It.IsAny<string>()), Times.Once);
+
+            mockedWriteInquiryService.AirtableService.AirtableService
+                .Verify(d => d.SubmitRequest(It.IsAny<AirtableRequest>()), Times.Once);
+        }
+
+        [TestMethod]
         public async Task InquiryWriteService_CanSubmitInquiry()
         {
             var mockedWriteInquiryService = new MockedInquiryWriteService();
@@ -79,34 +133,17 @@ namespace KCS.Services.Tests
                 Email = "Test Submission Email",
                 Subject = "Test Submission Subject",
                 Body = "Test Submission Body",
+                Captcha = "token",
             };
 
             await mockedWriteInquiryService.InquiryWriteService
                 .SubmitInquiryAsync(inquirySubmission);
 
-            mockedWriteInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.SubmitInquiryAsync(inquirySubmission), Times.Once);
-        }
+            mockedWriteInquiryService.ReCaptchaValidationService.ReCaptchaValidationService
+                .Verify(r => r.Validate(It.IsAny<string>()), Times.Once);
 
-        [TestMethod]
-        public async Task InquiryWriteService_DeleteInquiryRequiresInquiryId()
-        {
-            var mockedWriteInquiryService = new MockedInquiryWriteService();
-
-            await Assert.ThrowsExceptionAsync<ArgumentException>(() => mockedWriteInquiryService.InquiryWriteService
-                .DeleteInquiryAsync(Guid.Empty));
-        }
-
-        [TestMethod]
-        public async Task InquiryWriteService_CanDeleteInquiry()
-        {
-            var mockedWriteInquiryService = new MockedInquiryWriteService();
-
-            await mockedWriteInquiryService.InquiryWriteService
-                .DeleteInquiryAsync(MockedInquiry.ReadInquiry.Id);
-
-            mockedWriteInquiryService.InquiryDataLayer.InquiryDataLayer
-                .Verify(d => d.DeleteInquiryAsync(MockedInquiry.ReadInquiry.Id), Times.Once);
+            mockedWriteInquiryService.AirtableService.AirtableService
+                .Verify(d => d.SubmitRequest(It.IsAny<AirtableRequest>()), Times.Once);
         }
     }
 }

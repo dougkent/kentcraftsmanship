@@ -38,7 +38,7 @@ namespace KCS.Web.Tests
             {
                 _mockedInquiryWriteService = new MockedInquiryWriteService();
 
-                _homeController = new HomeController(_mockedInquiryWriteService.InquiryWriteService.Object);
+                _homeController = new HomeController(_mockedInquiryWriteService.InquiryWriteService.Object, null);
             }
         }
 

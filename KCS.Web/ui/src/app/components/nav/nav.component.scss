@@ -1,0 +1,232 @@
+﻿.nav-bar {
+    height: 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 9999;   
+
+    .nav-bar-container {
+        display: flex;
+        height: 40px;
+        padding: 10px;
+        width: 100%;
+
+        .nav-bar-header {
+            display: flex;
+            justify-content: flex-start;
+            width: 50%;
+
+            .nav-bar-brand {
+                display: block;
+                margin-left: 20px;
+                text-align: center;
+            }
+        }
+
+        .nav-bar-nav {
+            display: flex;
+            justify-content: flex-end;
+            width: 50%;
+
+            .nav-bar-toggle {
+                background: none;
+                border: none;
+                height: 40px;
+                width: 40px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    /* #### Mobile Phones #### */
+    @media screen and (max-width: 768px) {
+        .nav-bar-container {
+            .nav-bar-nav {
+                .nav-bar-mobile {
+                    margin-right: 40px;
+                    display: flex;
+                    align-content: stretch;
+                    justify-content: right;
+                }
+
+                .nav-bar-reg {
+                    display: none;
+                }
+            }
+
+            .nav-bar-dropdown {
+                width: 100%;
+                position: fixed;
+                top: 60px;
+                left: 0px;
+                display: flex;
+                justify-content: flex-end;
+
+                ul {
+                    display: block;
+                    margin: 0;
+                    padding: 20px;
+                    width: 100%;
+
+                    li.nav-item {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                        }
+                    }
+                    
+                    li.nav-item-icon {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* #### Tablets Portrait or Landscape #### */
+    @media screen and (min-width: 769px) and (max-width: 1023px) {
+        .nav-bar-container {
+            .nav-bar-nav {
+                .nav-bar-mobile {
+                    margin-right: 40px;
+                    display: flex;
+                    align-content: stretch;
+                    justify-content: right;
+                }
+
+                .nav-bar-reg {
+                    display: none;
+                }
+            }
+
+            .nav-bar-dropdown {
+                width: 100%;
+                position: fixed;
+                top: 60px;
+                left: 0px;
+                display: flex;
+                justify-content: flex-end;
+
+                ul {
+                    display: block;
+                    margin: 0;
+                    padding: 20px;
+                    width: 240px;
+
+                    li.nav-item {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                        }
+                    }
+                    
+                    li.nav-item-icon {
+                        margin: 0;
+                        padding: 0;
+                        list-style: none;
+                        text-align: center;
+                        height: 40px;
+                        line-height: 40px;
+
+                        a.nav-link {
+                            color: #3d3d3d;
+                            text-decoration: none;
+                            margin: 0 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* #### Desktops #### */
+    @media screen and (min-width: 1024px) {
+        .nav-bar-container {
+
+            .nav-bar-nav {
+                .nav-bar-mobile {
+                    display: none;
+                }
+
+                .nav-bar-reg {
+                    margin-right: 15px;
+                    width: 100%;
+                    
+                    ul {
+                        margin: 0;
+                        padding: 0;
+                        display: flex;
+                        justify-content: space-around; 
+
+                        li.nav-item {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            display: inline-block;
+                            text-align: center;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                                line-height: 40px;
+                            }
+                        }
+
+                        li.nav-item-icon {
+                            margin: 0;
+                            padding: 0;
+                            list-style: none;
+                            display: inline-block;
+                            text-align: center;
+
+                            a.nav-link {
+                                color: #3d3d3d;
+                                text-decoration: none;
+                                line-height: 40px;
+                                margin-right: 20px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .nav-bar-dropdown {
+                display: none;
+            }
+        }
+    }
+}
+
+.nav-bar-background {
+    background: rgba(244, 244, 246, 0.75);
+}

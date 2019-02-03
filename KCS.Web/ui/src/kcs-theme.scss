@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,700,700i');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import '../node_modules/@angular/material/theming';
+
+$general-typography: mat-typography-config(
+    $font-family: '"Montserrat", sans-serif',
+    $body-2: mat-typography-level(14px, 24px, 400)
+);
+
+@include mat-core($general-typography);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$kcs-primary: (
+    50 : #e1ebe1,
+    100 : #b5ceb4,
+    200 : #84ad83,
+    300 : #538c51,
+    400 : #2e742b,
+    500 : #095b06,
+    600 : #085305,
+    700 : #064904,
+    800 : #054003,
+    900 : #022f02,
+    A100 : #68ff68,
+    A200 : #35ff35,
+    A400 : #02ff02,
+    A700 : #00e700,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$kcs-secondary: (
+    50 : #e8e8e8,
+    100 : #c5c5c5,
+    200 : #9e9e9e,
+    300 : #777777,
+    400 : #5a5a5a,
+    500 : #3d3d3d,
+    600 : #373737,
+    700 : #2f2f2f,
+    800 : #272727,
+    900 : #1a1a1a,
+    A100 : #f07474,
+    A200 : #ea4646,
+    A400 : #fd0000,
+    A700 : #e40000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+$warn-palette: ( 50 : #fde5e7, 100 : #fabec3, 200 : #f7939b, 300 : #f36873, 400 : #f14755, 500 : #ee2737, 600 : #ec2331, 700 : #e91d2a, 800 : #e71723, 900 : #e20e16, A100 : #ffffff, A200 : #ffdadb, A400 : #ffa7aa, A700 : #ff8e91, contrast: ( 50 : #000000, 100 : #000000, 200 : #000000, 300 : #000000, 400 : #ffffff, 500 : #ffffff, 600 : #ffffff, 700 : #ffffff, 800 : #ffffff, 900 : #ffffff, A100 : #000000, A200 : #000000, A400 : #000000, A700 : #000000, ) );
+
+$custom-theme-primary: mat-palette($kcs-primary);
+$custom-theme-accent: mat-palette($kcs-secondary, A200, A100, A400);
+$custom-theme-warn: mat-palette($warn-palette);
+
+$custom-theme: mat-light-theme($custom-theme-primary, $custom-theme-accent, $custom-theme-warn);
+
+@mixin custom-theme($theme) {
+
+}
+
+@include angular-material-theme($custom-theme);
+@include custom-theme($custom-theme);

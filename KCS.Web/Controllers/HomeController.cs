@@ -1,21 +1,20 @@
-﻿using KCS.Core.Interfaces;
+using KCS.Core.Interfaces;
 using KCS.Core.Models;
-using KCS.DataLayer;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace KCS.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IInquiryWriteService _inquiryWriteService;
+        private readonly IReCaptchaValidationService _reCaptchaValidationService;
 
-        public HomeController(IInquiryWriteService inquiryWriteService)
+        public HomeController(IInquiryWriteService inquiryWriteService, IReCaptchaValidationService reCaptchaValidationService)
         {
             _inquiryWriteService = inquiryWriteService;
+            _reCaptchaValidationService = reCaptchaValidationService;
         }
 
         public IActionResult Index()
@@ -24,7 +23,7 @@ namespace KCS.Web.Controllers
         }
 
         [HttpPost]
-        [Route("/api/inquiry/submit")]
+        [Route("/api/inquiries")]
         public async Task<IActionResult> SubmitInquiry([FromBody]InquirySubmission inquirySubmission)
         {
             if (inquirySubmission == null)
@@ -37,12 +36,24 @@ namespace KCS.Web.Controllers
 
             try
             {
-                await _inquiryWriteService.SubmitInquiryAsync(inquirySubmission);
+                var response = await _reCaptchaValidationService.Validate(inquirySubmission.Captcha);
 
-                return Ok();
+                if(response.Success)
+                {
+                    await _inquiryWriteService.SubmitInquiryAsync(inquirySubmission);
+
+                    return Ok();
+                }
+                else
+                {
+                    var responseErrors = string.Join(",", response.ErrorCodes);
+                    Console.WriteLine("Recaptcha Errors: " + responseErrors);
+                    return BadRequest(responseErrors);
+                }
             }
             catch (Exception ex)
             {
+                Console.WriteLine("Unexpected Error: " + ex.ToString());
                 return BadRequest(ex.Message);
             }
         }

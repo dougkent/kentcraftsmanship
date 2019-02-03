@@ -1,0 +1,28 @@
+<mat-grid-list cols="2" rowHeight="4:3" gutterSize="10px">
+    <mat-grid-tile *ngFor="let item of items" colspan="2" rowspan="1">
+        <div class="mtf-list-item">
+            <image-slider [imageUrls]="item.imageUrls" class="mtf-list-item-img"></image-slider>
+            <div class="mtf-list-item-info">
+                <div class="name">
+                    {{ item.name }}
+                </div>
+                <div class="description">
+                    <p>
+                        {{ item.description }}
+                    </p>
+                </div>
+                <!-- <div class="materials">
+                    Materials:
+                    <ul>
+                        <li *ngFor="let material of item.materials">
+                            {{ material }}
+                        </li>
+                    </ul>
+                </div> -->
+                <div>
+                    <a mat-raised-button color="primary" [href]="item.pdfUrl">Download</a>
+                </div>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>

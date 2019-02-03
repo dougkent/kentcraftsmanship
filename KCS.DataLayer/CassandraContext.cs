@@ -20,7 +20,7 @@ namespace KCS.DataLayer
 
         public Table<UnreadInquiry> UnreadInquiries { get { return _unreadInquiries; } }
 
-        public CassandraContext()
+        static CassandraContext()
         {
             MappingConfiguration.Global.Define(
                new Map<Inquiry>()
@@ -30,7 +30,10 @@ namespace KCS.DataLayer
                new Map<UnreadInquiry>()
                   .TableName("unread_inquiries")
                   .PartitionKey(u => u.Id));
+        }
 
+        public CassandraContext()
+        {
             _cluster = Cluster.Builder()
                 .AddContactPoint("127.0.0.1")
                 .Build();

@@ -5,18 +5,11 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Services", "KCS.Services\KCS.Services.csproj", "{756CAEF9-63DB-4EC6-BE47-9B9CEB15A94D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.DataLayer", "KCS.DataLayer\KCS.DataLayer.csproj", "{246B8C51-5709-4415-B14C-A7C29C038558}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Core", "KCS.Core\KCS.Core.csproj", "{D946F278-2D05-4462-99CD-5DE1FB8D1086}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Services.Tests", "KCS.Services.Tests\KCS.Services.Tests.csproj", "{6E77CF5F-77B5-4940-A812-ACF332841C0A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Web.Tests", "KCS.Web.Tests\KCS.Web.Tests.csproj", "{CB5C3B67-4069-4C03-B8C4-E4A2423F0FDE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9877D73D-855C-468D-AD03-A70276935D6B}"
-	ProjectSection(SolutionItems) = preProject
-		KCS.Database\KCS.Cassandra.Schema.cql = KCS.Database\KCS.Cassandra.Schema.cql
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KCS.Web", "KCS.Web\KCS.Web.csproj", "{93B4D678-E95A-49C3-B9AD-DE3373B50FFE}"
 EndProject

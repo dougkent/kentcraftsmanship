@@ -8,4 +8,9 @@
     <ProjectReference Include="..\KCS.Core\KCS.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Airtable" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.2.0" />
+  </ItemGroup>
+
 </Project>

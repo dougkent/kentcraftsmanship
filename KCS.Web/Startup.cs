@@ -1,6 +1,6 @@
 using KCS.Core.Interfaces;
+using KCS.Core.Models;
 using KCS.Services;
-using KCS.Web.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -13,11 +13,17 @@ namespace KCS.Web
 {
     public class Startup
     {
-        public IConfiguration Configuration { get; set; }
+        public IConfiguration _configuration { get; set; }
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration config, IHostingEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            _configuration = builder.Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -25,9 +31,6 @@ namespace KCS.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
-
-            //load configuration data into ConfigSettings object
-            services.Configure<ConfigSettings>(Configuration.GetSection("configsettings"));
 
             services.AddSpaStaticFiles(configuration =>
             {
@@ -46,6 +49,8 @@ namespace KCS.Web
             services.AddScoped<IAirtableService, AirtableService>();
             services.AddScoped<IInquiryWriteService, InquiryWriteService>();
             services.AddScoped<IReCaptchaValidationService, ReCaptchaValidationService>();
+
+            services.Configure<ConfigSettings>(_configuration.GetSection("AppSettings"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,34 +66,7 @@ namespace KCS.Web
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "kentcraftsmanship";
-
-                //if (env.IsDevelopment())
-                //{
-                //    spa.UseAngularCliServer(npmScript: "start");
-                //}
             });
-
-            //app.Use(async (context, next) =>
-            //{
-            //    // Redirect index.html request to a controller that can have authorization in front of it
-            //    if (context.Request.Path.Value == "/index.html")
-            //    {
-            //        context.Request.Path = "/";
-            //    }
-
-            //    await next();
-            //    if (context.Response.StatusCode == 404 && !Path.HasExtension(context.Request.Path.Value) &&
-            //        !context.Request.Path.Value.StartsWith("/api/"))
-            //    {
-            //        context.Request.Path = "/";
-            //        await next();
-            //    }
-            //});
-
-            ////default route: /api/[Controller]
-            //app.UseMvcWithDefaultRoute();
-
-            //app.UseDefaultFiles();
         }
     }
 }

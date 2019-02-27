@@ -77,8 +77,8 @@ namespace KCS.Services.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
                 Captcha = "token",
             };
 
@@ -108,8 +108,8 @@ namespace KCS.Services.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
                 Captcha = "token",
             };
 
@@ -131,8 +131,8 @@ namespace KCS.Services.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
                 Captcha = "token",
             };
 

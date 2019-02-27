@@ -9,8 +9,8 @@ namespace KCS.Core.Extensions
             return new AirtableRequest
             {
                 Email = submission.Email,
-                Summary = submission.Subject,
-                Description = submission.Body,
+                Name = submission.Name,
+                Description = submission.Message,
             };
         }
     }

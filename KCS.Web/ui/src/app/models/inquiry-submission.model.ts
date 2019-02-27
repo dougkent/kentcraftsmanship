@@ -1,6 +1,6 @@
 ﻿export interface InquirySubmission {
     email: string;
-    subject: string;
-    body: string;
+    name: string;
+    message: string;
     captcha: string;
 }

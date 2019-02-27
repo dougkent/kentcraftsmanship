@@ -9,6 +9,8 @@ namespace KCS.Services
 {
     public class AirtableService : IAirtableService
     {
+        private const string TABLE_NAME = "Inquiries";
+
         private readonly IOptions<ConfigSettings> _config;
 
         public AirtableService(IOptions<ConfigSettings> config)
@@ -21,14 +23,14 @@ namespace KCS.Services
             using (AirtableBase airtableBase = new AirtableBase(_config.Value.AirtableApiKey, _config.Value.AirtableBaseId))
             {
                 var fields = new Fields();
-                fields.AddField("Email", request.Email);
+                fields.AddField(nameof(request.Email), request.Email);
 
-                fields.AddField("Summary", request.Summary);
+                fields.AddField(nameof(request.Name), request.Name);
 
-                fields.AddField("Description", request.Description);
+                fields.AddField(nameof(request.Description), request.Description);
 
                 var response = await airtableBase.CreateRecord(
-                    tableName: "Inquiries",
+                    tableName: TABLE_NAME,
                     fields: fields,
                     typecast: true
                 );

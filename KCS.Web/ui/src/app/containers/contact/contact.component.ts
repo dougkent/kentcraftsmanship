@@ -1,5 +1,6 @@
 // Angular
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 
 // Services
@@ -18,7 +19,7 @@ export class ContactComponent {
     @Input()
     submitting: boolean;
 
-    @Output() 
+    @Output()
     inquirySubmitted: EventEmitter<InquirySubmission> = new EventEmitter<InquirySubmission>();
 
     constructor(
@@ -26,25 +27,25 @@ export class ContactComponent {
         private kcsService: KcsService
     ) { }
 
-    submitInquiry(model: InquirySubmission, isValid: boolean) {
+    submitInquiry(form: NgForm) {
 
-        if (!this.submitting && isValid) {
+        if (!this.submitting && form.valid) {
             this.submitting = true;
-            this.inquirySubmitted.emit(model);
-            
-            this.kcsService.submitInquiry(model).subscribe(resp => {
+            this.inquirySubmitted.emit(form.value);
+
+            this.kcsService.submitInquiry(form.value).subscribe(resp => {
                 this.submitting = false;
-                    this.snackBar.open('Inquiry submitted successfully!', '',
-                        {
-                            duration: 3000,
-                            panelClass: ['text-success'],
-                        });
-            },
-            err => {
-                this.submitting = false;
-                this.snackBar.open('Inquiry submission encountered an unexpected error.', '',
+                this.snackBar.open('Your inquiry has been submitted! I will get back to as soon as possible about your inquiry', '',
                     {
-                        duration: 3000,
+                        duration: 5000,
+                        panelClass: ['text-success'],
+                    });
+                form.resetForm();
+            }, err => {
+                this.submitting = false;
+                this.snackBar.open('Your inquiry submission encountered an unexpected error.', '',
+                    {
+                        duration: 5000,
                         panelClass: ['text-error'],
                     });
             });

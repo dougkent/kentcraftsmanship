@@ -2,8 +2,8 @@
     <div class="contact-background"></div>
     <!--Photo by Simon Stankowski on Unsplash-->
     <div class="contact-form fade-in">
-        <h1>Submit Inquiry</h1>
-        <form #contactForm="ngForm" (ngSubmit)="submitInquiry(contactForm.value, contactForm.valid)" novalidate>
+        <h1>Submit An Inquiry</h1>
+        <form #contactForm="ngForm" (ngSubmit)="submitInquiry(contactForm)" novalidate>
             <mat-form-field>
                 <input type="email" matInput placeholder="Email Address" name="email" ngModel #email="ngModel" email
                     required maxlength="256" />
@@ -11,27 +11,28 @@
                     Please enter a valid email address.
                 </mat-error>
                 <mat-error *ngIf="email.errors?.required">
-                    Email address is required.
+                    Your email address is required.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input type="text" matInput placeholder="Subject" name="subject" ngModel #subject="ngModel" required
+                <input type="text" matInput placeholder="Name" name="name" ngModel #name="ngModel" required
                     maxlength="100" />
-                <mat-error *ngIf="subject.errors?.required">
-                    A subject is required.
+                <mat-error *ngIf="name.errors?.required">
+                    Your name is required.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Body" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5"
-                    name="body" ngModel #body="ngModel" required maxlength="1000"></textarea>
-                <mat-hint align="end">{{body.value?.length}} / 1000</mat-hint>
-                <mat-error *ngIf="body.errors?.required">
-                    A body is required.
+                <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="5"
+                    matAutosizeMaxRows="5" name="message" ngModel #message="ngModel" required
+                    maxlength="1000"></textarea>
+                <mat-hint align="end">{{message.value?.length}} / 1000</mat-hint>
+                <mat-error *ngIf="message.errors?.required">
+                    A message is required.
                 </mat-error>
             </mat-form-field>
             <div class="center-form-row">
-                <re-captcha name="captcha" [(ngModel)]="contactForm.captcha" required siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO"
-                    #captcha="ngModel"></re-captcha>
+                <re-captcha name="captcha" [(ngModel)]="contactForm.captcha" required
+                    siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO" #captcha="ngModel"></re-captcha>
                 <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid || submitting">
                     Submit
                 </button>

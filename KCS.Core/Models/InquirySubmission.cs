@@ -8,10 +8,10 @@ namespace KCS.Core.Models
         public string Email { get; set; }
 
         [Required]
-        public string Subject { get; set; }
+        public string Name { get; set; }
 
         [Required]
-        public string Body { get; set; }
+        public string Message { get; set; }
 
         [Required]
         public string Captcha { get; set; }

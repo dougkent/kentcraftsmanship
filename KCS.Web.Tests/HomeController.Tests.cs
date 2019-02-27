@@ -91,8 +91,8 @@ namespace KCS.Web.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
             };
 
             var result = await mockedHomeController.HomeController
@@ -119,8 +119,8 @@ namespace KCS.Web.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
             };
 
             var result = await mockedHomeController.HomeController
@@ -147,8 +147,8 @@ namespace KCS.Web.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
             };
 
             var result = await mockedHomeController.HomeController
@@ -172,8 +172,8 @@ namespace KCS.Web.Tests
             var inquirySubmission = new InquirySubmission
             {
                 Email = "Test Submission Email",
-                Subject = "Test Submission Subject",
-                Body = "Test Submission Body",
+                Name = "Test Submission Name",
+                Message = "Test Submission Message",
             };
 
             var result = await mockedHomeController.HomeController

@@ -6,7 +6,7 @@
         <form #contactForm="ngForm" (ngSubmit)="submitInquiry(contactForm)" novalidate>
             <mat-form-field>
                 <input type="email" matInput placeholder="Email Address" name="email" ngModel #email="ngModel" email
-                    required maxlength="256" />
+                       required maxlength="256" />
                 <mat-error *ngIf="email.errors?.email && !email.errors?.required">
                     Please enter a valid email address.
                 </mat-error>
@@ -15,24 +15,22 @@
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <input type="text" matInput placeholder="Name" name="name" ngModel #name="ngModel" required
-                    maxlength="100" />
+                <input type="text" matInput placeholder="Name" name="name" ngModel #name="ngModel" required maxlength="100" />
                 <mat-error *ngIf="name.errors?.required">
                     Your name is required.
                 </mat-error>
             </mat-form-field>
             <mat-form-field>
-                <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="5"
-                    matAutosizeMaxRows="5" name="message" ngModel #message="ngModel" required
-                    maxlength="1000"></textarea>
+                <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="5" matAutosizeMaxRows="5"
+                          name="message" ngModel #message="ngModel" required maxlength="1000"></textarea>
                 <mat-hint align="end">{{message.value?.length}} / 1000</mat-hint>
                 <mat-error *ngIf="message.errors?.required">
                     A message is required.
                 </mat-error>
             </mat-form-field>
             <div class="center-form-row">
-                <re-captcha name="captcha" [(ngModel)]="contactForm.captcha" required
-                    siteKey="6Lcc5UIUAAAAAEqED9lpGrleB--Hb4lemcZBhVjO" #captcha="ngModel"></re-captcha>
+                <re-captcha name="captcha" [(ngModel)]="contactForm.captcha" required siteKey="6LdRY5QUAAAAAKS_BJ1Q-THv7zSTHTHkCdaHAKhl"
+                            #captcha="ngModel"></re-captcha>
                 <button mat-raised-button color="primary" type="submit" [disabled]="contactForm.invalid || submitting">
                     Submit
                 </button>

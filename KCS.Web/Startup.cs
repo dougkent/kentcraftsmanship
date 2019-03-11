@@ -34,7 +34,7 @@ namespace KCS.Web
 
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ui/dist/kentcraftsmanship";
+                configuration.RootPath = "ui/dist";
             });
 
             services.AddMvc()

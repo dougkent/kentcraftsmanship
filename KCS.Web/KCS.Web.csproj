@@ -8,14 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="kentcraftsmanship\src\app\components\index.ts" />
-    <None Remove="kentcraftsmanship\src\app\containers\index.ts" />
-    <None Remove="kentcraftsmanship\src\app\directives\index.ts" />
-    <None Remove="kentcraftsmanship\src\app\models\index.ts" />
-    <None Remove="kentcraftsmanship\src\app\services\index.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
@@ -29,11 +21,10 @@
   
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.0" />
-    <TypeScriptCompile Include="kentcraftsmanship\src\app\components\index.ts" />
-    <TypeScriptCompile Include="kentcraftsmanship\src\app\containers\index.ts" />
-    <TypeScriptCompile Include="kentcraftsmanship\src\app\directives\index.ts" />
-    <TypeScriptCompile Include="kentcraftsmanship\src\app\models\index.ts" />
-    <TypeScriptCompile Include="kentcraftsmanship\src\app\services\index.ts" />
     <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ui/dist/**" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

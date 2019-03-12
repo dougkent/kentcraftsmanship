@@ -11,16 +11,8 @@
                         {{ item.description }}
                     </p>
                 </div>
-                <!-- <div class="materials">
-                    Materials:
-                    <ul>
-                        <li *ngFor="let material of item.materials">
-                            {{ material }}
-                        </li>
-                    </ul>
-                </div> -->
-                <div>
-                    <a mat-raised-button color="primary" [href]="item.pdfUrl">Download</a>
+                <div class="actions">
+                    <a mat-raised-button color="primary" [href]="item.pdfUrl" target="_blank">Download</a>
                 </div>
             </div>
         </div>

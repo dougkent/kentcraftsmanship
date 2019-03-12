@@ -22,25 +22,10 @@
 
         .name { 
             font-size: 16px;
-            margin-bottom: 10px;
         }
 
-        .description, .materials {
+        .description {
             font-size: 12px;
-        }
-
-        .materials {
-            ul {
-                display: flex;
-                justify-content: space-evenly;
-                flex-wrap: wrap;
-                margin: 0px;
-                padding: 0px;
-
-                li {
-                    list-style: none;
-                }
-            }
         }
     }
 }

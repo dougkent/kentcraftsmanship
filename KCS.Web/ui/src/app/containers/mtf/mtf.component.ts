@@ -18,16 +18,7 @@ export class MtfComponent implements OnInit {
         this.items = [
             {
                 name: 'Bunk Bed',
-                description: 'These bunk bed plans were designed specifically for construction for an orphange in Haiti using a circular saw, drills and impact drivers. The dimensions of the bunk beds were made according to the orphange directors specifications for the mattresses he had ordered which were a non-standard size.',
-                materials: [
-                    '4 2x4x75.5" Boards',
-                    '4 2x4x27" Boards',
-                    '4 2x4x66" Boards',
-                    '4 1x4x75.5" Boards',
-                    '2 1x4x74.75" Boards',
-                    '8 1x4x33" Boards',
-                    '20 1x4x30" Boards'
-                ],
+                description: 'These bunk bed plans were designed specifically for construction for an orphange in Haiti using a circular saw, drills, impact drivers, and socket wrenches. The dimensions of the bunk beds were made according to the orphange directors specifications for the mattresses he had ordered which were a non-standard size. All of the hardware was bought in the U.S. and brought with us on the trip.',
                 imageUrls: [
                     '../../../assets/mission-trip-furniture/kent-craftsmanship-bunk-beds.jpg',
                     '../../../assets/mission-trip-furniture/kent-craftsmanship-bunk-bed.jpg'
@@ -36,8 +27,7 @@ export class MtfComponent implements OnInit {
             },
             {
                 name: 'Picnic Table',
-                description: 'These picnic table plans were designed specifically for an open air cafeteria in an orphanage in Haiti. They can be constructed using just a circular saw, drills, and impact drivers.',
-                materials: [],
+                description: 'These picnic table plans were designed specifically for an open air cafeteria in an orphanage in Haiti. They can be constructed using just a circular saw, drills, and impact drivers. All of the hardware was bought in the U.S. and brought with us on the trip.',
                 imageUrls: [
                     '../../../assets/mission-trip-furniture/kent-craftsmanship-picnic-tables.jpg',
                     '../../../assets/mission-trip-furniture/kent-craftsmanship-picnic-table.jpg'

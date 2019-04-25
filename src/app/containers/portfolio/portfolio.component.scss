@@ -1,0 +1,17 @@
+﻿.kcs-portfolio-container {
+    .portfolio {
+        padding: 70px 5%;
+
+        .tile {
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.75);
+
+            .image-tile {
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                background-position: center;
+            }
+        }
+    }
+}

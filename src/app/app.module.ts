@@ -5,10 +5,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 
-//Third Party Modules
-import { RecaptchaModule } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-
 // App Modules
 import { AppRoutingModule } from './app.routing.module';
 import { AppMaterialModule } from './app.material.module';
@@ -36,9 +32,6 @@ import * as fromComponents from './components';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    // Third Party Modules,
-    RecaptchaModule.forRoot(),
-    RecaptchaFormsModule,
     // App Modules
     AppRoutingModule,
     AppMaterialModule

@@ -1,15 +1,33 @@
 ﻿import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Observable, throwError, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { ImageTile } from '../models/image-tile.model';
-import { InquirySubmission } from '../models/inquiry-submission.model';
 
 @Injectable()
 export class KcsService {
 
     private portfolioImages: ImageTile[] = [
+        {
+            src: "../../../assets/portfolio/covenant-altar.jpg",
+            cols: 4,
+            rows: 2,
+            mobileRows: 1,
+            mobileCols: 2,
+        },
+        {
+            src: "../../../assets/portfolio/covenant-cross.jpg",
+            cols: 2,
+            rows: 3,
+            mobileRows: 3,
+            mobileCols: 2,
+        },
+        {
+            src: "../../../assets/portfolio/coffee-table.jpg",
+            cols: 4,
+            rows: 2,
+            mobileCols: 2,
+            mobileRows: 1,
+        },
         {
             src: "../../../assets/portfolio/lazy-susan.jpg",
             cols: 2,
@@ -19,14 +37,7 @@ export class KcsService {
         },
         {
             src: "../../../assets/portfolio/cribbage-board.jpg",
-            cols: 4,
-            rows: 2,
-            mobileCols: 2,
-            mobileRows: 1,
-        },
-        {
-            src: "../../../assets/portfolio/coffee-table.jpg",
-            cols: 6,
+            cols: 2,
             rows: 2,
             mobileCols: 2,
             mobileRows: 1,
@@ -117,23 +128,11 @@ export class KcsService {
         },
     ];
 
-    constructor(private http: Http) {
+    constructor() {
 
     }
 
     getPortfolioImages(): Observable<ImageTile[]> {
         return of(this.portfolioImages);
-    }
-
-    submitInquiry(inquirySubmission: InquirySubmission): Observable<Object> {
-        return this.http.post('/api/inquiries', inquirySubmission)
-            .pipe(
-                catchError((error: Response | any) => this.handleError(error))
-            );
-    }
-
-    private handleError(error: Response) {
-        console.error(error);
-        return throwError(error.body);
     }
 }

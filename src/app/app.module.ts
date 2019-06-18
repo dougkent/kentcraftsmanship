@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpModule } from '@angular/http';
 
 // App Modules
 import { AppRoutingModule } from './app.routing.module';
@@ -28,7 +27,6 @@ import * as fromComponents from './components';
   imports: [
     // Angular Modules
     BrowserModule,
-    HttpModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

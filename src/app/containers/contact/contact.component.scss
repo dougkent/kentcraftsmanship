@@ -1,5 +1,5 @@
 ﻿.kcs-contact-container {
-    padding-top: 40px;
+    padding: 80px 16px 16px 16px;
 
     .contact-background {
         background: url(../../../assets/contact-bg.jpg); //Photo by Jessica Furtney on Unsplash
@@ -14,52 +14,13 @@
     }
 
     .contact-form {
-        font-size: 14px;
-        width: 50%;
-        margin: 100px auto 40px auto;
-        padding: 20px;
-        background: rgba(255,255, 255, 0.75);
+        margin: 0 auto;
 
-        h1 {
-            margin-top: 0px;
-            font-weight: 400;
+        &.tablet {
+            width: 70%;
         }
-
-        mat-form-field {
-            width: 100%;
+        &.desktop {
+            width: 50%;
         }
-
-        .center-form-row {
-            text-align: center;
-            margin-top: 10px;
-
-            button {
-                margin-top: 10px;
-            }
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .contact-form {
-            width: 80%;
-        }
-    }
-}
-
-::ng-deep snack-bar-container.text-error {
-    color: #d10c0c;
-    background-color: rgba(255,255, 255, 0.75);
-    
-    simple-snack-bar {
-        font-size: 18px;
-    }
-}
-
-::ng-deep snack-bar-container.text-success {
-    color: #2e742b;
-    background-color: rgba(255,255, 255, 0.75);
-
-    simple-snack-bar {
-        font-size: 18px;
     }
 }

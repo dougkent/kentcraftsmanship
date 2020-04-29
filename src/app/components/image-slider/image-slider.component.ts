@@ -8,39 +8,36 @@ interface ImageSliderUrl {
 @Component({
     selector: 'image-slider',
     templateUrl: './image-slider.component.html',
-    styleUrls: [ './image-slider.component.scss']
+    styleUrls: ['./image-slider.component.scss'],
 })
 export class ImageSliderComponent {
-    imageSliderUrls: ImageSliderUrl[]
+    imageSliderUrls: ImageSliderUrl[];
 
     @Input()
-    set imageUrls(imageUrls: string[]){
-        this.imageSliderUrls = [];
-
-        imageUrls.forEach(imageUrl => {
-            this.imageSliderUrls.push({
-                imageUrl: imageUrl,
-                selected: false
-            });
-        });
+    set imageUrls(imageUrls: string[]) {
+        this.imageSliderUrls = imageUrls.map((imageUrl) => ({
+            imageUrl: imageUrl,
+            selected: false,
+        }));
 
         this.selectImage(this.imageSliderUrls[0]);
     }
 
-    constructor() { }
+    constructor() {}
 
     selectImage(event: ImageSliderUrl) {
-        this.imageSliderUrls.forEach(imageSliderUrl => {
-            if(imageSliderUrl.imageUrl === event.imageUrl) {
+        for (const imageSliderUrl of this.imageSliderUrls) {
+            if (imageSliderUrl.imageUrl === event.imageUrl) {
                 imageSliderUrl.selected = true;
-            }
-            else {
+            } else {
                 imageSliderUrl.selected = false;
             }
-        });
+        }
     }
 
     getSelectedImageUrl(): string {
-        return this.imageSliderUrls.find(imageSliderUrl => imageSliderUrl.selected).imageUrl;
+        return this.imageSliderUrls.find(
+            (imageSliderUrl) => imageSliderUrl.selected,
+        ).imageUrl;
     }
 }

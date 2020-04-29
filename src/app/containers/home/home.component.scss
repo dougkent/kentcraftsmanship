@@ -1,5 +1,4 @@
 ﻿.home {
-
     .home-background {
         background: url(../../../assets/home-bg.jpg); //Photo by Jessica Furtney on Unsplash
         background-size: cover;
@@ -13,39 +12,17 @@
 
     .kcs-title {
         text-align: center;
+        padding-top: 15vh;
 
-        /* #### Mobile Phones #### */
-        @media screen and (max-width: 768px) {
-            & {
-                padding-top: 15vh;
+        .kcs-logo {
+            width: 75%;
+
+            &.tablet {
+                width: 40%;
             }
 
-            .kcs-logo {
-                width: 75%;
-            }
-        }
-
-        /* #### Tablets Portrait or Landscape #### */
-        @media screen and (min-width: 769px) and (max-width: 1023px) {
-            & {
-                padding-top: 10vh;
-
-                .kcs-logo {
-                    width: 450px;
-                    height: 400px;
-                }
-            }
-        }
-
-        /* #### Desktops #### */
-        @media screen and (min-width: 1024px) {
-            & {
-                padding-top: 15vh;
-
-                .kcs-logo {
-                    width: 450px;
-                    height: 400px;
-                }
+            &.desktop {
+                width: 20%;
             }
         }
     }

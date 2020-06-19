@@ -1,5 +1,5 @@
 ﻿.kcs-mtf-container {
-    padding-top: 40px;
+    padding: 80px 16px 16px 16px;
 
     .mtf-background {
         background: url(../../../assets/mtf-bg.jpg); //Photo by Jessica Furtney on Unsplash
@@ -14,43 +14,35 @@
     }
 
     .mtf-container {
+        font-size: 14px;
+        padding: 16px 16px;
+        margin: 0 auto;
+        background: rgba(244, 244, 246, 0.75);
 
-        .mtf-info {
-            width: 60%;
-            margin: 50px auto 10px auto;
-            font-size: 14px;
-            padding: 20px 0px;
-            background: rgba(244, 244, 246, 0.75);
+        &.tablet {
+            width: 70%;
+        }
 
-            h1 {
-                margin-top: 0px;
-                margin-left: 20px;
-                margin-right: 20px;
-                font-weight: 300;
-            }
+        &.desktop {
+            width: 50%;
+        }
 
-            p {
-                margin-left: 20px;
-                margin-right: 20px;
+        h1 {
+            margin-top: 0px;
+            font-weight: 300;
+        }
+
+        a {
+            font-size: 1.1rem;
+            padding: 8px 16px;
+
+            &.tablet {
+                font-size: 1.4rem;
             }
         }
 
-        .mtf-list {
-            width: 60%;
-            margin: 0px auto 50px auto;
-            padding: 0px 20px;
-        }
-    }
-    
-    @media screen and (max-width: 1024px) {
-        .mtf-container {
-            .mtf-info {
-                width: 80%;
-            }
-            .mtf-list {
-                width: 80%;
-            }
+        .button-row {
+            margin-top: 24px;
         }
     }
-    
 }
